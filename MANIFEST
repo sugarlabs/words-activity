@@ -1,7 +1,6 @@
 LanguageModel.py
 pippy_app.py
 activity/activity.info
-activity/activity-default.svg
 activity/activity-icon.svg
 setup.py
 NEWS
