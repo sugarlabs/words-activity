@@ -1,0 +1,9 @@
+[Activity]
+name = Words
+bundle_id = org.laptop.Words
+service_name = org.laptop.Words
+class = pippy_app.WordsActivity
+icon = activity-icon
+activity_version = 1
+mime_types = text/x-python
+show_launcher = yes
