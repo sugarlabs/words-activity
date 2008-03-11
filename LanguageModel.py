@@ -22,7 +22,7 @@ class LanguageModel():
         """Take a language pair, prepare the language model."""
         self.lang1_lang2 = {}
         self.lang2_lang1 = {}
-        
+        self.translated = str()
         # Since we only have English->lang mappings, ignore lang1.
         filename = "lang/" + lang2 + ".txt"
         with open(filename, 'r') as f:
@@ -57,6 +57,8 @@ class LanguageModel():
             trans_list = [self.lang2_lang1[string]]
         else:
             raise AssertionError("lang must be 0 or 1")
+
+        self.translated = string
         return trans_list
 
 if __name__ == "__main__":

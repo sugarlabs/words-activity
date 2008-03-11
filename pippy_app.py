@@ -15,22 +15,18 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 """Words Activity: A multi-lingual dictionary with speech synthesis."""
-from __future__ import with_statement
 import gtk
 import logging
 import pango
 import re, os, os.path
-import gobject
-import time
+import subprocess
 
 from gettext import gettext as _
 from dbus.service import method, signal
-from dbus.gobject_service import ExportedGObject
 
 from activity import ViewSourceActivity
 from sugar.activity.activity import ActivityToolbox, \
      get_bundle_path, get_bundle_name
-from sugar.presence import presenceservice
 
 SERVICE = "org.laptop.Words"
 IFACE = SERVICE
@@ -49,6 +45,9 @@ class WordsActivity(ViewSourceActivity):
         # Instantiate a language model.
         # FIXME: We should ask the language model what langs it supports.
         self.langs = ["French", "German", "Italian", "Portuguese", "Spanish"]
+        # Initial values.
+        self.fromlang = "English"
+        self.tolang   = "Spanish"
         import LanguageModel
         self.languagemodel = LanguageModel.LanguageModel()
 
@@ -80,16 +79,18 @@ class WordsActivity(ViewSourceActivity):
         self.translated.modify_font(pango.FontDescription("Sans 14"))
 
         # Speak buttons.
-        button1 = gtk.Button("Speak")
-        button2 = gtk.Button("Speak")
-
+        speak1 = gtk.Button("Speak")
+        speak1.connect("clicked", self.speak1_cb)
+        speak2 = gtk.Button("Speak")
+        speak2.connect("clicked", self.speak2_cb)
+        
         transbox1.pack_start(label1, expand=False)
         transbox1.pack_start(self.totranslate)
-        transbox1.pack_start(button1, expand=False)
+        transbox1.pack_start(speak1, expand=False)
 
         transbox2.pack_start(label2, expand=False)
         transbox2.pack_start(self.translated)
-        transbox2.pack_start(button2, expand=False)
+        transbox2.pack_start(speak2, expand=False)
 
         vbox.pack_start(transbox1, expand=False)
         vbox.pack_end(transbox2, expand=False) 
@@ -102,8 +103,8 @@ class WordsActivity(ViewSourceActivity):
         self.lang1combo.set_active(0)
 
         self.lang2combo = gtk.combo_box_new_text()
-
-        [self.lang2combo.append_text(x) for x in self.langs]
+        for x in self.langs:
+            self.lang2combo.append_text(x)
         self.lang2combo.connect("changed", self.lang2combo_cb)
         self.lang2combo.set_active(4)
         
@@ -137,6 +138,15 @@ class WordsActivity(ViewSourceActivity):
         self.totranslate.grab_focus()
         self.show_all()
 
+    def say(self, text, lang):
+        # No Portuguese accent yet.
+        if lang == "portuguese":
+            lang = "spanish"
+        tmpfile = "/tmp/something.wav"
+        subprocess.call(["espeak", text, "-w", tmpfile, "-v", lang])
+        subprocess.call(["aplay", tmpfile])
+        os.unlink(tmpfile)
+
     def lang1combo_cb(self, combo):
         pass
 
@@ -144,6 +154,7 @@ class WordsActivity(ViewSourceActivity):
         self.languagemodel.SetLanguages("English", self.langs[combo.get_active()])
         
     def lang1sel_cb(self, column):
+        # FIXME: Complete the text entry box
         model, _iter = column.get_selected()
         value = model.get_value(_iter,0)
         translations = self.languagemodel.GetTranslations(0, value)
@@ -154,26 +165,45 @@ class WordsActivity(ViewSourceActivity):
         value = model.get_value(_iter,0)
         translations = self.languagemodel.GetTranslations(1, value)
         self.translated.set_text(",".join(translations))
-        
+
+    def speak1_cb(self, button):
+        text = self.totranslate.get_text()
+        lang = self.fromlang.lower()
+        self.say(text, lang)
+
+    def speak2_cb(self, button):
+        text = self.translated.get_text()
+        lang = self.tolang.lower()
+        self.say(text, lang)
+
     def totranslate_cb(self, totranslate):
         entry = totranslate.get_text()
-        if entry:
-            (list1, list2) = self.languagemodel.GetSuggestions(entry)
+        # Ask for completion suggestions
+        if not entry:
+            return
+        
+        (list1, list2) = self.languagemodel.GetSuggestions(entry)
         self.lang1model.clear()
         self.lang2model.clear()
-        [self.lang1model.append([x]) for x in list1]
-        [self.lang2model.append([x]) for x in list2]
-        # Handle autocompleting a translation if we think we have one.
-        if len(entry) > 3 and entry in list1:
+        for x in list1:
+            self.lang1model.append([x])
+        for x in list2:
+            self.lang2model.append([x])
+
+        # If we think we know what the word will be, translate it.
+        if entry in list1 or len(list1) == 1 and len(list2) == 0:
+            langiter = self.lang2combo.get_active()
+            lang = self.langs[langiter].lower()
+            self.fromlang = "English"
+            self.tolang   = lang
             translations = self.languagemodel.GetTranslations(0, list1[0])
             self.translated.set_text(",".join(translations))
-        elif len(entry) > 3 and entry in list2:
-            translations = self.languagemodel.GetTranslations(1, list2[0])
-            self.translated.set_text(",".join(translations))
-        if len(list1) == 1 and len(list2) == 0:
-            translations = self.languagemodel.GetTranslations(0, list1[0])
-            self.translated.set_text(",".join(translations))
-        elif len(list2) == 1 and len(list1) == 0:
+
+        elif entry in list2 or len(list1) == 0 and len(list2) == 1:
+            langiter = self.lang2combo.get_active()
+            lang = self.langs[langiter].lower()
+            self.fromlang = lang
+            self.tolang   = "English"
             translations = self.languagemodel.GetTranslations(1, list2[0])
             self.translated.set_text(",".join(translations))
             
