@@ -93,7 +93,7 @@ class WordsActivity(ViewSourceActivity):
         transbox2.pack_start(speak2, expand=False)
 
         vbox.pack_start(transbox1, expand=False)
-        vbox.pack_end(transbox2, expand=False) 
+        vbox.pack_start(transbox2, expand=False) 
 
         # The language choice combo boxes.
         combohbox = gtk.HBox(homogeneous=True)
