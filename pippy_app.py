@@ -43,12 +43,11 @@ class WordsActivity(ViewSourceActivity):
         from sugar.graphics.icon import Icon
 
         # Instantiate a language model.
-        # FIXME: We should ask the language model what langs it supports.
-        self.langs = ["French", "German", "Italian", "Portuguese", "Spanish"]
+        import LanguageModel
+        self.langs = LanguageModel.GetSupportedLanguages()
         # Initial values.
         self.fromlang = "English"
         self.tolang   = "Spanish"
-        import LanguageModel
         self.languagemodel = LanguageModel.LanguageModel()
 
         # Main layout.

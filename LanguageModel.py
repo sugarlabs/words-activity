@@ -16,8 +16,20 @@
 
 from __future__ import with_statement
 import time
+import os
+
+def GetSupportedLanguages():
+    ret = []
+    files = os.listdir("lang/")
+    for name in files:
+        fn, ext = os.path.splitext(name)
+        if ext == ".txt":
+            ret.append(fn)
+    ret.sort()
+    return ret
 
 class LanguageModel():
+
     def SetLanguages(self, lang1, lang2):
         """Take a language pair, prepare the language model."""
         self.lang1_lang2 = {}
