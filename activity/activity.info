@@ -1,7 +1,6 @@
 [Activity]
 name = Words
 bundle_id = org.laptop.Words
-service_name = org.laptop.Words
 class = pippy_app.WordsActivity
 icon = activity-icon
 activity_version = 4
