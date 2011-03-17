@@ -20,6 +20,7 @@ import time
 class LanguageModel():
     def SetLanguages(self, lang1, lang2):
         """Take a language pair, prepare the language model."""
+        """Tome un par de lenguajes, prepare el modelo de lenguaje."""
         self.lang1_lang2 = {}
         self.lang2_lang1 = {}
         self.translated = str()
@@ -44,6 +45,7 @@ class LanguageModel():
 
     def GetSuggestions(self, string):
         """Take a string, provide two lists of possible each lang completions."""
+        """Tome una cadena, da dos lista de posibles complementos para cada lenguaje."""
         list_1 = [k for k in self.lang1_lang2.iterkeys() if k.startswith(string)]
         list_2 = [k for k in self.lang2_lang1.iterkeys() if (k.startswith(string) or k.rfind(" " + string) > -1)]
         return [sorted(list_1), sorted(list_2)]
@@ -51,6 +53,8 @@ class LanguageModel():
     def GetTranslations(self, lang, string):
         """Take a word and lang (0 for first, 1 for second), provide a list 
         (empty allowed) of translations."""
+        """Toma una palabra y lenguaje (0 para primero, 1 para segundo), da una lista 
+        (se permite vacio) de traducciones."""
         if lang == 0: # lang1 is source
             trans_list = [self.lang1_lang2[string]]
         elif lang == 1: # lang2 is source
