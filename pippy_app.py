@@ -101,7 +101,7 @@ class WordsActivity(ViewSourceActivity):
         transbox2 = gtk.HBox()
 
         # Labels.
-        label1 = gtk.Label("Word to translate")
+        label1 = gtk.Label("Word")
         label2 = gtk.Label("Translation")
         
         # Text entry box to enter word to be translated.
