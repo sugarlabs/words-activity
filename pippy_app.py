@@ -43,21 +43,58 @@ class WordsActivity(ViewSourceActivity):
         from sugar.graphics.icon import Icon
 
         # Instantiate a language model.
-        import LanguageModel
-        self.langs = LanguageModel.GetSupportedLanguages()
+        # FIXME: We should ask the language model what langs it supports.
+        self.langs = ["French", "German", "Italian", "Portuguese", "Spanish"]
         # Initial values.
         self.fromlang = "English"
         self.tolang   = "Spanish"
+        import LanguageModel
         self.languagemodel = LanguageModel.LanguageModel()
+
+        # we do not have collaboration features
+        # make the share option insensitive
+        self.max_participants = 1
 
         # Main layout.
         hbox = gtk.HBox(homogeneous=True)
         vbox = gtk.VBox()
 
         # Toolbar.
-        toolbox = ActivityToolbox(self)
-        self.set_toolbox(toolbox)
-        toolbox.show()
+        try:
+            from sugar.graphics.toolbarbox import ToolbarBox, ToolbarButton
+            from sugar.activity.widgets import ActivityButton, StopButton, \
+                                                ShareButton, KeepButton, TitleEntry
+
+            toolbar_box = ToolbarBox()
+            activity_button = ActivityButton(self)
+            toolbar_box.toolbar.insert(activity_button, 0)
+            activity_button.show()
+            
+            title_entry = TitleEntry(self)
+            toolbar_box.toolbar.insert(title_entry, -1)
+            title_entry.show()
+
+            share_button = ShareButton(self)
+            toolbar_box.toolbar.insert(share_button, -1)
+            share_button.show()
+
+            separator = gtk.SeparatorToolItem()
+            separator.props.draw = False
+            separator.set_expand(True)
+            toolbar_box.toolbar.insert(separator, -1)
+            separator.show()
+
+            stop_button = StopButton(self)
+            stop_button.props.accelerator = '<Ctrl><Shift>Q'
+            toolbar_box.toolbar.insert(stop_button, -1)
+            stop_button.show()
+
+            self.set_toolbox(toolbar_box)
+            toolbar_box.show()
+        except ImportError:
+            toolbox = ActivityToolbox(self)
+            self.set_toolbox(toolbox)
+            toolbox.show()
 
         # transbox: <label> - <text entry> - <speak button>
         transbox1 = gtk.HBox()

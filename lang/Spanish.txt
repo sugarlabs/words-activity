@@ -4879,6 +4879,7 @@ March	marzo
 market	el mercado
 married	casado
 marry	casarse
+mascot  mascota
 mask	máscara
 May	mayo
 mayonnaise	la mayonesa
