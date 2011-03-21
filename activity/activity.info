@@ -4,5 +4,5 @@ bundle_id = org.laptop.Words
 service_name = org.laptop.Words
 class = pippy_app.WordsActivity
 icon = activity-icon
-activity_version = 5
+activity_version = 6
 show_launcher = yes
