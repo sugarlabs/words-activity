@@ -20,7 +20,9 @@
 import gtk
 import logging
 import pango
-import re, os, os.path
+import re 
+import os
+import os.path
 import subprocess
 
 from gettext import gettext as _
@@ -242,7 +244,7 @@ class WordsActivity(ViewSourceActivity):
             self.fromlang = lang
             self.tolang   = "English"
             translations = self.languagemodel.GetTranslations(1, list2[0])
-f            self.translated.set_text(",".join(translations))
+            self.translated.set_text(",".join(translations))
             
 ############# TEMPLATES AND INLINE FILES ##############
 ACTIVITY_INFO_TEMPLATE = """
