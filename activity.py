@@ -29,8 +29,8 @@ class ViewSourceActivity(activity.Activity):
                 'icon-color': profile.get_color().to_string(),
                 'mime_type': 'text/x-python',
                 }
-            for k,v in metadata.items():
-                jobject.metadata[k] = v # dict.update method is missing =(
+            for k, v in metadata.items():
+                jobject.metadata[k] = v  # dict.update method is missing =(
             jobject.file_path = os.path.join(get_bundle_path(), 'pippy_app.py')
             datastore.write(jobject)
             self.__source_object_id = jobject.object_id
@@ -43,10 +43,10 @@ class ViewSourceActivity(activity.Activity):
             from sugar.activity.activity import show_object_in_journal
             show_object_in_journal(object_id)
         except ImportError:
-            pass # no love from sugar.
+            pass  # no love from sugar.
 
 class VteActivity(ViewSourceActivity):
-    def __init__(self, handle):
+    def __init__(sfelf, handle):
         import gtk, pango, vte
         super(VteActivity, self).__init__(handle)
         toolbox = activity.ActivityToolbox(self)
