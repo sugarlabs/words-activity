@@ -15,6 +15,8 @@
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 """Words Activity: A multi-lingual dictionary with speech synthesis."""
+"""Actividad Palabras: Un diccionario multi-lengua con sintesis de habla"""
+
 import gtk
 import logging
 import pango
@@ -240,7 +242,7 @@ class WordsActivity(ViewSourceActivity):
             self.fromlang = lang
             self.tolang   = "English"
             translations = self.languagemodel.GetTranslations(1, list2[0])
-            self.translated.set_text(",".join(translations))
+f            self.translated.set_text(",".join(translations))
             
 ############# TEMPLATES AND INLINE FILES ##############
 ACTIVITY_INFO_TEMPLATE = """
