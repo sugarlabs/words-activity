@@ -32,6 +32,9 @@ from activity import ViewSourceActivity
 from sugar.activity.activity import ActivityToolbox, \
      get_bundle_path, get_bundle_name
 
+#logging
+logger = logging.getLogger('Words')
+
 SERVICE = "org.laptop.Words"
 IFACE = SERVICE
 PATH = "/org/laptop/Words"
