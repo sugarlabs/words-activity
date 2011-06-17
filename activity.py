@@ -55,7 +55,7 @@ class VteActivity(ViewSourceActivity):
 
         # creates vte widget
         self._vte = vte.Terminal()
-        self._vte.set_size(30,5)
+        self._vte.set_size(30, 5)
         self._vte.set_size_request(200, 300)
         font = 'Monospace 10'
         self._vte.set_font(pango.FontDescription(font))
