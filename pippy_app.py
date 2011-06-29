@@ -32,7 +32,7 @@ from activity import ViewSourceActivity
 from sugar.activity.activity import ActivityToolbox, \
      get_bundle_path, get_bundle_name
 
-#logging
+# logging
 logger = logging.getLogger('Words')
 
 SERVICE = "org.laptop.Words"
@@ -58,7 +58,7 @@ class WordsActivity(ViewSourceActivity):
         import LanguageModel
         self.languagemodel = LanguageModel.LanguageModel()
 
-        # we do not have collaboration features
+        # We do not have collaboration features
         # make the share option insensitive
         self.max_participants = 1
 
@@ -66,7 +66,7 @@ class WordsActivity(ViewSourceActivity):
         hbox = gtk.HBox(homogeneous=True)
         vbox = gtk.VBox()
 
-        # Toolbar.
+        # Toolbar (compatibility with old-toolbars).
         try:
             from sugar.graphics.toolbarbox import ToolbarBox, ToolbarButton
             from sugar.activity.widgets import ActivityButton, StopButton, \
