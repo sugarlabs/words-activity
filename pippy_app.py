@@ -63,8 +63,9 @@ class WordsActivity(ViewSourceActivity):
         self.max_participants = 1
 
         # Main layout.
-        hbox = gtk.HBox(homogeneous=True)
-        vbox = gtk.VBox()
+        hbox = gtk.HBox(homogeneous=True, spacing=8)
+        vbox = gtk.VBox(spacing=16)
+        vbox.set_border_width(16)
 
         # Toolbar (compatibility with old-toolbars).
         try:
@@ -103,12 +104,16 @@ class WordsActivity(ViewSourceActivity):
             toolbox.show()
 
         # transbox: <label> - <text entry> - <speak button>
-        transbox1 = gtk.HBox()
-        transbox2 = gtk.HBox()
+        transbox = gtk.Table()
+        transbox.resize(2, 3)
+        transbox.set_row_spacings(8)
+        transbox.set_col_spacings(12)
 
         # Labels.
-        label1 = gtk.Label(_("Word"))
-        label2 = gtk.Label(_("Translation"))
+        label1 = gtk.Label(_("Word") + ':')
+        label1.set_alignment(xalign=0.0, yalign=0.5)
+        label2 = gtk.Label(_("Translation") + ':')
+        label2.set_alignment(xalign=0.0, yalign=0.5)
         
         # Text entry box to enter word to be translated.
         self.totranslate = gtk.Entry(max=50)
@@ -126,19 +131,17 @@ class WordsActivity(ViewSourceActivity):
         speak2 = gtk.Button("Speak")
         speak2.connect("clicked", self.speak2_cb)
         
-        transbox1.pack_start(label1, expand=False)
-        transbox1.pack_start(self.totranslate)
-        transbox1.pack_start(speak1, expand=False)
+        transbox.attach(label1, 0, 1, 0, 1, xoptions=gtk.FILL)
+        transbox.attach(self.totranslate, 1, 2, 0, 1, xoptions=gtk.FILL|gtk.EXPAND)
+        transbox.attach(speak1, 2, 3, 0, 1, xoptions=gtk.FILL)
 
-        transbox2.pack_start(label2, expand=False)
-        transbox2.pack_start(self.translated)
-        transbox2.pack_start(speak2, expand=False)
+        transbox.attach(label2, 0, 1, 1, 2, xoptions=gtk.FILL)
+        transbox.attach(self.translated, 1, 2, 1, 2, xoptions=gtk.FILL|gtk.EXPAND)
+        transbox.attach(speak2, 2, 3, 1, 2, xoptions=gtk.FILL)
 
-        vbox.pack_start(transbox1, expand=False)
-        vbox.pack_start(transbox2, expand=False) 
+        vbox.pack_start(transbox, expand=False)
 
         # The language choice combo boxes.
-        combohbox = gtk.HBox(homogeneous=True)
         self.lang1combo = gtk.combo_box_new_text()
         self.lang1combo.append_text("English")
         self.lang1combo.connect("changed", self.lang1combo_cb)
@@ -152,13 +155,11 @@ class WordsActivity(ViewSourceActivity):
         
         self.lang1combo.set_size_request(600,50)
         self.lang2combo.set_size_request(600,50)
-        combohbox.pack_start(self.lang1combo, expand=False)
-        combohbox.pack_start(self.lang2combo, expand=False)
-        vbox.pack_start(combohbox, expand=False)
 
         # The "lang1" treeview box
         self.lang1model = gtk.ListStore(str)
         lang1view = gtk.TreeView(self.lang1model)
+        lang1view.set_headers_visible(False)
         lang1cell = gtk.CellRendererText()
         lang1treecol = gtk.TreeViewColumn("", lang1cell, text=0)
         lang1view.get_selection().connect("changed", self.lang1sel_cb)
@@ -167,13 +168,22 @@ class WordsActivity(ViewSourceActivity):
         # The "lang2" box
         self.lang2model = gtk.ListStore(str)
         lang2view = gtk.TreeView(self.lang2model)
+        lang2view.set_headers_visible(False)
         lang2cell = gtk.CellRendererText()
         lang2treecol = gtk.TreeViewColumn("", lang2cell, text=0)
         lang2view.get_selection().connect("changed", self.lang2sel_cb)
         lang2view.append_column(lang2treecol)
 
-        hbox.pack_start(lang1view)
-        hbox.pack_start(lang2view)
+        lang1_vbox = gtk.VBox(spacing=8)
+        lang1_vbox.pack_start(self.lang1combo, expand=False)
+        lang1_vbox.pack_start(lang1view)
+
+        lang2_vbox = gtk.VBox(spacing=8)
+        lang2_vbox.pack_start(self.lang2combo, expand=False)
+        lang2_vbox.pack_start(lang2view)
+
+        hbox.pack_start(lang1_vbox)
+        hbox.pack_start(lang2_vbox)
 
         vbox.pack_start(hbox)
         self.set_canvas(vbox)
