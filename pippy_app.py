@@ -32,6 +32,8 @@ from activity import ViewSourceActivity
 from sugar.activity.activity import ActivityToolbox, \
      get_bundle_path, get_bundle_name
 
+from sugar.graphics.toolbutton import ToolButton
+
 # logging
 logger = logging.getLogger('Words')
 
@@ -126,9 +128,13 @@ class WordsActivity(ViewSourceActivity):
         self.translated.modify_font(pango.FontDescription("Sans 14"))
 
         # Speak buttons.
-        speak1 = gtk.Button("Speak")
+        speak1 = gtk.ToolButton()
+        speak_icon1 = Icon(icon_name='microphone')
+        speak1.set_icon_widget(speak_icon1)
         speak1.connect("clicked", self.speak1_cb)
-        speak2 = gtk.Button("Speak")
+        speak2 = gtk.ToolButton()
+        speak_icon2 = Icon(icon_name='microphone')
+        speak2.set_icon_widget(speak_icon2)
         speak2.connect("clicked", self.speak2_cb)
         
         transbox.attach(label1, 0, 1, 0, 1, xoptions=gtk.FILL)
@@ -164,6 +170,9 @@ class WordsActivity(ViewSourceActivity):
         lang1treecol = gtk.TreeViewColumn("", lang1cell, text=0)
         lang1view.get_selection().connect("changed", self.lang1sel_cb)
         lang1view.append_column(lang1treecol)
+        lang1scroll = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
+        lang1scroll.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        lang1scroll.add(lang1view)
 
         # The "lang2" box
         self.lang2model = gtk.ListStore(str)
@@ -173,14 +182,17 @@ class WordsActivity(ViewSourceActivity):
         lang2treecol = gtk.TreeViewColumn("", lang2cell, text=0)
         lang2view.get_selection().connect("changed", self.lang2sel_cb)
         lang2view.append_column(lang2treecol)
+        lang2scroll = gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
+        lang2scroll.set_policy(gtk.POLICY_NEVER, gtk.POLICY_AUTOMATIC)
+        lang2scroll.add(lang2view)
 
         lang1_vbox = gtk.VBox(spacing=8)
         lang1_vbox.pack_start(self.lang1combo, expand=False)
-        lang1_vbox.pack_start(lang1view)
+        lang1_vbox.pack_start(lang1scroll)
 
         lang2_vbox = gtk.VBox(spacing=8)
         lang2_vbox.pack_start(self.lang2combo, expand=False)
-        lang2_vbox.pack_start(lang2view)
+        lang2_vbox.pack_start(lang2scroll)
 
         hbox.pack_start(lang1_vbox)
         hbox.pack_start(lang2_vbox)
