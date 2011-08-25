@@ -1,7 +1,7 @@
 [Activity]
 name = Words
 bundle_id = org.laptop.Words
-class = pippy_app.WordsActivity
+class = wordsactivity.WordsActivity
 icon = activity-icon
 activity_version = 10
 show_launcher = yes
