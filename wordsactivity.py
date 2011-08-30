@@ -53,22 +53,22 @@ class WordsActivity(activity.Activity):
         # Instantiate a language model.
         # FIXME: We should ask the language model what langs it supports.
         self.langs = ["French", "German", "Italian", "Portuguese", "Spanish"]
-        # Initial values.
+        # Initial values | Valores iniciales
         self.fromlang = "English"
         self.tolang   = "Spanish"
         import LanguageModel
         self.languagemodel = LanguageModel.LanguageModel()
 
-        # We do not have collaboration features
-        # make the share option insensitive
+        # We do not have collaboration features | No tenemos caracteristicas de colaboracion
+        # make the share option insensitive | haciendo la opcion de compartir insensible
         self.max_participants = 1
 
-        # Main layout.
+        # Main layout | disposicion general 
         hbox = gtk.HBox(homogeneous=True, spacing=8)
         vbox = gtk.VBox(spacing=16)
         vbox.set_border_width(16)
 
-        # Toolbar (compatibility with old-toolbars).
+        # Toolbar (compatibility with old-toolbars) | Toolbar, compatibilidad con barras anteriores
         if not OLD_TOOLBARS:
             toolbar_box = ToolbarBox()
             activity_button = ActivityButton(self)
@@ -106,23 +106,23 @@ class WordsActivity(activity.Activity):
         transbox.set_row_spacings(8)
         transbox.set_col_spacings(12)
 
-        # Labels.
+        # Labels | Etiquetas
         label1 = gtk.Label(_("Word") + ':')
         label1.set_alignment(xalign=0.0, yalign=0.5)
         label2 = gtk.Label(_("Translation") + ':')
         label2.set_alignment(xalign=0.0, yalign=0.5)
         
-        # Text entry box to enter word to be translated.
+        # Text entry box to enter word to be translated.| caja para colocar la palabra que se va a traducir
         self.totranslate = gtk.Entry(max=50)
         self.totranslate.connect("changed", self.totranslate_cb)
         self.totranslate.modify_font(pango.FontDescription("Sans 14"))
         
-        # Text entry box to receive word translated.
+        # Text entry box to receive word translated.| caja para recibir la palabra que se va a traducir
         self.translated = gtk.Entry(max=50)
         self.translated.set_property('editable', False)
         self.translated.modify_font(pango.FontDescription("Sans 14"))
 
-        # Speak buttons.
+        # Speak buttons.| Botones para hablar.
         speak1 = gtk.ToolButton()
         speak_icon1 = Icon(icon_name='microphone')
         speak1.set_icon_widget(speak_icon1)
@@ -142,7 +142,7 @@ class WordsActivity(activity.Activity):
 
         vbox.pack_start(transbox, expand=False)
 
-        # The language choice combo boxes.
+        # The language choice combo boxes. | Las cajas para escoger opciones de lenguaje
         self.lang1combo = gtk.combo_box_new_text()
         self.lang1combo.append_text("English")
         self.lang1combo.connect("changed", self.lang1combo_cb)
