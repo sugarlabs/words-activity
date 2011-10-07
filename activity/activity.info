@@ -3,6 +3,6 @@ name = Words
 bundle_id = org.laptop.Words
 exec = sugar-activity wordsactivity.WordsActivity
 icon = activity-icon
-activity_version = 12
+activity_version = 13
 show_launcher = yes
 license = GPLv3+
