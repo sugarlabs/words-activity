@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-13 08:25+0000\n"
+"POT-Creation-Date: 2011-12-02 00:33-0500\n"
 "PO-Revision-Date: 2011-03-27 05:11+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,15 +21,12 @@ msgstr ""
 msgid "Words"
 msgstr "Words"
 
-#: /home/olpc/Activities/words-activity/activity.py:26
 #, python-format
-msgid "%s Source"
-msgstr "%s Source"
+#~ msgid "%s Source"
+#~ msgstr "%s Source"
 
-#: /home/olpc/Activities/words-activity/pippy_app.py:104
-msgid "Word"
-msgstr "Word"
+#~ msgid "Word"
+#~ msgstr "Word"
 
-#: /home/olpc/Activities/words-activity/pippy_app.py:105
-msgid "Translation"
-msgstr "Translation"
+#~ msgid "Translation"
+#~ msgstr "Translation"
