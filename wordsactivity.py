@@ -39,7 +39,7 @@ except ImportError:
     OLD_TOOLBARS = True
 
 # logging
-logger = logging.getLogger('Words')
+_logger = logging.getLogger('Words')
 
 
 class WordsActivity(activity.Activity):
@@ -48,7 +48,7 @@ class WordsActivity(activity.Activity):
     def __init__(self, handle):
         """Set up the Words activity."""
         super(WordsActivity, self).__init__(handle)
-        self._logger = logging.getLogger('words-activity')
+        self._logger = logging.getLogger('Init words-activity')
 
         # Instantiate a language model.
         # FIXME: We should ask the language model what langs it supports.
