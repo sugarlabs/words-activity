@@ -1,35 +1,35 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-13 08:25+0000\n"
-"PO-Revision-Date: 2011-12-05 23:29+0200\n"
+"PO-Revision-Date: 2011-11-23 09:54+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: hy\n"
+"Language: aym\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.5\n"
 
+#  "Palabras"
 #: activity/activity.info:2
 msgid "Words"
-msgstr "Բառեր"
+msgstr ""
 
+#  "%s Fuente"
 #: /home/olpc/Activities/words-activity/activity.py:26
 #, python-format
 msgid "%s Source"
-msgstr "%s Աղբյուրը"
+msgstr "%s Tunu"
 
+#  "Palabra"
 #: /home/olpc/Activities/words-activity/pippy_app.py:104
 msgid "Word"
-msgstr "Բառ"
+msgstr ""
 
+#  "Traduccion"
 #: /home/olpc/Activities/words-activity/pippy_app.py:105
 msgid "Translation"
-msgstr "Թարգմանություն"
+msgstr ""

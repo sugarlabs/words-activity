@@ -2,33 +2,35 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-03-13 08:25+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2011-04-10 16:35+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: km\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.7.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.0.1\n"
 
 #: activity/activity.info:2
 msgid "Words"
-msgstr ""
+msgstr "ពាក្យ"
 
 #: /home/olpc/Activities/words-activity/activity.py:26
 #, python-format
 msgid "%s Source"
-msgstr ""
+msgstr "%s ប្រភព"
 
 #: /home/olpc/Activities/words-activity/pippy_app.py:104
+#, fuzzy
 msgid "Word"
-msgstr ""
+msgstr "ពាក្យ"
 
 #: /home/olpc/Activities/words-activity/pippy_app.py:105
 msgid "Translation"
-msgstr ""
+msgstr "ការ​បកប្រែ"
