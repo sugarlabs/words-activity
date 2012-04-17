@@ -201,19 +201,14 @@ class WordsActivity(activity.Activity):
         # No Portuguese accent yet.
         if lang == "portuguese":
             lang = "spanish"
-        tmpfile = "/tmp/something.wav"
-        subprocess.call(["espeak", text, "-w", tmpfile, "-v", lang])
-        subprocess.call(["aplay", tmpfile])
-        os.unlink(tmpfile)
-
         #AU costumization
-        if lang == "english":
+        elif lang == "english":
             lang = "english_rp"
+
         tmpfile = "/tmp/something.wav"
         subprocess.call(["espeak", text, "-w", tmpfile, "-v", lang])
         subprocess.call(["aplay", tmpfile])
         os.unlink(tmpfile)
-
 
     def lang1combo_cb(self, combo):
         pass
