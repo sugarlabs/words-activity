@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"POT-Creation-Date: 2012-03-06 02:18-0500\n"
 "PO-Revision-Date: 2011-12-05 23:29+0200\n"
 "Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,12 +21,14 @@ msgstr ""
 msgid "Words"
 msgstr "Բառեր"
 
+#: wordsactivity.py:110
+msgid "Word"
+msgstr "Բառ"
+
+#: wordsactivity.py:112
+msgid "Translation"
+msgstr "Թարգմանություն"
+
 #, python-format
 #~ msgid "%s Source"
 #~ msgstr "%s Աղբյուրը"
-
-#~ msgid "Word"
-#~ msgstr "Բառ"
-
-#~ msgid "Translation"
-#~ msgstr "Թարգմանություն"

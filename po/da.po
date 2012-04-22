@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-15 00:33-0500\n"
+"POT-Creation-Date: 2012-03-06 02:18-0500\n"
 "PO-Revision-Date: 2011-09-18 09:39+0200\n"
 "Last-Translator: Aputsiaq Niels <aj@isit.gl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,12 +21,14 @@ msgstr ""
 msgid "Words"
 msgstr "Ord"
 
+#: wordsactivity.py:110
+msgid "Word"
+msgstr "Ord"
+
+#: wordsactivity.py:112
+msgid "Translation"
+msgstr "Oversættelse"
+
 #, python-format
 #~ msgid "%s Source"
 #~ msgstr "%s kilde"
-
-#~ msgid "Word"
-#~ msgstr "Ord"
-
-#~ msgid "Translation"
-#~ msgstr "Oversættelse"

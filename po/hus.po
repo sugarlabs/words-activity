@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-13 08:25+0000\n"
-"PO-Revision-Date: 2011-08-13 00:44+0200\n"
-"Last-Translator:  <ieliiptenek@gmail.com>\n"
+"POT-Creation-Date: 2012-03-06 02:18-0500\n"
+"PO-Revision-Date: 2011-08-29 04:52+0200\n"
+"Last-Translator: Chris <cjl@laptop.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hus\n"
 "MIME-Version: 1.0\n"
@@ -21,15 +21,14 @@ msgstr ""
 msgid "Words"
 msgstr "Kawintalábchik"
 
-#: /home/olpc/Activities/words-activity/activity.py:26
-#, python-format
-msgid "%s Source"
-msgstr "%s inkintal"
-
-#: /home/olpc/Activities/words-activity/pippy_app.py:104
+#: wordsactivity.py:110
 msgid "Word"
 msgstr "Káw"
 
-#: /home/olpc/Activities/words-activity/pippy_app.py:105
+#: wordsactivity.py:112
 msgid "Translation"
-msgstr "wek'odh kawintaláb"
+msgstr "Wek'odh kawintaláb"
+
+#, python-format
+#~ msgid "%s Source"
+#~ msgstr "%s inkintal"
