@@ -55,7 +55,7 @@ class WordsActivity(activity.Activity):
         self.langs = ["French", "German", "Italian", "Portuguese", "Spanish"]
         # Initial values | Valores iniciales
         self.fromlang = "English"
-        self.tolang   = "Spanish"
+        self.tolang = "Spanish"
         import LanguageModel
         self.languagemodel = LanguageModel.LanguageModel()
 
@@ -164,8 +164,8 @@ class WordsActivity(activity.Activity):
         self.lang2combo.connect("changed", self.lang2combo_cb)
         self.lang2combo.set_active(4)
         
-        self.lang1combo.set_size_request(600,50)
-        self.lang2combo.set_size_request(600,50)
+        self.lang1combo.set_size_request(600, 50)
+        self.lang2combo.set_size_request(600, 50)
 
         # The "lang1" treeview box
         self.lang1model = gtk.ListStore(str)
