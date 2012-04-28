@@ -16,6 +16,7 @@
 
 from __future__ import with_statement
 
+
 class LanguageModel():
     def SetLanguages(self, lang1, lang2):
         """Take a language pair, prepare the language model."""
