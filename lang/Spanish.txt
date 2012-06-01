@@ -17,7 +17,7 @@ aardvarks	cerdos hormigueros
 aardvarks	osos hormigueros 
 ab	prefijo que indica separaci√≥n
 aback	hacia atras
-aback	hacia atr·s
+aback	hacia atr√°s
 aback	take aback
 aback	desconcertar. En facha.
 aback	por sopresa
@@ -64,7 +64,7 @@ abandoning	abandonando
 abandoning	abandono
 abandonment	abandono
 abandonment	desamparo
-abandonment	deserciÛn
+abandonment	deserci√≥n
 abandonments	abandonos
 abandons	abandona
 abandons	desampara
@@ -110,7 +110,7 @@ abashes	avergu.enza; pone en situaci√≥n embarazosa
 abashing	vergonzante
 abashing	vergonzoso
 abashing	vergonzoso
-abashment	Verg¸enza.
+abashment	Verg√ºenza.
 abashment	verguenza
 abasing	humillante
 abasing	humillante
@@ -129,8 +129,8 @@ abated	aplacado
 abated	abolido
 abated	descontado
 abated	disminuido.NO AMPLACADO
-abatement	AboliciÛn
-abatement	supresiÛn
+abatement	Abolici√≥n
+abatement	supresi√≥n
 abatement	descuento
 abatement	rebaja
 abatements	Rebajas
@@ -142,7 +142,7 @@ abatements	rebaja
 abatements	decaimiento
 abater	rebajador
 abater	mitigador
-abates	satÈlites
+abates	sat√©lites
 abating	 superando una marca; disminuyendo; situaci√≥n depresiva
 abating	deprimente
 abating	calmante
@@ -151,14 +151,14 @@ abating	disminuyendo
 abating	amainando
 abating	 rebajando. NO SUPERAR UNA MARCA
 abating	 en castellano es batir una marca: break a record
-abatis	barricada con alambre de p˙as
-abatis	parapeto de troncos caÌdos
+abatis	barricada con alambre de p√∫as
+abatis	parapeto de troncos ca√≠dos
 abatis	tala
 abatis	abatida
-abatis	barricada de alambre de p˙as
+abatis	barricada de alambre de p√∫as
 abatises	Barricads
 abatises	parapetos
-abatises	obst·culos
+abatises	obst√°culos
 abatises	sesame
 abatises	Barricadas
 abattoir	degolladero
@@ -173,23 +173,23 @@ abaxial	lejos del eje
 abaxial	desalineado. NO ES CORRECTO ABACIAL=ABBATIAL
 abaxial	abaxial
 abaxial	(Anatom√≠a) aquella regi√≥n de un √≥rgano alejada del eje
-abbacy	AbadÌa
+abbacy	Abad√≠a
 abbacy	convento
 abbacy	monasterio.
 abbacy	abad√≠a
 abbas	ABBA= Padre
 abbas	Dios. ABBAS
-abbas	tÌo de Mahoma.
+abbas	t√≠o de Mahoma.
 abbas	aint
 abbe	abate
 abbe	ABB…=Abate
-abberations	AberraciÛn
+abberations	Aberraci√≥n
 abberations	aberracion
 abberations	desv√≠o
 abberations	UNKNOWN WORD IN ENGLISH
 abbey	abad√≠a
-abbey	abadÌa
-abbeys	AbadÌas
+abbey	abad√≠a
+abbeys	Abad√≠as
 abbeys	monasterios
 abbeys	conventos
 abbeys	abad√≠as
@@ -210,7 +210,7 @@ abbreviated	reducido.NO CORTADO.
 abbreviated	cortado
 abbreviates	abrevia
 abbreviates	Reducciones
-abbreviates	res˙menes
+abbreviates	res√∫menes
 abbreviates	abreviaciones
 abbreviates	compendios.
 abbreviating	abreviando
@@ -228,7 +228,7 @@ abdicate	abdicar
 abdicate	renunciar a; abdicar
 abdicated	abdicado (participio de abdicar)
 abdication	abdicaci√≥n
-abdication	renuncia; abdicaciÛn (de un monarca)
+abdication	renuncia; abdicaci√≥n (de un monarca)
 abdicator	abdicador
 abdomen	abd√≥men
 abdomen	abdomen
@@ -236,28 +236,28 @@ abdomen	(inf.)barriga
 abdomen	vientre
 abdomens	abdomenes
 abdomens	abd√≥menes
-abdomens	abdÛmenes
+abdomens	abd√≥menes
 abdominal	abdominal
 abdominally	abdominalmente
 abduce	abducir
 abduced	abducido
-abducens	m˙sculo abductor
+abducens	m√∫sculo abductor
 abducens	separador
 abducent	Abductor
 abducent	separador
 abducentes	abducentes
 abducing	Abductor
-abducing	separaciÛn
+abducing	separaci√≥n
 abduct	secuestrar
 abduct	raptar
 abducted	secuestrado
 abducted	raptado
-abducted	Separado de la lÌnea media del cuerpo.
+abducted	Separado de la l√≠nea media del cuerpo.
 abducting	secuestrando
 abducting	raptando
 abducting	separando
-abducting	alejando de la lÌnea media.
-abduction	AbducciÛn
+abducting	alejando de la l√≠nea media.
+abduction	Abducci√≥n
 abduction	secuestro
 abduction	rapto
 abduction	secuestro
@@ -271,7 +271,7 @@ abductors	secuestradores
 abducts	secuestra
 abducts	rapta
 abeam	al trav/es
-abeam	De travÈs
+abeam	De trav√©s
 abecedarian	abecedario
 abed	en cama
 abed	acostado
@@ -299,7 +299,7 @@ abet	ayudar
 abet	Incitar
 abet	inducir
 abet	To aid and abet
-abet	ser cÛmplice de.
+abet	ser c√≥mplice de.
 abet	instigar
 abet	incitar
 abet	inducir
@@ -307,7 +307,7 @@ abetment	colaboraci√≥n
 abetment	Complicidad.
 abetment	instigac√≠n
 abetment	apoyo
-abetment	instigaciÛn
+abetment	instigaci√≥n
 abetment	apoyo
 abets	apoya
 abets	colabora
@@ -325,7 +325,7 @@ abetter	c√≥mplice
 abetting	instigando
 abetting	incitando
 abettor	instigador
-abeyance	i√± en desuso
+abeyance	en desuso
 abeyant	en suspenso
 abhor	detestar
 abhor	odiar
@@ -359,20 +359,20 @@ ability	habilidad
 ability	capacidad
 ability	talento
 abiogenesis	abiog√©nesis
-abiogenetic	abiogenÈtico
-abiogenetical	abiogenÈtico
-abiogenetically	abiogenÈticamente
-abiological	abiolÛgico
-abiologically	abolÛgicamente
+abiogenetic	abiogen√©tico
+abiogenetical	abiogen√©tico
+abiogenetically	abiogen√©ticamente
+abiological	abiol√≥gico
+abiologically	abol√≥gicamente
 abiotic	abi√≥tico
 abiotically	abi√≥ticamente
 abject	abyecto
 abject	miserable (poverty); rastrero (apology)
-abjection	abyecciÛn
+abjection	abyecci√≥n
 abjections	abyecciones
 abjectly	abyectamente
 abjectness	abyecci√≥n
-abjuration	abjuraciÛn
+abjuration	abjuraci√≥n
 abjure	renunciar
 abjured	abjurado
 abjurer	abjurar
@@ -381,7 +381,7 @@ abjuring	abjurando; abjuraci√≥n
 ablate	extirpar
 ablated	extirpado
 ablating	extirpando
-ablation	extirpaciÛn
+ablation	extirpaci√≥n
 ablation	ablaci√≥n
 ablative	ablativo
 ablaut	quesontes
@@ -390,22 +390,22 @@ ablaze	en llamas
 ablaze	en llamas
 ablaze	ardiente
 able	capaz
-able	h·bil (skilled)
+able	h√°bil (skilled)
 abler	mas capaz
-abler	(comparativo) m·s capaz/h·bil
-ablest	m·s capaz
-ablest	(comparativo) el m·s capaz/h·bil
+abler	(comparativo) m√°s capaz/h√°bil
+ablest	m√°s capaz
+ablest	(comparativo) el m√°s capaz/h√°bil
 abloom	en flor
-ablution	abluciÛn
+ablution	abluci√≥n
 ablutionary	ablucionario
 ablutions	abluciones
 ably	h√°bilmente
-ably	h·bilmente
+ably	h√°bilmente
 abnegate	abnegar?
 abnegate	(auto)sacrificarse
 abnegates	abniega
 abnegation	abnegaci√≥n
-abnegation	abnegaciÛn (autosacrificio)
+abnegation	abnegaci√≥n (autosacrificio)
 abnegator	abnegador
 abnormal	anormal
 abnormalities	anormalidades
@@ -432,14 +432,14 @@ abolishes	abole
 abolishing	aboliendo
 abolishment	abolic√≠on
 abolition	abolici√≥n
-abolition	supresiÛn
-abolition	aboliciÛn
+abolition	supresi√≥n
+abolition	abolici√≥n
 abolitionary	abolicionista
 abolitionism	abolicionismo
 abolitionist	abolicionista
 abolitionists	abolicionistas
 abolitionize	abolicionar
-abomasal	del cuarto estÛmago
+abomasal	del cuarto est√≥mago
 abominable	abominable
 abominably	abominablemente
 abominate	abominar
@@ -463,7 +463,7 @@ abortifacient	abortivo
 abortifacient	que provoca aborto
 aborting	abortando
 abortion	aborto
-abortion	aborto (acciÛn)
+abortion	aborto (acci√≥n)
 abortionist	abortista
 abortionists	abortistas
 abortions	abortos
@@ -480,7 +480,7 @@ abounds	abunda
 about	acerca
 about	sobre
 about	a punto de
-about	m·s o menos
+about	m√°s o menos
 about	aproximadamente
 about	por todas partes
 about	de
@@ -492,21 +492,21 @@ above	encima
 above	por encima
 above	arriba
 aboveboard	leg√≠timo;honesto
-aboveboard	legÌtimo
+aboveboard	leg√≠timo
 aboveground	sobrenivel
 abovementioned	arriba citado
 abovementioned	-a;susodicho
 abovementioned	-a
 abracadabra	abracadabra
 abradable	abrasible
-abradable	que se desgasta con fricciÛn
+abradable	que se desgasta con fricci√≥n
 abradant	abrasivo
 abrade	raer
 abrade	raspar
-abraded	raÌdo
+abraded	ra√≠do
 abraded	raspado
 abrader	que raspa
-abrader	desgasta o limpia por fricciÛn
+abrader	desgasta o limpia por fricci√≥n
 abrades	raspar
 abrading	raspando
 abrasion	abras√≠on
@@ -533,7 +533,7 @@ abridgement	compendio
 abridger	compendiador
 abridges	compendia
 abridging	abreviando
-abridgment	abreviaciÛn
+abridgment	abreviaci√≥n
 abroach	espitado
 abroad	en el or la extranjaro
 abroad	en el extranjero (to be); al extranjero (to go)
@@ -545,12 +545,12 @@ abrogation	abrogac√≠on
 abrupt	brusco
 abrupt	-a;√°spero;repentino
 abrupt	-a;s√∫bito;
-abrupt	brusco (sudden); ·spero (curt)
+abrupt	brusco (sudden); √°spero (curt)
 abruption	ruptura
 abruption	abrupci√≥n
 abruptly	bruscamente; con aspereza; repentinamente
 abruptly	repentinamente (leave); bruscamente (speak)
-abruptness	precipitaciÛn
+abruptness	precipitaci√≥n
 abruptness	brusquedad
 abscess	absceso
 abscessed	abscesado
@@ -565,7 +565,7 @@ abscond	vi huir; fugarse
 abscond	escaparse
 absconded	oculto
 absconder	fugitivo
-absconder	prÛfugo
+absconder	pr√≥fugo
 absconder	desertor
 absconding	fug√°ndose
 absconds	ocultarse
@@ -587,7 +587,7 @@ absently	en ausencia
 absentminded	distra√≠do
 absentminded	-a; despistado
 absentminded	-a
-absentminded	distraÌdo
+absentminded	distra√≠do
 absentmindedly	distraido
 absentmindedly	distraidamente
 absentmindedness	olvidadizo
@@ -600,14 +600,14 @@ absolute	-a; puro
 absolute	-a; incontrovertible; 
 absolute	absoluto
 absolutely	absolutamente
-absolutely	totalmente (totally); °por supuesto (que sÌ)! (certainly!)
+absolutely	totalmente (totally); por supuesto (que s√≠)! (certainly!)
 absoluteness	absoluto
 absolutes	absolutos
-absolution	absoluciÛn
+absolution	absoluci√≥n
 absolutism	absolutismo
 absolutist	absolutista
 absolutistic	absolutista
-absolutization	absolutizaciÛn
+absolutization	absolutizaci√≥n
 absolutize	absolutizar
 absolutizes	absolutiza
 absolve	absolver
@@ -632,7 +632,7 @@ absorbs	absorbe
 absorbtions	absorciones
 absorptance	absortencia
 absorption	absorci√≥n
-absorption	absorciÛn
+absorption	absorci√≥n
 absorptive	absorbente
 abstain	abstener
 abstain	abstenerse de (from)
@@ -652,13 +652,13 @@ abstinent	abstinente
 abstinently	abstinentamente
 abstract	abstracto
 abstract	resumen
-abstractable	abstraÌble
+abstractable	abstra√≠ble
 abstracted	abstracto
 abstractedly	abstra√≠damente
 abstractedness	abstrasencia
 abstracter	abstractor
 abstracting	abstrayendo
-abstraction	abstracciÛn
+abstraction	abstracci√≥n
 abstractionism	abstraccionismo
 abstractionists	abstraccionistas
 abstractions	abstracciones
@@ -707,16 +707,16 @@ acacia	acacia
 academe	academia
 academia	academia
 academic	acad√©mico
-academical	acadÈmico
+academical	acad√©mico
 academically	academicamente
-academician	acadÈmico
+academician	acad√©mico
 academicianship	academicismo
 academicism	academicismo
 academics	academicas
 academies	academias
 academism	academismo
 academy	academia
-acanthocephalan	acantocÈfalo
+acanthocephalan	acantoc√©falo
 acanthopterygian	acantopterigio
 acanthus	acanto
 acanthuses	acantos
@@ -737,8 +737,8 @@ accelerations	aceleraciones
 accelerative	acelerativo
 accelerator	acelerador
 accelerators	aceleradores
-accelerometer	acelerÌmetro
-accelerometers	acelerÌmetros
+accelerometer	aceler√≠metro
+accelerometers	aceler√≠metros
 accent	accento
 accent	el acento
 accented	acentuado
@@ -755,14 +755,14 @@ acceptability	aceptaci√≥n
 acceptable	aceptable
 acceptableness	aceptabilidad
 acceptably	aceptable
-acceptance	aceptaciÛn
+acceptance	aceptaci√≥n
 acceptances	aceptaci√≥nes
 acceptation	aceptaci√≥n
 accepted	aceptado
 acceptedly	aceptadamente
 accepter	aceptor
 accepting	aceptando
-acceptingly	con aceptaciÛn
+acceptingly	con aceptaci√≥n
 acceptor	aceptador
 acceptors	aceptadores 
 accepts	aceptar
@@ -830,7 +830,7 @@ accommodation	alojamiento
 accommodations	alojamientos
 accommodator	acomodador
 accompanied	acompanado
-accompanies	acompaÒa
+accompanies	acompa√±a
 accompaniment	acompa√±amiento
 accompaniments	acompa√±amientos
 accompanist	acompanista
@@ -839,7 +839,7 @@ accompany	acompa√±ar
 accompanying	acompa√±ando
 accompanyist	acompa√±ante
 accompanyists	acompa√±antes
-accomplice	cÛmplice
+accomplice	c√≥mplice
 accomplices	c√≥mplices
 accomplish	cumplido
 accomplishable	terminable
@@ -896,20 +896,20 @@ accumulate	acumular(se)
 accumulated	acumulado
 accumulates	acumulad√≥a
 accumulating	acumulando
-accumulation	acumulaciÛn
+accumulation	acumulaci√≥n
 accumulations	acumulaciones
 accumulative	acumulativo
 accumulatively	acumulativamente
-accumulator	acumulado≈ïra
+accumulator	acumulado/ra
 accumulators	acumuladores
 accuracies	precisi√≥nes
 accuracy	acuracia
-accuracy	precisiÛn
+accuracy	precisi√≥n
 accurate	atinado
 accurate	preciso
 accurate	exacto
 accurate	preciso
-accurately	precisiÛn
+accurately	precisi√≥n
 accursed	maldito
 accusation	acusacion
 accusations	acusaciones
@@ -917,10 +917,10 @@ accusative	acusativ√≥va
 accusatory	acusatori√≥a
 accuse	acusar
 accused	acusad√≥da
-accuser	acusado≈ïra
+accuser	acusadora
 accuses	acusas
 accusing	acusando
-accusor	acusado≈ïra
+accusor	acusadora
 accustom	acostumbrar
 accustomed	acostumbrado
 accustoming	acostumbrando
@@ -935,7 +935,7 @@ acetamide	acetamida
 acetaminophen	acetaminofen
 acetaminophen	acetaminof√©n
 acetate	acetato
-acetic	acÈtico
+acetic	ac√©tico
 acetify	acetificar
 acetone	acetona
 acetyl	acetilo
@@ -943,14 +943,14 @@ acetylene	Acetileno
 ache	doler
 ache	dolor
 ached	dolido
-ached	doliÛ
+ached	doli√≥
 aches	duele
 achievable	conseguible
 achievable	lograble
 achieve	conseguir
 achieve	lograr
 achieved	conseguido
-achieved	logrÛ
+achieved	logr√≥
 achievement	logro
 achievements	logros
 achiever	persona que logra sus metas
@@ -960,16 +960,16 @@ achieving	consiguiendo
 achieving	que logra
 aching	que duele
 achingly	dolorosamente
-achromatic	acrom·tico
+achromatic	acrom√°tico
 achromatically	acrom√°ticamente
 achromaticity	acromaticidad
 achromatism	acromatismo
 acid	√°cido
-acid	·cido
+acid	√°cido
 acidic	√°cido
-acidification	acidificaciÛn
-acidifier	que vuelve acÌdo
-acidify	volver acÌdo
+acidification	acidificaci√≥n
+acidifier	que vuelve ac√≠do
+acidify	volver ac√≠do
 acidimeter	Medidor de acidez
 acidimeters	Medidores de acidez
 acidity	acidez
@@ -977,7 +977,7 @@ acidness	acidez
 acids	acidos
 acidulant	acidulante
 acidulate	Acidular
-acidulation	AcidulaciÛn
+acidulation	Acidulaci√≥n
 acinus	√°cino
 acknowledge	reconocer
 acknowledgeable	reconocible
@@ -987,41 +987,41 @@ acknowledgements	reconocimientos
 acknowledger	persona que reconoce
 acknowledging	reconociendo
 acknowledgment	reconocimiento
-acne	acnÈ
+acne	acn√©
 acolyte	ac√≥lito
 acolytes	ac√≥litos
 acorn	bellota
 acorns	bellotas
-acoustic	Ac˙stica
+acoustic	Ac√∫stica
 acoustic	ac√∫stico
-acoustically	Ac˙sticamente
-acoustics	ac˙stica
+acoustically	Ac√∫sticamente
+acoustics	ac√∫stica
 acquaint	conocido
 acquaintance	conocid√≥da
-acquaintances	conocido≈õdas
+acquaintances	conocido/das
 acquire	Adquirir
 acquired	Adquirido
-acquirement	AdquisiciÛn
+acquirement	Adquisici√≥n
 acquires	vt   adquirir
-acquisition	adquisiciÛn
+acquisition	adquisici√≥n
 acquisitions	Adquisiciones
 acre	acre
 acrobacy	Acrobacia
-acrobat	acrÛbata
-acrobatic	acrob·tico(a)
+acrobat	acr√≥bata
+acrobatic	acrob√°tico(a)
 acrobatically	acrobaticamente
 acrobatics	acrobacias
-acrobats	acrÛbatas
-acronym	AcrÛnimo
-acronymically	acronÌmicamente
-acronyms	acrÛnimos
+acrobats	acr√≥batas
+acronym	Acr√≥nimo
+acronymically	acron√≠micamente
+acronyms	acr√≥nimos
 acropetal	acropet√°lico
 acropetally	acropet√°licamente
 acrophobic	Acrofobia
-acropolis	AcrÛpolis
-across	a travÈs
-acrostic	AcrÛstico
-acrylic	AcrÌlico.
+acropolis	Acr√≥polis
+across	a trav√©s
+acrostic	Acr√≥stico
+acrylic	Acr√≠lico.
 act	n- acto
 act	vi (to behave) comportarse
 act	to ___out (psych) expresar impulsos reprinudos en conducta sin inhibiciones
@@ -1030,7 +1030,7 @@ actions	acciones
 activate	activar
 activated	Activado
 activates	Activa
-activation	ActivaciÛn
+activation	Activaci√≥n
 activations	Activaciones
 activator	Activador
 activators	Activadores
@@ -1047,7 +1047,7 @@ actors	los actores
 actress	una actriz
 actresses	Actrices
 actual	actual
-actualization	ActualizaciÛn.
+actualization	Actualizaci√≥n.
 actualizations	Actualizaciones
 actualize	Actualizar
 actualized	Actualizado
@@ -1062,8 +1062,8 @@ acute	Aguda
 acute	agudo.
 acutely	Agudamente.
 acuteness	Agudeza
-acyclic	AcÌclico.
-acyclically	AcÌclicamente
+acyclic	Ac√≠clico.
+acyclically	Ac√≠clicamente
 adapt	adaptar
 adapt	adaptar(se)
 adaptability	adaptabilidad
@@ -1083,7 +1083,7 @@ addenda	adendas
 addendum	adenda
 addict	adicto
 addicted	(to become addicted) enviciarse volverse adicto
-addiction	AdicciÛn.
+addiction	Adicci√≥n.
 addictions	Adicciones.
 addictive	adictivo
 addictive	que crea h√°bito
@@ -1093,7 +1093,7 @@ additive	adictivo
 additive	que crea habito (accent over  a  in habito
 additive	aditivo )adj & noun)
 additives	aditivos
-address	DirecciÛn
+address	Direcci√≥n
 address	domicilio
 addressed	Dirigido
 addressee	Destinatario
@@ -1115,7 +1115,7 @@ adhesion	n - adherencia
 adhesions	n - adherencias
 adhesive	adj - adhesivo; ______ tape - tela or cinta adhesiva
 adiabatic	adiabatica (curva)
-adios	AdiÛs
+adios	Adi√≥s
 adipose	Adiposo
 adiposity	Adiposidad
 adjacent	Adyacente
@@ -1191,7 +1191,7 @@ aide	asistente -mf; ayudante -mf; auxiliar -mf
 aids	la SIDA
 ailment	mal -m; achaque -m; padecimiento
 air	el aire
-aircraft	el aviÛn
+aircraft	el avi√≥n
 airplanes	los aviones
 airport	el aeropuerto
 airsickness	mareo 
@@ -1212,8 +1212,8 @@ alien	extranjero
 all	todo
 allow	dejar
 allow	permitir
-alloy	aleaciÛn
-alloys	aleaciÛnes
+alloy	aleaci√≥n
+alloys	aleaci√≥nes
 allspice	malagueta
 almond	la almendra
 almost	casi
@@ -1272,7 +1272,7 @@ anniversaries	aniversarios
 anniversary	aniversario
 annotate	notar
 annotated	notado
-annotation	anotaciÛn
+annotation	anotaci√≥n
 announce	anunciar
 announced	anunciado
 announcement	anuncio
@@ -1372,10 +1372,10 @@ arterioles	las arteriolas; las peque√±a arterias
 arteriosclerosis	arteriolosclerosis
 artful	diestro; habilidos; astuto; artificioso
 artfully	astutamente; ladinamente; artificiosamente; con artificio; con arte; diestramente
-arthritic	artrÌtico
+arthritic	artr√≠tico
 arthropod	artropodo
 artichoke	la alcachofa
-article	artÌculo
+article	art√≠culo
 artificial	artificial
 ashtray	el cenicero
 ask	preguntar
@@ -1420,11 +1420,11 @@ babe	chica bonita
 babe	criatura
 babe	bebe
 babe	nena
-babes	bebÈs
+babes	beb√©s
 babes	criaturas
 babes	bebes
 babes	ninos
-babes	niÒos
+babes	ni√±os
 babied	mimado (a)
 babies	beb√©s
 babies	criaturas
@@ -1433,7 +1433,7 @@ baboon	babu√≠no
 babushka	la babushka (sombrero ruso)
 baby	beb√©
 baby	criatura
-babyhood	niÒez
+babyhood	ni√±ez
 babyhood	ninez
 babyhood	ni√±ez
 babying	ninando
@@ -1446,15 +1446,15 @@ babysitter	canguro
 babysitter	ni√±era
 babysitters	canguros
 babysitters	ni√±eras
-babysitters	niÒera
+babysitters	ni√±era
 babysitting	cuidar ni√±os
 baccalaureate	licenciatura
 baccalaureate	bachillerato
-baccarat	bacar≈ïa
+baccarat	bacar√°
 bacchanal	bacanal
 bacchanal	jodienda
 bacchanalia	bacanal
-bacchanalian	bacan·lico (a)
+bacchanalian	bacan√°lico (a)
 bacchic	BA/QUICO
 bachelor	bachiller
 bachelor	soltero
@@ -1613,7 +1613,7 @@ balsam	balsamo
 balsamic	bals√°mico (a)
 balustrade	barandilla
 balustrades	barandillas
-bamboo	bamb˙
+bamboo	bamb√∫
 ban	prohibicion
 banal	banal
 banana	platano
@@ -1659,7 +1659,7 @@ beaming	brillante
 beamy	radiante
 beamy	brillante
 bean	haba
-bean	jud\ia
+bean	jud√≠a
 beans	frijoles
 bear	el oso
 beard	la barba
@@ -1683,8 +1683,8 @@ believe	creer
 bell	la campana
 bells	las campanas
 below	bajo
-benchmark	evaluaciÛn comparativa
-benchmarking	evaluaciÛn comparativa (hacer una)
+benchmark	evaluaci√≥n comparativa
+benchmarking	evaluaci√≥n comparativa (hacer una)
 benchmarks	evaluaciones comparativas
 best	el mejor
 better	mejor
@@ -1741,7 +1741,7 @@ boots	botas
 bored	aburrido
 boring	aborrido
 boss	el jefe
-both	ambo≈õas
+both	ambo/as
 bother	molestar
 bottle	la botella
 bottles	las botellas
@@ -1849,7 +1849,7 @@ cabalistic	cbal√≠stico(a)
 caballero	gent;emen
 caballero	gentleman
 caballero	knight
-cabana	caban„
+cabana	caba√±a
 cabanas	caba√±as
 cabaret	cabaret
 cabbage	col
@@ -1872,8 +1872,8 @@ cabinet	armario
 cabinet	gabinete
 cabinetmaker	ebanista
 cabinetmakers	ebanistas
-cabinetmakers	ebaniste≈ïia
-cabinetmaking	ebaniste≈ïia
+cabinetmakers	ebanistas
+cabinetmaking	ebanista
 cabinets	armarios
 cabinets	gabinetes
 cabinetwork	ebanister√≠a
@@ -1890,8 +1890,8 @@ cabling	cableado
 cabling	cableando
 cabling	telegrafiando
 cabman	taxista
-caboodle	montÛn
-caboose	fogÛn; cocina
+caboodle	mont√≥n
+caboose	fog√≥n; cocina
 cabotage	cabotaje
 cabriole	cabriola
 cabriolet	cabriolet
@@ -1911,7 +1911,7 @@ cacuminal	cacuminal
 cadastral	catastral
 cadastre	catastro
 cadaver	cad√°ver
-cadaveric	cadavÈrico
+cadaveric	cadav√©rico
 cadaverine	cadaverina
 caddy	estuche
 cadence	cadencia ( musical)
@@ -2000,7 +2000,7 @@ calendar	el calendario
 calendars	calendarios
 calendars	almanaques
 calends	calendas
-calendula	calÈndula
+calendula	cal√©ndula
 calendula	maravilla
 calenture	calentura
 calf	chivo
@@ -2027,7 +2027,7 @@ caliph	califa
 caliphal	califal
 caliphate	califato
 caliphs	califas
-calisthenic	calistÈnico
+calisthenic	calist√©nico
 calisthenics	calistenia
 call	llamar
 calla	aro palustre
@@ -2735,7 +2735,7 @@ comrade	amigo
 concert	el concierto
 confused	confuso
 consumption	consumo
-consumptive	tÌsico
+consumptive	t√≠sico
 contact	contacto
 contact	contactar 
 contact	ponerse en contacto
@@ -2867,8 +2867,8 @@ dab	toba
 dab	untar
 dab	dar palmadas
 dacha	dacha
-dactyl	d·ctilo
-dactylic	dactÌlico
+dactyl	d√°ctilo
+dactylic	dact√≠lico
 dad	el papa
 dad	padre
 daddies	padres
@@ -2899,7 +2899,7 @@ daggerman	dagador
 daggers	dagas
 daguerreotype	daguerrotipo
 daguerreotypes	daguerrotipos
-daguerreotypic	daguerrotÌpico
+daguerreotypic	daguerrot√≠pico
 daguerreotypy	daguerrotipia
 dahlia	dalia
 dahlias	dalias
@@ -2917,14 +2917,14 @@ dally	perder el tiempo
 dalmatian	dalmata
 dalmatians	dalmatas
 dam	represa
-damage	daÒo
-damaged	daÒado
-damages	daÒos
-damaging	daÒando
+damage	da√±o
+damaged	da√±ado
+damages	da√±os
+damaging	da√±ando
 damask	damasco
 dame	dama
 dame	mujer
-dammit	maldiciÛn
+dammit	maldici√≥n
 damned	condenado
 damp	humedo
 damped	mojado
@@ -2934,7 +2934,7 @@ dance	el baile
 danced	bail√≥
 dancer	bailador
 dancer	bailarin
-dancer	bailarÌn
+dancer	bailar√≠n
 dancers	bailadores
 dancers	bailarines
 dances	baila
@@ -2947,7 +2947,7 @@ dangerous	peligroso
 dangerously	peligrosamente
 d'art	de arte
 d'art	art√≠stico
-dare	cariÒo
+dare	cari√±o
 dare	querido(a)
 dark	oscuro
 darkness	la oscuridad
@@ -2964,7 +2964,7 @@ daughter	Hija
 daughter	la hija
 daughter	Nina
 daughters	Hijas
-day	DÌa
+day	D√≠a
 daybed	cama dia
 daybook	libro dia
 days	dias
@@ -3013,7 +3013,7 @@ d'etre	de ser
 devil	el diablo
 diamond	el diamante
 diaper	el panal
-dichotomy	dicotomÌa
+dichotomy	dicotom√≠a
 dichroic	dicroico
 dichroism	dicroismo
 dichromatic	dicromatico
@@ -3045,7 +3045,7 @@ different	diferente
 difficulty	dificultad
 dimple	el hoyuelo
 dining room	el comedor
-diocese	diÛcesis
+diocese	di√≥cesis
 dirty	ensuciar
 dirty	sucio
 dirty	verde
@@ -3102,9 +3102,9 @@ download	bajar
 dowry	dote
 dozen	la docena
 drawer	la gaveta
-dream	sueÒo
-dream	soÒar
-dreams	sueÒos
+dream	sue√±o
+dream	so√±ar
+dreams	sue√±os
 dress	el vestido
 dresses	los vestidos
 drink	beber
@@ -3140,39 +3140,39 @@ earache	dolor de oreja
 eardrop	espiando
 eardrop	gota para oreja
 eardrum	tambor auditivo
-eardrums	tÌmpano
-eardrums	membrana del oÌdo
+eardrums	t√≠mpano
+eardrums	membrana del o√≠do
 eared	en mazorca
 eared	en espig√° long-eared: de orejas largas
 earflap	oreja
 earful	noticias
-earful	rumore≈õarenga
-earful	admoniciÛn
+earful	rumore/arenga
+earful	admonici√≥n
 earl	conde
-earldom	condad√≥ tÌtulo
-earldom	condiciÛn y propiedad de conde en G.B.
+earldom	condad√≥ t√≠tulo
+earldom	condici√≥n y propiedad de conde en G.B.
 earlier	mas temprano
 earliest	el mas temprano
 earliness	precocidad
-earliness	anticipaciÛn/presteza
+earliness	anticipaci√≥n/presteza
 earliness	prontitud/calidad de temprano
 earlobe	l√≥bulo
 early	temprano
-earmuff	orejera (protecciÛn contra el frÌo)
+earmuff	orejera (protecci√≥n contra el fr√≠o)
 earn	ganar
 earned	ganado
 earner	ganador
 earners	ganadores
 earnest	seriedad
-earnest	ahÌnco
-earnest	empeÒo
+earnest	ah√≠nco
+earnest	empe√±o
 earnest	intensidad/in earnest: en serio
 earnest	con seriedad
 earnest	 de vera≈õ
 earnestly	seriament√©intensament√©de veras
 earnestness	seriedad
 earnestness	formalidad (de una persona)/ seriedad
-earnestness	gravedad (de una situaciÛn o asunto)
+earnestness	gravedad (de una situaci√≥n o asunto)
 earning	ganancia
 earnings	ganancias
 earns	gana
@@ -3219,8 +3219,8 @@ edge	orilla
 educate	educ√°r
 educated	educado
 educates	educa
-e'er	contracciÛn de "ever": siempre
-e'er	alguna vez/ jam·s
+e'er	contracci√≥n de "ever": siempre
+e'er	alguna vez/ jam√°s
 e'er	nunca en la vida
 effectual	eficaz
 egg	el huevo
@@ -3246,14 +3246,14 @@ enter	entrar
 envelope	el sobre
 environment	ambiente
 envy	envidiar
-enzymatic	enzim·tico
+enzymatic	enzim√°tico
 enzymatically	enzimaticamente
 enzyme	enzima
 enzymes	enzimas
-enzymic	enzim·tico
+enzymic	enzim√°tico
 enzymically	enzimaticamente
-enzymologist	enzimÛlogo
-enzymology	enzimologÌa
+enzymologist	enzim√≥logo
+enzymology	enzimolog√≠a
 erase	borrar
 eraser	el borrador
 ermine	armi√±o
@@ -3270,7 +3270,7 @@ exhausted	agotado
 exhibit	exhibir
 exhibited	exhibido
 exhibiting	exhibiendo; exhibir
-exhibition	exhibiciÛn; exposiciÛn
+exhibition	exhibici√≥n; exposici√≥n
 exhibitioner	exhibicionista; expositor
 exhibitionism	exhibicionismo
 exhibitionist	exhibicionista
@@ -3278,7 +3278,7 @@ exhibitions	exhibiciones; exposiciones
 exhibitor	expositor
 exhibitors	expositores
 exhort	exhortar
-exhortation	exhortaciÛn
+exhortation	exhortaci√≥n
 exhortations	exhortaciones
 exhortative	exhortativo
 exhortatory	exhortatorio
@@ -3294,10 +3294,10 @@ exigencies	exigencias
 exigency	exigencia
 exigent	exigente
 exigently	exigentemente
-exiguity	exig¸edad
+exiguity	exig√ºedad
 exiguous	exiguo
 exiguously	exiguamente
-exiguousness	exig¸edad
+exiguousness	exig√ºedad
 exile	exilio
 exit	la salida
 expensive	caro
@@ -3462,9 +3462,9 @@ filial	filial
 fill	llenar
 filthy	cochino
 finally	al fin
-finch	pinzÛn
-finch	especie de gorriÛn
-finch	de orÌgen europeo
+finch	pinz√≥n
+finch	especie de gorri√≥n
+finch	de or√≠gen europeo
 find	encontrar
 find	hallar
 finger	el dedo
@@ -3524,7 +3524,7 @@ footage	documental
 football	futbol
 footballer	futbolista
 footing	andar ( como deporte )
-footnote	nota a pie de p·gina
+footnote	nota a pie de p√°gina
 footpath	sendero
 for	para
 for	por
@@ -3594,8 +3594,8 @@ fulcrum	fulcro
 fulfill	completar
 fulfill	lograr
 fulfill	cumplir
-fulfilled	cumpliÛ
-fulfilled	completÛ
+fulfilled	cumpli√≥
+fulfilled	complet√≥
 fulfiller	cumplidor
 fulfillment	obligacion
 fulfillment	deber
@@ -3613,8 +3613,8 @@ gala	gala
 galaxies	galaxias
 galaxy	galaxia
 gallantly	galantemente
-gallantry	galanterÌa
-gallery	galerÌa
+gallantry	galanter√≠a
+gallery	galer√≠a
 gallop	galope
 galloping	galopando
 game	el juego
@@ -3625,7 +3625,7 @@ gangster	pandillero
 gangsters	pandilleros
 garage	el garaje
 garbage	la basura
-garden	el jardÌn
+garden	el jard√≠n
 gardener	el jardinero
 gardens	jardines
 garlic	el ajo
@@ -3718,8 +3718,8 @@ guilty	culpable
 guitar	la guitarra
 gut	intestino
 guts	intestinos
-gutter	cuneta (en la calle); canalÛn (tejado); gotera; arroyo
-guy	tÌo (inf: hombre)
+gutter	cuneta (en la calle); canal√≥n (tejado); gotera; arroyo
+guy	t√≠o (inf: hombre)
 guy	tipo
 guzzle	tragar; engullir
 guzzled	tragado; engullido
@@ -3731,14 +3731,14 @@ gymnastic	gimnasia
 gymnastics	gimnasia
 gymnasts	gimnastas
 gyms	gimnasios; gimnasias
-gynecological	ginecolÛgic√≥a
-gynecologicals	ginecolÛgico≈õas
-gynecologist	ginecÛlog√≥a
-gynecologists	ginecÛlogo≈õas
-gynecology	ginecologÌa
-gypsies	gitano≈õas
-gypsies	gitano≈õas
-gypsies	gitano≈õas
+gynecological	ginecol√≥gic√≥a
+gynecologicals	ginecol√≥gico/as
+gynecologist	ginec√≥log√≥a
+gynecologists	ginec√≥logo/as
+gynecology	ginecolog√≠a
+gypsies	gitano/as
+gypsies	gitano/as
+gypsies	gitano/as
 gypsy	gitan√≥a
 gypsy	gitan√≥a
 gypsy	gitan√≥a
@@ -3746,8 +3746,8 @@ h	h
 ha	ja
 habeas	habeas
 haberdasher	camisero
-haberdasheries	mercerÌas
-haberdashery	mercerÌa
+haberdasheries	mercer√≠as
+haberdashery	mercer√≠a
 habilitate	habilitar
 habilitated	habilitado
 habilitates	habilitar
@@ -3755,22 +3755,22 @@ habilitating	habilitando
 habilitation	habilitaci√≥n
 habilitations	habilitaciones
 habit	h√°bito
-habit	h·bito
-habit	costumbre; adicciÛn (drogas)
+habit	h√°bito
+habit	costumbre; adicci√≥n (drogas)
 habitability	habitabilidad
 habitable	habitable
 habitably	habilidad
 habitant	habitante
 habitants	habitantes
 habitat	h√°bitat
-habitat	h·bitat
+habitat	h√°bitat
 habitation	habitaci√≥n
 habitations	habitaciones
 habitats	habitats
-habitats	h·bitats
+habitats	h√°bitats
 habits	h√°bitos
-habits	h·bitos
-habits	costumbres; adicciÛnes (drogas)
+habits	h√°bitos
+habits	costumbres; adicci√≥nes (drogas)
 habitual	habitual
 habitual	acostumbrado
 habitual	habitual; empedernido (bebedor
@@ -3791,12 +3791,12 @@ hack	hackear
 hack	cortar; tajar
 hack	rebanar
 hacked	hackeado
-hacked	pretÈrit√≥participio pasado de hack
+hacked	pret√©rit√≥participio pasado de hack
 hacker	n.-('haa-ker)
 hacker	one who hacks. Also one who is capable of accessing unauthorized info.    
-hacker	pirata inform·tico
+hacker	pirata inform√°tico
 hackers	hackers
-hackers	piratas inform·ticos
+hackers	piratas inform√°ticos
 hacking	hacking
 hackle	pelo erizado
 hackled	happy birthday
@@ -3808,7 +3808,7 @@ hackney	trillar
 hackneyed	trillado
 had	yo ten√≠a (I had)
 had	yo tuve (I had)
-had	pretÈrit√≥participio pasado de have
+had	pret√©rit√≥participio pasado de have
 haddock	merluza
 haddock	eglefino (pescado)
 haddocks	eglefinos (pescados)
@@ -3819,7 +3819,7 @@ haggis	morcilla
 haggis	embutido escoc√©s
 haggish	embutido escoc√©s
 haggle	regatear
-haggled	pretÈrit√≥participio pasado de haggle
+haggled	pret√©rit√≥participio pasado de haggle
 haggling	gerundi√≥inf de haggle
 hagiographies	hagiograf√≠as
 hagiography	hagiograf√≠a
@@ -3863,17 +3863,17 @@ hardware	circuitos
 hare	Liebre
 harebrained	Tonto
 harelipped	Leporino (labio)
-harem	HarÈm
+harem	Har√©m
 hares	Liebres
-harlequin	ArlequÌn
+harlequin	Arlequ√≠n
 harlequinade	Arlequinada
-harm	DaÒar
-harmed	DaÒado
-harmful	DaÒino
+harm	Da√±ar
+harmed	Da√±ado
+harmful	Da√±ino
 harmless	Inofensivo
-harmonic	ArmÛnico
-harmonica	ArmÛnica (Inst.M˙s.)
-harmonical	ArmÛnica
+harmonic	Arm√≥nico
+harmonica	Arm√≥nica (Inst.M√∫s.)
+harmonical	Arm√≥nica
 harmonium	Armonio (Inst.Musical)
 harmonize	Armonizar
 hat	el sombrero
@@ -3910,11 +3910,11 @@ heiresses	herederas
 heirloom	herencia (objeto valioso familiar)
 held	Tuvo lugar
 held	sostuvo
-helices	HÈlice
+helices	H√©lice
 helicoidal	helicoidal
-helicopter	HelicÛptero
-helicopters	HelicÛpteros
-heliocentric	HeliocÈntrico
+helicopter	Helic√≥ptero
+helicopters	Helic√≥pteros
+heliocentric	Helioc√©ntrico
 heliogram	heliograma
 heliograms	heliogramas
 helium	Helio
@@ -3944,7 +3944,7 @@ home	casa
 home	vivienda
 homebuilder	constructor
 homeless	desposeido
-homeowners	dueÒos de casa
+homeowners	due√±os de casa
 homosexual	homosexual
 honest	honrado
 honey	la miel
@@ -3982,22 +3982,22 @@ ibis	ibis
 ice	el hielo
 ice cream	el helado
 iceberg	iceberg
-icebergs	tÈmpano
+icebergs	t√©mpano
 icebox	la refrigeradora
 iced	escarchado (cake)
 icicle	el car√°mbano
 icicles	los car√°mbanos
 icier	m√°s helado
 iciest	lo m√°s helado
-icily	iconÛgrafo
+icily	icon√≥grafo
 icing	alcorza
 icing	escarchado
 icon	el √≠cono
 iconoclast	iconoclasta
 iconoclastic	iconoclasta
-iconoclastic	iconocl·stico
-iconoclastically	iconocl·sticamente
-iconographer	iconÛgrafo
+iconoclastic	iconocl√°stico
+iconoclastically	iconocl√°sticamente
+iconographer	icon√≥grafo
 iconographic	rhtrhyhgf
 iconographical	eth
 icons	iconos
@@ -4005,7 +4005,7 @@ idea	la idea
 ideal	ideal
 idealism	idealismo
 idealist	idealista
-idealization	idealizaciÛn
+idealization	idealizaci√≥n
 idealizations	idealizaciones
 idealize	idealizar
 idealized	idealizado
@@ -4014,18 +4014,18 @@ ideals	ideales
 ideas	ideas
 ideate	idear
 ideates	idea
-idem	Ìdem
-identic	idÈntico
-identical	idÈntico
-identically	idÈnticamente
+idem	√≠dem
+identic	id√©ntico
+identical	id√©ntico
+identically	id√©nticamente
 identifiable	identificable
-identification	identificaciÛn
+identification	identificaci√≥n
 identifications	identificaciones
 idiom	el idioma
 idiot	idiota
 if	si
 implement	implantar
-implementation	implantaciÛn
+implementation	implantaci√≥n
 important	importante
 imported	importado
 impossible	imposible
@@ -4035,19 +4035,19 @@ inborn	innato(a)
 incalculable	incalculable
 incalculably	incalculable
 incant	Encantar
-incantation	EncantaciÛn
+incantation	Encantaci√≥n
 incantations	Encantaciones
 incanted	Encantado(a)
 incapable	incapaz
 incapacitate	Incapacitar
 incapacitated	incapacitado
-incapacitates	IncapacÌta
+incapacitates	Incapac√≠ta
 incapacity	incapacidad
 incarcerate	encarcelar
 incarcerated	encarcelado
-incarcerates	encarcÈla
+incarcerates	encarc√©la
 incarcerating	encarcelando
-incarceration	encarcelaciÛn
+incarceration	encarcelaci√≥n
 incarnate	encarnar
 incarnation	renacer
 incarnations	renacimientos
@@ -4086,18 +4086,18 @@ incinerate	incinerar
 incinerated	incinerado
 incinerates	incinera
 incinerating	incinerando
-incineration	incineraciÛn
+incineration	incineraci√≥n
 incinerations	incineraciones
 incinerator	incinerador
 incinerators	incineradores
 incise	inciso
 incises	incisos
-incision	incisiÛn
+incision	incisi√≥n
 incisions	incisiones
 incisor	incisor
 incitant	incitante
 incitants	incitantes
-incitation	incitaciÛn
+incitation	incitaci√≥n
 incitations	incitaciones
 incite	incitar
 incited	incitdo(a)
@@ -4110,7 +4110,7 @@ inclemency	inclemencia
 inclement	inclemente
 inclemently	inclementemente
 inclinable	inclinable
-inclination	inclinaciÛn
+inclination	inclinaci√≥n
 inclinations	inclinaciones
 incline	inclinar
 increase	aumentar
@@ -4131,7 +4131,7 @@ interesting	interesante
 intern	interno(a)
 internal	interno(a)
 internality	internalidad
-internalization	internalizaciÛn
+internalization	internalizaci√≥n
 internalize	internalizar
 internalized	internalizado
 internalizes	internaliza
@@ -4143,7 +4143,7 @@ internationalism	internacionalismo
 internationalist	internacionalista
 internationalists	internacionalistas
 internationality	internacionalidad
-internationalization	internaciionalizaciÛn
+internationalization	internaciionalizaci√≥n
 internationalize	internacionalizar
 internationalized	internacionalizado(a)
 internationalizes	internacionaliza
@@ -4151,7 +4151,7 @@ internationally	internacionalmente
 internationals	internacionales
 internetwork	trabajo en la RIM (Red Mundial Interna)
 internetwork	Internet=RedMundial
-internetwork	ConnecciÛn interna de comunicaciÛn
+internetwork	Connecci√≥n interna de comunicaci√≥n
 interneuron	neuron interno
 interneuronal	interneuronal
 interning	internando
@@ -4161,7 +4161,7 @@ interweave	entretejer
 intimacy	intimidad
 intimate	√≠ntimo
 intimidate	intimidar
-introduction	introducciÛn
+introduction	introducci√≥n
 introductions	introducciones
 invite	invitar
 iron	el hierro
@@ -4170,7 +4170,7 @@ island	la isla
 Italy	Italia
 j	j
 jab	pinchazo
-jabber	algarabÌa
+jabber	algarab√≠a
 jack	gato
 jack	para sujetar el coche cuando se cambia una rueda
 jack	jota
@@ -4189,11 +4189,11 @@ jackhammer	taladradora
 jackhammer	martillo picador
 jackknife	navaja
 jackpot	bote
-jackpot	premio m·ximo
-jackpot	premio m·ximo
+jackpot	premio m√°ximo
+jackpot	premio m√°ximo
 jade	jade
 jag	punta
-jag	pu·
+jag	pu√°
 jag	raja
 jagged	dentado
 jagged	mellado
@@ -4226,9 +4226,9 @@ kayak	kayak
 keel	quilla
 keep	guardar
 keep	keep
-keep	manutenciÛn
+keep	manutenci√≥n
 keep	subsistencia
-keeper	Guardi·n
+keeper	Guardi√°n
 keeper	custodio
 keeping	custodia
 keeping	cuidado
@@ -4244,8 +4244,8 @@ killer	asasino
 killers	asasinos
 kilo	kilo
 kilobit	kilobit
-kilometer	kilÛmetro
-kilometers	kilÛmetros
+kilometer	kil√≥metro
+kilometers	kil√≥metros
 kindness	la bondad
 king	el rey
 kingdom	reino
@@ -4270,7 +4270,7 @@ knockdown	tumbar
 know	saber
 knowledge	conocimiento
 known	conocido
-kooks	¸ppou
+kooks	√ºppou
 label	el marbete
 label	etiqueta
 labeled	etiquetado
@@ -4344,17 +4344,17 @@ lackeys	lacayos (sirvientes)
 lacking	faltar (something is lacking/algo falta)
 lackluster	sin brillo
 lacks	le falta
-laconic	lacÛnico
+laconic	lac√≥nico
 laconism	laconismo
 laconisms	laconismos
-laconize	lacÛnizar
-laconized	laÛnizados
+laconize	lac√≥nizar
+laconized	la√≥nizados
 lacquer	laca
 lacquer	pintar con laca
 lactase	lactasa
 lactate	lactato
 lactate	lactar
-lactic	l·ctico
+lactic	l√°ctico
 lacuna	laguna
 lacunae	lagunas
 lacunar	lagunar
@@ -4485,7 +4485,7 @@ leaves	las hojas
 lecturer	conferensista
 ledge	borde
 ledge	anaquel
-ledger	travesaÒo
+ledger	travesa√±o
 ledger	andamio
 lee	sotavento
 leech	sanguijuela
@@ -4567,12 +4567,12 @@ limited	limitado
 limited	limitada
 limitless	sin l√≠mites
 linoleic	linoleico
-linoleum	linÛleo
-lion	leÛn
+linoleum	lin√≥leo
+lion	le√≥n
 lip	el labio
-lipid	lÌpido
-lipidic	lipÌdico
-lipids	lÌpidos
+lipid	l√≠pido
+lipidic	lip√≠dico
+lipids	l√≠pidos
 lips	los labios
 liquor	el licor
 list	la lista
@@ -4655,13 +4655,13 @@ love	love
 lovely	adorable
 lover	amante
 low	bajo
-lubric	l˙brico
+lubric	l√∫brico
 lubricant	lubricante
 lubricants	lubricantes
 lubricate	lubricar
 lubricated	lubricado
 lubricates	lubrica
-lubricous	l˙brico
+lubricous	l√∫brico
 lucidity	lucidez
 lucidly	l√∫cidamente
 luck	la suerte
@@ -4698,7 +4698,7 @@ macaroni	macarrones
 macaronic	macarronico
 macaronically	macarronicamente
 macaronies	macarrones
-macaroon	macarrÛn
+macaroon	macarr√≥n
 macaw	lapa
 macaws	lapas
 mace	mazo
@@ -4718,12 +4718,12 @@ machinate	maquinar
 machinated	maquinado
 machinates	maquina
 machinating	maquinando
-machination	maquinaciÛn
+machination	maquinaci√≥n
 machination	maquinaci√≥n
 machinator	maquinador
 machine	m'aquina
 machine	m√°quina
-machine	m·quina
+machine	m√°quina
 machineable	maquinable
 machined	maquinado
 machinelike	como maquina
@@ -4732,7 +4732,7 @@ machineries	maquinarias
 machinery	maquinaria
 machines	m'aquinas
 machines	m√°quinas
-machines	m·quinas
+machines	m√°quinas
 machining	maquinando
 machinist	maquinista
 machinists	maquinistas
@@ -4757,17 +4757,17 @@ macroeconomic	macroeconomico
 macroeconomics	macroeconomia
 macroevolution	macroevolucion
 macrofossil	macrofosil
-macroinstruction	macroinstrucciÛn
+macroinstruction	macroinstrucci√≥n
 macromolecular	macromolecular
 macromolecule	macromolecula
 macromolecules	macromoleculas
 macronucleus	macronucleo
 macronutrient	macronutriente
-macropathological	macropatolÛgico
-macropathology	macropatologÌa
-macrophage	macrÛfago
+macropathological	macropatol√≥gico
+macropathology	macropatolog√≠a
+macrophage	macr√≥fago
 macroprocessor	macroprocesador
-macrosocioeconomic	macrosocioeconÛmico
+macrosocioeconomic	macrosocioecon√≥mico
 macrostructural	macroestructural
 macrostructure	macroestructura
 maculate	manchar
@@ -4784,8 +4784,8 @@ madcap	calavera; botarate; temerario
 madder	m/as enfadado
 maddest	lo m/as enfadado
 made	hecho
-mademoiselle	seÒorita
-mademoiselles	seÒoritas
+mademoiselle	se√±orita
+mademoiselles	se√±oritas
 madhouse	manicomio
 madly	locamente
 madman	loco
@@ -4797,11 +4797,11 @@ maestro	arista eminent en cualquiere de las bellas artes
 mafioso	niembre de la mafia
 magazine	la revista
 magazine	(military)cargador
-magazine	peine.AlmacÈn
+magazine	peine.Almac√©n
 magazine	(military)cargador
 magazine	peine.
 magazine	una revista
-magazine	What happened? I just wanted to erase "AlmacÈn"!
+magazine	What happened? I just wanted to erase "Almac√©n"!
 magazines	las revistas
 magenta	rojo purpureo; solferino
 maggot	cresa; gusano; larva
@@ -4810,7 +4810,7 @@ magi	los Reyes Magos; sacredotes de la relig. zoroastrica
 magic	magia
 magic	m√°gico
 magical	m√°gico
-magically	m·gicamente
+magically	m√°gicamente
 magician	mago
 magicians	magos
 magisterial	authoritario; dominante; pomposo
@@ -4825,7 +4825,7 @@ magistrature	magistratura
 magma	magma
 magma	lava volcanica
 magnanimity	magnanimosidad
-magnanimous	magn·nimo
+magnanimous	magn√°nimo
 magnanimously	magnanimosamente
 magnate	potentado
 magnesia	magnesio(a)
@@ -4835,8 +4835,8 @@ magnetic	magn√©tico
 magnetically	magneticamente
 magnetism	magnetismo
 magnetisms	magnetismo
-magnific	magnÌfico
-magnifically	magnÌficamente
+magnific	magn√≠fico
+magnifically	magn√≠ficamente
 magnificence	magnificencia
 magniloquence	magnilocuencia
 magniloquent	magnilocuente
@@ -5294,8 +5294,8 @@ oligarchy	oligarquia
 olive	la aceituna
 olives	aceitunas
 omelette	la tortilla
-omen	ag¸ero
-omens	ag¸eros
+omen	ag√ºero
+omens	ag√ºeros
 omit	omitir
 omnipotence	omnipotencia
 omnipotent	omnipotente
@@ -5331,10 +5331,10 @@ pace	paso
 pacemaker	marcapasos
 pachyderm	paquidermo
 pachydermal	paquid√©rmico
-pacific	pacÌfico
+pacific	pac√≠fico
 pacific	pacifico
-pacifically	pacÌficamente
-pacification	pacificaciÛn
+pacifically	pac√≠ficamente
+pacification	pacificaci√≥n
 pacifications	pacificaciones
 pacificator	pacificador
 pacificators	pacificadores
@@ -5361,7 +5361,7 @@ paella	paella
 pagan	pagano
 paganism	paganismo
 paganization	paganizacion
-page	p·gina
+page	p√°gina
 pager	mens√°fono
 pager	buscapersonas
 paid	pagado
@@ -5381,7 +5381,7 @@ pajamas	piyamas
 pal	amigo
 palace	palacio
 palaces	palacios
-palaeontology	paleontologÌa
+palaeontology	paleontolog√≠a
 palazzi	palacios
 palazzo	palacio
 palazzos	palacios
@@ -5550,8 +5550,8 @@ pluralizers	pluralizadores
 plurals	plurales
 pluriaxial	pluriaxial
 pluripotent	pluripotente
-plus	aÒadido
-pluses	aÒadidos
+plus	a√±adido
+pluses	a√±adidos
 plutocracy	plutocracia
 plutocrat	plut√≥crata
 plutocratic	plutocr√°tico
@@ -5711,26 +5711,26 @@ pussycat	minino
 put	poner
 q	q
 qua	en funciones de
-qua	en su condiciÛn de
+qua	en su condici√≥n de
 quack	graznido
 quack	matasanos
 quackery	charlataner√≠a
-quadrangle	cuadr·ngulo 
-quadrangles	cuadr·ngulos
+quadrangle	cuadr√°ngulo 
+quadrangles	cuadr√°ngulos
 quadrangular	cuadrangular
 quadrant	cuadrante
 quadrants	cuadrantes
-quadraphonic	cuadrafÛnico
-quadraphony	cuadrafonÌa
-quadratic	cuadr·tico
-quadratically	cuadr·ticamente
+quadraphonic	cuadraf√≥nico
+quadraphony	cuadrafon√≠a
+quadratic	cuadr√°tico
+quadratically	cuadr√°ticamente
 quadrature	cuadratura
 quadriceps	cuadriceps
-quadrillion	cuatrillÛn
+quadrillion	cuatrill√≥n
 quadripartite	cuatripartita
 quadripartitely	cuatripartitamente
 quadriplegic	cuadripl√©gico
-quadriplegic	paralÌtico
+quadriplegic	paral√≠tico
 quadroon	cuarter√≥n
 quadruped	cuadr√∫pedo
 quadruple	cu√°druple
@@ -5801,31 +5801,31 @@ radii	radios (pl. of radius=radio)
 radio	la radio
 radioactive	radioactivo
 radioactively	radioactivamente
-radioastronomy	radioastronÛmico
+radioastronomy	radioastron√≥mico
 radioautograph	radioautografo
-radioautographic	radioautogr·fico
-radioautography	radioautografÌa
+radioautographic	radioautogr√°fico
+radioautography	radioautograf√≠a
 radiobiologic	radiobiologico
 radiobiologically	radiobiologicamente
 radiobiology	radiobiologia
-radiobroadcast	transmisiÛn de radio
+radiobroadcast	transmisi√≥n de radio
 radiobroadcaster	transmitidor de radio
-radiochemist	radioquÌmico
-radiochemistry	radioquÌmica
+radiochemist	radioqu√≠mico
+radiochemistry	radioqu√≠mica
 radiochlorine	radioclorina
 radiography	radiograf√≠a
 radiology	radiolog√≠a
 radiolysis	radiolosis
-radiolytic	radiolÌtico
+radiolytic	radiol√≠tico
 radiometeorograph	radiometeografo
 radiometer	radiometro
 radiometers	radiometros
-radiometric	radiomÈtrico
-radiometrically	radimÈtricamente
-radiometry	radiometrÌa
+radiometric	radiom√©trico
+radiometrically	radim√©tricamente
+radiometry	radiometr√≠a
 radios	radios
-radioscopic	radioscÛpico
-radioscopy	radioscopÌa
+radioscopic	radiosc√≥pico
+radioscopy	radioscop√≠a
 radiosensitive	radiosensitivo
 radiosensitivity	radiosensitividad
 radiotherapy	radioterapia
@@ -5910,10 +5910,10 @@ ration	raci√≥n
 rations	las raciones
 raw	crudo
 ray	irradiar
-rayon	rayÛn
+rayon	ray√≥n
 razor	la navaja
 reabsorb	reabsorber
-reabsorption	reabsorciÛn
+reabsorption	reabsorci√≥n
 reach	alcanzar
 read	estudiar
 read	indicar
@@ -6173,7 +6173,7 @@ seashores	costas del mar
 seasick	mareado
 seaside	playa
 seaside	costa
-season	estaci\'on del a\~no (noun); condimentar (verb)
+season	estaci√≥n del a√±o (noun); condimentar (verb)
 seasonal	estacional
 seasoned	sazonado
 seat	el asiento
@@ -6262,7 +6262,7 @@ single	solo
 singlehanded	sin ayuda
 singsong	mon√≥tono
 sister	la hermana
-sister	cuÒada
+sister	cu√±ada
 sit	sentarse
 six	seis
 sixty	sesenta
@@ -6449,21 +6449,21 @@ stove	la estufa
 straight	derecho
 straighten	enderezarse 
 stranded	desamparado
-strange	extraÒo
+strange	extra√±o
 strange	raro
-strangely	extraÒamente
-stranger	extraÒo
+strangely	extra√±amente
+stranger	extra√±o
 stranger	forastero
-strategic	estratÈgico
-strategically	estratÈgicamente
+strategic	estrat√©gico
+strategically	estrat√©gicamente
 strategy	estrategia
 straw	la paja
 strawberry	la fresa
 street	la calle
 street corner	la esquina
 streets	las calles
-stress	el estrÈs
-stress	la presiÛn
+stress	el estr√©s
+stress	la presi√≥n
 strike	golpear
 strike	huelga
 strikebreaker	rompahuelgas
@@ -6478,7 +6478,7 @@ stubble	rastrojo
 stubbly	lleno de rastrojo
 stubbly	erizado; cerdoso
 stubborn	terco
-stubbornness	obstinaciÛn
+stubbornness	obstinaci√≥n
 stubby	lleno de tocones
 stubs	trozos
 stubs	fragmentos
@@ -6486,7 +6486,7 @@ stucco	estuco
 stuccowork	estucado
 stuck	picar
 stuck	punzar
-stud	tachÛn
+stud	tach√≥n
 student	alumno
 student	el estudiante
 student	estudiante
@@ -6496,10 +6496,10 @@ study	estudiar
 studying	estudiando
 stupid	menso
 stupid	bobo
-stupid	est˙pido
+stupid	est√∫pido
 stupid	torpe
 stupid	necio
-stupidly	est˙pidez
+stupidly	est√∫pidez
 stupidly	torpeza
 stupidly	necedad
 subject	asignatura
@@ -6584,8 +6584,8 @@ tabulators	tabuladoras
 tachometer	tac√≥metro
 tachometers	tac√≥metros
 tachycardia	taquicardia
-tachygraphic	taquigr·fico
-tachygraphical	tquigr·fica
+tachygraphic	taquigr√°fico
+tachygraphical	tquigr√°fica
 tachygraphy	tquigrafia
 tachyons	taqui√≥n
 tacit	t√°cito
@@ -6613,11 +6613,11 @@ tact	tacto
 tact	tino
 tactful	con diplomacia
 tactfully	discretamente
-tactfully	diplom·ticamente 
+tactfully	diplom√°ticamente 
 tactfulness	consideraci'on
 tactfulness	discreci'on
 tactic	t√°ctica
-tactical	t·ctico
+tactical	t√°ctico
 tactically	t'acticamente
 tactician	t'actico
 tactics	t√°cticas
@@ -7600,8 +7600,8 @@ vain	vano
 vainglory	vanagloria
 valuable	valioso
 vanilla	la vainilla
-vault	bÛveda
-vault	sÛtano
+vault	b√≥veda
+vault	s√≥tano
 vault	caja fuerte
 vaulted	saltado
 vaulted	brincado
@@ -7623,12 +7623,12 @@ vocabulary	el vocabulario
 vodka	el vodka
 voice	la voz
 wack	dar un buen golpe a
-wacke	roca bas·ltica
+wacke	roca bas√°ltica
 wad	la borra
-wad	tapÛn o corcho
+wad	tap√≥n o corcho
 wadding	relleno
 waddle	nalguear
-waddle	caminar a pasos pequeÒos
+waddle	caminar a pasos peque√±os
 wade	chapotear
 wafer	el barquillo
 wafer	galleta
@@ -7648,7 +7648,7 @@ wail	lamento
 wails	lamento(a)
 waist	la cintura
 waist	cintura
-waistband	cinturÛn 
+waistband	cintur√≥n 
 waistcoat	el chaleco
 waistcoat	el chaleco
 wait	esperar
@@ -7690,15 +7690,15 @@ we	nosotros
 weasel	comadreja
 weather	clima
 weather	el tiempo
-web	tejido tela telaraÒa enredo red trama
+web	tejido tela telara√±a enredo red trama
 wed	casar
 wed	casarse
 wedding	boda
 wedding	la boda
-wedge	cuÒa
+wedge	cu√±a
 week	la semana
 week	semana
-weekday	dÌa de la semana
+weekday	d√≠a de la semana
 weekend	fin de semana
 weekends	fines de semana
 weekly	semanal
