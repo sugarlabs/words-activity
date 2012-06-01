@@ -6585,7 +6585,7 @@ tachometer	tacómetro
 tachometers	tacómetros
 tachycardia	taquicardia
 tachygraphic	taquigráfico
-tachygraphical	tquigráfica
+tachygraphical	taquigráfica
 tachygraphy	tquigrafia
 tachyons	taquión
 tacit	tácito
