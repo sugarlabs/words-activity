@@ -63,8 +63,8 @@ class WordsActivity(activity.Activity):
         self.max_participants = 1
 
         # Main layout | disposicion general
-        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL) # Gtk.HBox(homogeneous=True, spacing=8)
-        vbox =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL)  # Gtk.VBox(spacing=16)
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, homogeneous=True, spacing=8)
+        vbox =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=16) 
         vbox.set_border_width(16)
 
         # Toolbar (compatibility with old-toolbars) | Toolbar, compatibilidad con barras anteriores
