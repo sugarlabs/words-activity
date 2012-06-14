@@ -64,8 +64,8 @@ class WordsActivity(activity.Activity):
 
         # Main layout | disposicion general
         hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, homogeneous=True, spacing=8)
-        vbox =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=16) 
-        vbox.set_border_width(16)
+        vbox =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20) 
+        vbox.set_border_width(20)
 
         # Toolbar (compatibility with old-toolbars) | Toolbar, compatibilidad con barras anteriores
         if not OLD_TOOLBARS:
