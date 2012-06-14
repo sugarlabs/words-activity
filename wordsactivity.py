@@ -102,8 +102,8 @@ class WordsActivity(activity.Activity):
             toolbar_box.toolbar.insert(stop_button, -1)
             stop_button.show()
 
-            self.set_toolbox(toolbar_box)
-            toolbar_box.show()
+            self.set_toolbar_box(toolbox)
+            toolbox.show()
         else:
             toolbox = ToolbarBox(self)
             self.set_toolbar_box(toolbox)
@@ -151,7 +151,7 @@ class WordsActivity(activity.Activity):
         transbox.attach(self.translated, 1, 2, 1, 2, xoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.EXPAND)
         transbox.attach(speak2, 2, 3, 1, 2, xoptions=Gtk.AttachOptions.FILL)
 
-        vbox.pack_start(transbox, False, True, 0)
+        vbox.pack_start(transbox, expand=False, fill=True, padding=0)
 
         # The language choice combo boxes. | Las cajas para escoger opciones de lenguaje
         self.lang1combo = Gtk.ComboBoxText()
@@ -193,17 +193,17 @@ class WordsActivity(activity.Activity):
         lang2scroll.add(lang2view)
 
         lang1_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)  # Gtk.VBox(spacing=8)
-        lang1_vbox.pack_start(self.lang1combo, False, True, 0)
-        lang1_vbox.pack_start(lang1scroll, True, True, 0)
+        lang1_vbox.pack_start(self.lang1combo, expand=False, fill=True, padding=0)
+        lang1_vbox.pack_start(lang1scroll, expand=True, fill=True, padding=0)
 
         lang2_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)  # Gtk.VBox(spacing=8)
-        lang2_vbox.pack_start(self.lang2combo, False, True, 0)
-        lang2_vbox.pack_start(lang2scroll, True, True, 0)
+        lang2_vbox.pack_start(self.lang2combo, expand=False, fill=True, padding=0)
+        lang2_vbox.pack_start(lang2scroll, expand=True, fill=True, padding=0)
 
-        hbox.pack_start(lang1_vbox, True, True, 0)
-        hbox.pack_start(lang2_vbox, True, True, 0)
+        hbox.pack_start(lang1_vbox, expand=True, fill=True, padding=0)
+        hbox.pack_start(lang2_vbox, expand=True, fill=True,padding=0)
 
-        vbox.pack_start(hbox, True, True, 0)
+        vbox.pack_start(hbox, expand=True, fill=True, padding=0)
         self.set_canvas(vbox)
         self.totranslate.grab_focus()
         self.show_all()
