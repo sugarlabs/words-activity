@@ -63,8 +63,8 @@ class WordsActivity(activity.Activity):
         self.max_participants = 1
 
         # Main layout | disposicion general
-        hbox = Gtk.HBox(homogeneous=True, spacing=8)
-        vbox = Gtk.VBox(spacing=16)
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL) # Gtk.HBox(homogeneous=True, spacing=8)
+        vbox =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL)  # Gtk.VBox(spacing=16)
         vbox.set_border_width(16)
 
         # Toolbar (compatibility with old-toolbars) | Toolbar, compatibilidad con barras anteriores
@@ -192,11 +192,11 @@ class WordsActivity(activity.Activity):
         lang2scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         lang2scroll.add(lang2view)
 
-        lang1_vbox = Gtk.VBox(spacing=8)
+        lang1_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)  # Gtk.VBox(spacing=8)
         lang1_vbox.pack_start(self.lang1combo, False, True, 0)
         lang1_vbox.pack_start(lang1scroll, True, True, 0)
 
-        lang2_vbox = Gtk.VBox(spacing=8)
+        lang2_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)  # Gtk.VBox(spacing=8)
         lang2_vbox.pack_start(self.lang2combo, False, True, 0)
         lang2_vbox.pack_start(lang2scroll, True, True, 0)
 
