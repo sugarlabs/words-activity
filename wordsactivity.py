@@ -25,11 +25,8 @@ import subprocess
 from gettext import gettext as _
 
 from sugar3.activity import activity
-from sugar3.activity.activity import get_bundle_path, get_bundle_name
-
 from sugar3.graphics.icon import Icon
-
-from sugar3.graphics.toolbarbox import ToolbarBox, ToolbarButton
+from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.activity.widgets import ActivityButton, StopButton, \
                                         ShareButton, TitleEntry
 
