@@ -17,7 +17,9 @@
 """Words Activity: A multi-lingual dictionary with speech synthesis."""
 """Actividad Palabras: Un diccionario multi-lengua con sintesis de habla"""
 
-from gi.repository import Gtk, Pango
+from gi.repository import Gtk 
+from gi.repository import Pango
+
 import logging
 import os
 import subprocess
@@ -27,8 +29,10 @@ from gettext import gettext as _
 from sugar3.activity import activity
 from sugar3.graphics.icon import Icon
 from sugar3.graphics.toolbarbox import ToolbarBox
-from sugar3.activity.widgets import ActivityButton, StopButton, \
-                                        ShareButton, TitleEntry
+from sugar3.activity.widgets import ActivityButton 
+from sugar3.activity.widgets import StopButton 
+from sugar3.activity.widgets import ShareButton 
+from sugar3.activity.widgets import TitleEntry
 
 # logging
 _logger = logging.getLogger('Words')
