@@ -161,6 +161,8 @@ class WordsActivity(activity.Activity):
         lang1view = Gtk.TreeView(self.lang1model)
         lang1view.set_headers_visible(False)
         lang1cell = Gtk.CellRendererText()
+        lang1cell.props.ellipsize_set = True
+        lang1cell.props.ellipsize = Pango.EllipsizeMode.END
         lang1treecol = Gtk.TreeViewColumn("", lang1cell, text=0)
         lang1view.get_selection().connect("changed", self.lang1sel_cb)
         lang1view.append_column(lang1treecol)
@@ -173,6 +175,8 @@ class WordsActivity(activity.Activity):
         lang2view = Gtk.TreeView(self.lang2model)
         lang2view.set_headers_visible(False)
         lang2cell = Gtk.CellRendererText()
+        lang2cell.props.ellipsize_set = True
+        lang2cell.props.ellipsize = Pango.EllipsizeMode.END
         lang2treecol = Gtk.TreeViewColumn("", lang2cell, text=0)
         lang2view.get_selection().connect("changed", self.lang2sel_cb)
         lang2view.append_column(lang2treecol)
