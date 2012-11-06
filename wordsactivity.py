@@ -61,8 +61,7 @@ class WordsActivity(activity.Activity):
 
         # Main layout | disposicion general
         hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, homogeneous=True, spacing=8)
-        vbox =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=20) 
-        vbox.set_border_width(20)
+        vbox =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
         toolbar_box = ToolbarBox()
         activity_button = ActivityButton(self)
@@ -105,6 +104,7 @@ class WordsActivity(activity.Activity):
         transbox.resize(2, 3)
         transbox.set_row_spacings(8)
         transbox.set_col_spacings(12)
+        transbox.set_border_width(20)
 
         # Labels | Etiquetas
         label1 = Gtk.Label(label=_("Word") + ':')
@@ -156,9 +156,6 @@ class WordsActivity(activity.Activity):
         self.lang2combo.connect("changed", self.lang2combo_cb)
         self.lang2combo.set_active(4)
         
-        self.lang1combo.set_size_request(600, 50)
-        self.lang2combo.set_size_request(600, 50)
-
         # The "lang1" treeview box
         self.lang1model = Gtk.ListStore(str)
         lang1view = Gtk.TreeView(self.lang1model)
