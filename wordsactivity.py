@@ -17,6 +17,8 @@
 """Words Activity: A multi-lingual dictionary with speech synthesis."""
 """Actividad Palabras: Un diccionario multi-lengua con sintesis de habla"""
 
+from gi.repository import GObject
+from gi.repository import Gdk
 from gi.repository import Gtk 
 from gi.repository import Pango
 
@@ -29,13 +31,165 @@ from gettext import gettext as _
 from sugar3.activity import activity
 from sugar3.graphics.icon import Icon
 from sugar3.graphics.toolbarbox import ToolbarBox
-from sugar3.activity.widgets import ActivityButton 
-from sugar3.activity.widgets import StopButton 
-from sugar3.activity.widgets import ShareButton 
-from sugar3.activity.widgets import TitleEntry
+from sugar3.activity.widgets import ActivityToolbarButton
+from sugar3.activity.widgets import StopButton
+from sugar3.graphics import style
+from sugar3.graphics.palettemenu import PaletteMenuItem
+from sugar3.graphics.palette import Palette
+from sugar3.graphics.palette import ToolInvoker
 
-# logging
-_logger = logging.getLogger('Words')
+import dictdmodel
+
+
+class FilterToolItem(Gtk.ToolButton):
+
+    _LABEL_MAX_WIDTH = 18
+    _MAXIMUM_PALETTE_COLUMNS = 4
+
+    __gsignals__ = {
+        'changed': (GObject.SignalFlags.RUN_LAST, None, ([])), }
+
+    def __init__(self, default_icon, default_value, options):
+        self._palette_invoker = ToolInvoker()
+        self._options = options
+        Gtk.ToolButton.__init__(self)
+        self._label = self._options[default_value]
+        self.set_is_important(True)
+        self.set_size_request(style.GRID_CELL_SIZE, -1)
+
+        self._label_widget = Gtk.Label()
+        self._label_widget.set_alignment(0.0, 0.5)
+        self._label_widget.set_ellipsize(Pango.EllipsizeMode.MIDDLE)
+        self._label_widget.set_max_width_chars(self._LABEL_MAX_WIDTH)
+        self._label_widget.set_use_markup(True)
+        self._label_widget.set_markup(self._label)
+        self.set_label_widget(self._label_widget)
+        self._label_widget.show()
+
+        self.set_widget_icon(icon_name=default_icon)
+
+        self._hide_tooltip_on_click = True
+        self._palette_invoker.attach_tool(self)
+        self._palette_invoker.props.toggle_palette = True
+        self._palette_invoker.props.lock_palette = True
+
+        self.palette = Palette(_('Select filter'))
+        self.palette.set_invoker(self._palette_invoker)
+
+        self.props.palette.set_content(self.set_palette_list(options))
+
+    def set_widget_icon(self, icon_name=None):
+        icon = Icon(icon_name=icon_name,
+                    icon_size=style.SMALL_ICON_SIZE)
+        self.set_icon_widget(icon)
+        icon.show()
+
+    def _set_widget_label(self, label=None):
+        # FIXME: Ellipsis is not working on these labels.
+        if label is None:
+            label = self._label
+        if len(label) > self._LABEL_MAX_WIDTH:
+            label = label[0:7] + '...' + label[-7:]
+        self._label_widget.set_markup(label)
+        self._label = label
+
+    def __destroy_cb(self, icon):
+        if self._palette_invoker is not None:
+            self._palette_invoker.detach()
+
+    def create_palette(self):
+        return None
+
+    def get_palette(self):
+        return self._palette_invoker.palette
+
+    def set_palette(self, palette):
+        self._palette_invoker.palette = palette
+
+    palette = GObject.property(
+        type=object, setter=set_palette, getter=get_palette)
+
+    def get_palette_invoker(self):
+        return self._palette_invoker
+
+    def set_palette_invoker(self, palette_invoker):
+        self._palette_invoker.detach()
+        self._palette_invoker = palette_invoker
+
+    palette_invoker = GObject.property(
+        type=object, setter=set_palette_invoker, getter=get_palette_invoker)
+
+    def do_draw(self, cr):
+        if self.palette and self.palette.is_up():
+            allocation = self.get_allocation()
+            # draw a black background, has been done by the engine before
+            cr.set_source_rgb(0, 0, 0)
+            cr.rectangle(0, 0, allocation.width, allocation.height)
+            cr.paint()
+
+        Gtk.ToolButton.do_draw(self, cr)
+
+        if self.palette and self.palette.is_up():
+            invoker = self.palette.props.invoker
+            invoker.draw_rectangle(cr, self.palette)
+
+        return False
+
+    def set_palette_list(self, options):
+        _menu_item = PaletteMenuItem(text_label=options[options.keys()[0]])
+        req2 = _menu_item.get_preferred_size()[1]
+        menuitem_width = req2.width
+        menuitem_height = req2.height
+
+        palette_width = Gdk.Screen.width() - style.GRID_CELL_SIZE
+        palette_height = Gdk.Screen.height() - style.GRID_CELL_SIZE * 3
+
+        nx = min(self._MAXIMUM_PALETTE_COLUMNS,
+                 int(palette_width / menuitem_width))
+        ny = min(int(palette_height / menuitem_height), len(options) + 1)
+        if ny >= len(options):
+            nx = 1
+            ny = len(options)
+
+        grid = Gtk.Grid()
+        grid.set_row_spacing(style.DEFAULT_PADDING)
+        grid.set_column_spacing(0)
+        grid.set_border_width(0)
+        grid.show()
+
+        x = 0
+        y = 0
+
+        for key in options.keys():
+            menu_item = PaletteMenuItem()
+            menu_item.set_label(options[key])
+
+            menu_item.set_size_request(style.GRID_CELL_SIZE * 3, -1)
+
+            menu_item.connect('button-release-event', self._option_selected, key)
+            grid.attach(menu_item, x, y, 1, 1)
+            x += 1
+            if x == nx:
+                x = 0
+                y += 1
+
+            menu_item.show()
+
+        if palette_height < (y * menuitem_height + style.GRID_CELL_SIZE):
+            # if the grid is bigger than the palette, put in a scrolledwindow
+            scrolled_window = Gtk.ScrolledWindow()
+            scrolled_window.set_policy(Gtk.PolicyType.NEVER,
+                                       Gtk.PolicyType.AUTOMATIC)
+            scrolled_window.set_size_request(nx * menuitem_width,
+                                             (ny + 1) * menuitem_height)
+            scrolled_window.add_with_viewport(grid)
+            return scrolled_window
+        else:
+            return grid
+
+    def _option_selected(self, menu_item, event, key):
+        self._set_widget_label(self._options[key])
+        self.emit('changed', key)
 
 
 class WordsActivity(activity.Activity):
@@ -44,7 +198,13 @@ class WordsActivity(activity.Activity):
     def __init__(self, handle):
         """Set up the Words activity."""
         super(WordsActivity, self).__init__(handle)
-        self._logger = logging.getLogger('Init words-activity')
+
+        self._dictionaries = dictdmodel.Dictionaries('./dictd/')
+
+        self._from_languages = self._dictionaries.get_languages_from()
+        self._from_lang_options = {}
+        for lang in self._from_languages:
+            self._from_lang_options[lang] = dictdmodel.lang_codes[lang]
 
         # Instantiate a language model.
         # FIXME: We should ask the language model what langs it supports.
@@ -55,8 +215,6 @@ class WordsActivity(activity.Activity):
         import LanguageModel
         self.languagemodel = LanguageModel.LanguageModel()
 
-        # We do not have collaboration features | No tenemos caracteristicas de colaboracion
-        # make the share option insensitive | haciendo la opcion de compartir insensible
         self.max_participants = 1
 
         # Main layout | disposicion general
@@ -64,27 +222,41 @@ class WordsActivity(activity.Activity):
         vbox =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
         toolbar_box = ToolbarBox()
-        activity_button = ActivityButton(self)
+
+        activity_button = ActivityToolbarButton(self)
         toolbar_box.toolbar.insert(activity_button, 0)
         activity_button.show()
-            
-        title_entry = TitleEntry(self)
-        toolbar_box.toolbar.insert(title_entry, -1)
-        title_entry.show()
 
-        try:
-                from sugar3.activity.widgets import DescriptionItem
-        except ImportError:
-                logging.debug('DescriptionItem button is not available,' +
-                    'toolkit version < 0.96')
-        else:
-                description_item = DescriptionItem(self)
-                toolbar_box.toolbar.insert(description_item, -1)
-                description_item.show()
+        toolbar_box.toolbar.insert(Gtk.SeparatorToolItem(), -1)
 
-        share_button = ShareButton(self)
-        toolbar_box.toolbar.insert(share_button, -1)
-        share_button.show()
+        from_toolitem = Gtk.ToolItem()
+        from_toolitem.add(Gtk.Label(_('From:')))
+        from_toolitem.show_all()
+        toolbar_box.toolbar.insert(from_toolitem, -1)
+
+        self._default_from_language = 'eng'
+        self._default_to_language = 'spa'
+
+        self._from_button = FilterToolItem('go-down',
+                                           self._default_from_language,
+                                           self._from_lang_options)
+        toolbar_box.toolbar.insert(self._from_button, -1)
+
+        to_toolitem = Gtk.ToolItem()
+        to_toolitem.add(Gtk.Label('    ' + _('To:')))
+        to_toolitem.show_all()
+        toolbar_box.toolbar.insert(to_toolitem, -1)
+
+        self._to_languages = self._dictionaries.get_languages_to(
+            self._default_from_language)
+        self._to_lang_options = {}
+        for lang in self._to_languages:
+            self._to_lang_options[lang] = dictdmodel.lang_codes[lang]
+
+        self._to_button = FilterToolItem('go-down',
+                                         self._default_to_language,
+                                         self._to_lang_options)
+        toolbar_box.toolbar.insert(self._to_button, -1)
 
         separator = Gtk.SeparatorToolItem()
         separator.props.draw = False
@@ -106,25 +278,25 @@ class WordsActivity(activity.Activity):
         transbox.set_col_spacings(12)
         transbox.set_border_width(20)
 
-        # Labels | Etiquetas
+        # Labels
         label1 = Gtk.Label(label=_("Word") + ':')
         label1.set_alignment(xalign=0.0, yalign=0.5)
         label2 = Gtk.Label(label=_("Translation") + ':')
         label2.set_alignment(xalign=0.0, yalign=0.5)
         
-        # Text entry box to enter word to be translated.| caja para colocar la palabra que se va a traducir
+        # Text entry box to enter word to be translated
         self.totranslate = Gtk.Entry()
         self.totranslate.set_max_length(50)
         self.totranslate.connect("changed", self.totranslate_cb)
         self.totranslate.modify_font(Pango.FontDescription("Sans 14"))
         
-        # Text entry box to receive word translated.| caja para recibir la palabra que se va a traducir
+        # Text entry box to receive word translated
         self.translated = Gtk.Entry()
         self.translated.set_max_length(50)
         self.translated.set_property('editable', False)
         self.translated.modify_font(Pango.FontDescription("Sans 14"))
 
-        # Speak buttons.| Botones para hablar.
+        # Speak buttons
         speak1 = Gtk.ToolButton()
         speak_icon1 = Icon(icon_name='microphone')
         speak1.set_icon_widget(speak_icon1)
@@ -143,18 +315,6 @@ class WordsActivity(activity.Activity):
         transbox.attach(speak2, 2, 3, 1, 2, xoptions=Gtk.AttachOptions.FILL)
 
         vbox.pack_start(transbox, expand=False, fill=True, padding=0)
-
-        # The language choice combo boxes. | Las cajas para escoger opciones de lenguaje
-        self.lang1combo = Gtk.ComboBoxText()
-        self.lang1combo.append_text("English")
-        self.lang1combo.connect("changed", self.lang1combo_cb)
-        self.lang1combo.set_active(0)
-
-        self.lang2combo = Gtk.ComboBoxText()
-        for x in self.langs:
-            self.lang2combo.append_text(x)
-        self.lang2combo.connect("changed", self.lang2combo_cb)
-        self.lang2combo.set_active(4)
         
         # The "lang1" treeview box
         self.lang1model = Gtk.ListStore(str)
@@ -185,11 +345,9 @@ class WordsActivity(activity.Activity):
         lang2scroll.add(lang2view)
 
         lang1_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)  # Gtk.VBox(spacing=8)
-        lang1_vbox.pack_start(self.lang1combo, expand=False, fill=True, padding=0)
         lang1_vbox.pack_start(lang1scroll, expand=True, fill=True, padding=0)
 
         lang2_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)  # Gtk.VBox(spacing=8)
-        lang2_vbox.pack_start(self.lang2combo, expand=False, fill=True, padding=0)
         lang2_vbox.pack_start(lang2scroll, expand=True, fill=True, padding=0)
 
         hbox.pack_start(lang1_vbox, expand=True, fill=True, padding=0)
@@ -213,12 +371,6 @@ class WordsActivity(activity.Activity):
         subprocess.call(["aplay", tmpfile])
         os.unlink(tmpfile)
 
-    def lang1combo_cb(self, combo):
-        pass
-
-    def lang2combo_cb(self, combo):
-        self.languagemodel.SetLanguages("English", self.langs[combo.get_active()])
-        
     def lang1sel_cb(self, column):
         # FIXME: Complete the text entry box
         model, _iter = column.get_selected()
