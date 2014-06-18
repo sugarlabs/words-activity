@@ -19,7 +19,7 @@
 
 from gi.repository import GObject
 from gi.repository import Gdk
-from gi.repository import Gtk 
+from gi.repository import Gtk
 from gi.repository import Pango
 
 import logging
@@ -166,7 +166,8 @@ class FilterToolItem(Gtk.ToolButton):
 
             menu_item.set_size_request(style.GRID_CELL_SIZE * 3, -1)
 
-            menu_item.connect('button-release-event', self._option_selected, key)
+            menu_item.connect('button-release-event', self._option_selected,
+                              key)
             grid.attach(menu_item, x, y, 1, 1)
             x += 1
             if x == nx:
@@ -218,8 +219,9 @@ class WordsActivity(activity.Activity):
         self.max_participants = 1
 
         # Main layout | disposicion general
-        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, homogeneous=True, spacing=8)
-        vbox =  Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL,
+                       homogeneous=True, spacing=8)
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
 
         toolbar_box = ToolbarBox()
 
@@ -283,13 +285,13 @@ class WordsActivity(activity.Activity):
         label1.set_alignment(xalign=0.0, yalign=0.5)
         label2 = Gtk.Label(label=_("Translation") + ':')
         label2.set_alignment(xalign=0.0, yalign=0.5)
-        
+
         # Text entry box to enter word to be translated
         self.totranslate = Gtk.Entry()
         self.totranslate.set_max_length(50)
         self.totranslate.connect("changed", self.totranslate_cb)
         self.totranslate.modify_font(Pango.FontDescription("Sans 14"))
-        
+
         # Text entry box to receive word translated
         self.translated = Gtk.Entry()
         self.translated.set_max_length(50)
@@ -305,17 +307,21 @@ class WordsActivity(activity.Activity):
         speak_icon2 = Icon(icon_name='microphone')
         speak2.set_icon_widget(speak_icon2)
         speak2.connect("clicked", self.speak2_cb)
-        
+
         transbox.attach(label1, 0, 1, 0, 1, xoptions=Gtk.AttachOptions.FILL)
-        transbox.attach(self.totranslate, 1, 2, 0, 1, xoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.EXPAND)
+        transbox.attach(
+            self.totranslate, 1, 2, 0, 1,
+            xoptions=Gtk.AttachOptions.FILL | Gtk.AttachOptions.EXPAND)
         transbox.attach(speak1, 2, 3, 0, 1, xoptions=Gtk.AttachOptions.FILL)
 
         transbox.attach(label2, 0, 1, 1, 2, xoptions=Gtk.AttachOptions.FILL)
-        transbox.attach(self.translated, 1, 2, 1, 2, xoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.EXPAND)
+        transbox.attach(
+            self.translated, 1, 2, 1, 2,
+            xoptions=Gtk.AttachOptions.FILL | Gtk.AttachOptions.EXPAND)
         transbox.attach(speak2, 2, 3, 1, 2, xoptions=Gtk.AttachOptions.FILL)
 
         vbox.pack_start(transbox, expand=False, fill=True, padding=0)
-        
+
         # The "lang1" treeview box
         self.lang1model = Gtk.ListStore(str)
         lang1view = Gtk.TreeView(self.lang1model)
@@ -344,14 +350,14 @@ class WordsActivity(activity.Activity):
         lang2scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         lang2scroll.add(lang2view)
 
-        lang1_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)  # Gtk.VBox(spacing=8)
+        lang1_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         lang1_vbox.pack_start(lang1scroll, expand=True, fill=True, padding=0)
 
-        lang2_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)  # Gtk.VBox(spacing=8)
+        lang2_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         lang2_vbox.pack_start(lang2scroll, expand=True, fill=True, padding=0)
 
         hbox.pack_start(lang1_vbox, expand=True, fill=True, padding=0)
-        hbox.pack_start(lang2_vbox, expand=True, fill=True,padding=0)
+        hbox.pack_start(lang2_vbox, expand=True, fill=True, padding=0)
 
         vbox.pack_start(hbox, expand=True, fill=True, padding=0)
         self.set_canvas(vbox)
@@ -359,10 +365,10 @@ class WordsActivity(activity.Activity):
         self.show_all()
 
     def say(self, text, lang):
-        # No Portuguese accent yet.
+        # No Portuguese accent yet
         if lang == "portuguese":
             lang = "spanish"
-        #AU costumization
+        # TODO: AU costumization
         elif lang == "english":
             lang = "english_rp"
 
@@ -374,13 +380,13 @@ class WordsActivity(activity.Activity):
     def lang1sel_cb(self, column):
         # FIXME: Complete the text entry box
         model, _iter = column.get_selected()
-        value = model.get_value(_iter,0)
+        value = model.get_value(_iter, 0)
         translations = self.languagemodel.GetTranslations(0, value)
         self.translated.set_text(",".join(translations))
 
     def lang2sel_cb(self, column):
         model, _iter = column.get_selected()
-        value = model.get_value(_iter,0)
+        value = model.get_value(_iter, 0)
         translations = self.languagemodel.GetTranslations(1, value)
         self.translated.set_text(",".join(translations))
 
@@ -399,7 +405,7 @@ class WordsActivity(activity.Activity):
         # Ask for completion suggestions
         if not entry:
             return
-        
+
         (list1, list2) = self.languagemodel.GetSuggestions(entry)
         self.lang1model.clear()
         self.lang2model.clear()
@@ -413,7 +419,7 @@ class WordsActivity(activity.Activity):
             langiter = self.lang2combo.get_active()
             lang = self.langs[langiter].lower()
             self.fromlang = "English"
-            self.tolang   = lang
+            self.tolang = lang
             translations = self.languagemodel.GetTranslations(0, list1[0])
             self.translated.set_text(",".join(translations))
 
@@ -421,6 +427,6 @@ class WordsActivity(activity.Activity):
             langiter = self.lang2combo.get_active()
             lang = self.langs[langiter].lower()
             self.fromlang = lang
-            self.tolang   = "English"
+            self.tolang = "English"
             translations = self.languagemodel.GetTranslations(1, list2[0])
             self.translated.set_text(",".join(translations))
