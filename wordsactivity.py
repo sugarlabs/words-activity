@@ -224,11 +224,6 @@ class WordsActivity(activity.Activity):
 
         self.max_participants = 1
 
-        # Main layout | disposicion general
-        hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL,
-                       homogeneous=True, spacing=8)
-        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-
         toolbar_box = ToolbarBox()
 
         activity_button = ActivityToolbarButton(self)
@@ -282,58 +277,48 @@ class WordsActivity(activity.Activity):
         self.set_toolbar_box(toolbar_box)
         toolbar_box.show()
 
-        # transbox: <label> - <text entry> - <speak button>
-        transbox = Gtk.Table()
-        transbox.resize(2, 3)
-        transbox.set_row_spacings(8)
-        transbox.set_col_spacings(12)
-        transbox.set_border_width(20)
+        font = Pango.FontDescription("Sans 14")
+
+        # This box will change the orientaion when the screen rotates
+        self._big_box = Gtk.Box(Gtk.Orientation.HORIZONTAL)
+        self._big_box.set_homogeneous(True)
+
+        lang1_container = Gtk.Grid()
+        lang1_container.set_row_spacing(style.DEFAULT_SPACING)
+        lang1_container.set_border_width(style.DEFAULT_SPACING)
+
+        self._big_box.pack_start(lang1_container, True, True, 0)
 
         # Labels
         label1 = Gtk.Label(label=_("Word") + ':')
-        label1.set_alignment(xalign=0.0, yalign=0.5)
-        label2 = Gtk.Label(label=_("Translation") + ':')
-        label2.set_alignment(xalign=0.0, yalign=0.5)
+        label1.modify_font(font)
+        label1.set_halign(Gtk.Align.START)
+        lang1_container.attach(label1, 0, 0, 2, 1)
 
         # Text entry box to enter word to be translated
         self.totranslate = Gtk.Entry()
         self.totranslate.set_max_length(50)
         self.totranslate.connect("changed", self.__totranslate_changed_cb)
-        self.totranslate.modify_font(Pango.FontDescription("Sans 14"))
+        self.totranslate.modify_font(font)
+        self.totranslate.set_hexpand(True)
 
-        # Text entry box to receive word translated
-        self.translated = Gtk.Entry()
-        self.translated.set_max_length(50)
-        self.translated.set_property('editable', False)
-        self.translated.modify_font(Pango.FontDescription("Sans 14"))
+        lang1_container.attach(self.totranslate, 0, 1, 1, 1)
 
-        # Speak buttons
         speak1 = Gtk.ToolButton()
-        speak_icon1 = Icon(icon_name='microphone')
-        speak1.set_icon_widget(speak_icon1)
+        speak1.set_icon_widget(Icon(icon_name='microphone'))
         speak1.connect("clicked", self.speak1_cb)
-        speak2 = Gtk.ToolButton()
-        speak_icon2 = Icon(icon_name='microphone')
-        speak2.set_icon_widget(speak_icon2)
-        speak2.connect("clicked", self.speak2_cb)
 
-        transbox.attach(label1, 0, 1, 0, 1, xoptions=Gtk.AttachOptions.FILL)
-        transbox.attach(
-            self.totranslate, 1, 2, 0, 1,
-            xoptions=Gtk.AttachOptions.FILL | Gtk.AttachOptions.EXPAND)
-        transbox.attach(speak1, 2, 3, 0, 1, xoptions=Gtk.AttachOptions.FILL)
+        lang1_container.attach(speak1, 1, 1, 1, 1)
 
-        transbox.attach(label2, 0, 1, 1, 2, xoptions=Gtk.AttachOptions.FILL)
-        transbox.attach(
-            self.translated, 1, 2, 1, 2,
-            xoptions=Gtk.AttachOptions.FILL | Gtk.AttachOptions.EXPAND)
-        transbox.attach(speak2, 2, 3, 1, 2, xoptions=Gtk.AttachOptions.FILL)
-
-        vbox.pack_start(transbox, expand=False, fill=True, padding=0)
+        label1 = Gtk.Label(label=_("Suggestions") + ':')
+        label1.set_halign(Gtk.Align.START)
+        lang1_container.attach(label1, 0, 2, 2, 1)
 
         # The "lang1" treeview box
         self._suggestions_model = Gtk.ListStore(str)
         suggest_treeview = Gtk.TreeView(self._suggestions_model)
+        suggest_treeview.modify_font(font)
+
         suggest_treeview.set_headers_visible(False)
         lang1cell = Gtk.CellRendererText()
         lang1cell.props.ellipsize_set = True
@@ -342,35 +327,50 @@ class WordsActivity(activity.Activity):
         self._suggestion_changed_cb_id = suggest_treeview.connect(
             'cursor-changed', self.__suggestion_selected_cb)
         suggest_treeview.append_column(lang1treecol)
-        lang1scroll = Gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-        lang1scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        lang1scroll.add(suggest_treeview)
+        scroll = Gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
+        scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
+        scroll.add(suggest_treeview)
+        scroll.set_vexpand(True)
+        lang1_container.attach(scroll, 0, 3, 2, 1)
 
-        # The "lang2" box
-        self.lang2model = Gtk.ListStore(str)
-        lang2view = Gtk.TreeView(self.lang2model)
-        lang2view.set_headers_visible(False)
-        lang2cell = Gtk.CellRendererText()
-        lang2cell.props.ellipsize_set = True
-        lang2cell.props.ellipsize = Pango.EllipsizeMode.END
-        lang2treecol = Gtk.TreeViewColumn("", lang2cell, text=0)
-        lang2view.get_selection().connect("changed", self.lang2sel_cb)
-        lang2view.append_column(lang2treecol)
-        lang2scroll = Gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
-        lang2scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        lang2scroll.add(lang2view)
+        # This container have the result data
+        result_container = Gtk.Grid()
+        result_container.set_row_spacing(style.DEFAULT_SPACING)
+        result_container.set_border_width(style.DEFAULT_SPACING)
+        self._big_box.pack_start(result_container, True, True, 0)
 
-        lang1_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        lang1_vbox.pack_start(lang1scroll, expand=True, fill=True, padding=0)
+        label2 = Gtk.Label(label=_("Translation") + ':')
+        label2.modify_font(font)
+        label2.set_halign(Gtk.Align.START)
+        result_container.attach(label2, 0, 0, 2, 1)
 
-        lang2_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        lang2_vbox.pack_start(lang2scroll, expand=True, fill=True, padding=0)
+        # Text entry box to receive word translated
 
-        hbox.pack_start(lang1_vbox, expand=True, fill=True, padding=0)
-        hbox.pack_start(lang2_vbox, expand=True, fill=True, padding=0)
+        self.translated = Gtk.TextView()
+        self.translated.modify_font(font)
+        text_buffer = Gtk.TextBuffer()
+        self.translated.set_buffer(text_buffer)
+        self.translated.set_left_margin(style.DEFAULT_PADDING)
+        self.translated.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
+        self.translated.set_editable(False)
 
-        vbox.pack_start(hbox, expand=True, fill=True, padding=0)
-        self.set_canvas(vbox)
+        scrolled = Gtk.ScrolledWindow()
+        scrolled.set_policy(Gtk.PolicyType.AUTOMATIC,
+                            Gtk.PolicyType.AUTOMATIC)
+        scrolled.add(self.translated)
+
+        scrolled.set_hexpand(True)
+        scrolled.set_vexpand(True)
+
+        result_container.attach(scrolled, 0, 1, 1, 1)
+
+        speak2 = Gtk.ToolButton()
+        speak2.set_icon_widget(Icon(icon_name='microphone'))
+        speak2.connect("clicked", self.speak2_cb)
+        result_container.attach(speak2, 1, 1, 1, 1)
+
+        self._big_box.show_all()
+        self.set_canvas(self._big_box)
         self.totranslate.grab_focus()
         self.show_all()
 
@@ -450,9 +450,9 @@ class WordsActivity(activity.Activity):
         # Ask for completion suggestions
         list1 = self._dictionary.get_suggestions(text)
 
-        self.lang2model.clear()
         for x in list1:
             self._suggestions_model.append([x])
 
         translations = self._dictionary.get_definition(text)
-        self.translated.set_text(",".join(translations))
+
+        self.translated.get_buffer().set_text(''.join(translations))
