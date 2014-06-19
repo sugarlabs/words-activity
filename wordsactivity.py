@@ -47,12 +47,14 @@ class FilterToolItem(Gtk.ToolButton):
     _MAXIMUM_PALETTE_COLUMNS = 4
 
     __gsignals__ = {
-        'changed': (GObject.SignalFlags.RUN_LAST, None, ([])), }
+        'changed': (GObject.SignalFlags.RUN_LAST, None, ([str])), }
 
     def __init__(self, default_icon, default_value, options):
         self._palette_invoker = ToolInvoker()
         self._options = options
         Gtk.ToolButton.__init__(self)
+        logging.error('filter options %s', options)
+        self._value = default_value
         self._label = self._options[default_value]
         self.set_is_important(True)
         self.set_size_request(style.GRID_CELL_SIZE, -1)
@@ -73,10 +75,21 @@ class FilterToolItem(Gtk.ToolButton):
         self._palette_invoker.props.toggle_palette = True
         self._palette_invoker.props.lock_palette = True
 
-        self.palette = Palette(_('Select filter'))
+        self.palette = Palette(_('Select language'))
         self.palette.set_invoker(self._palette_invoker)
 
         self.props.palette.set_content(self.set_palette_list(options))
+
+    def set_options(self, options):
+        self._options = options
+        self.palette = Palette(_('Select language'))
+        self.palette.set_invoker(self._palette_invoker)
+        self.props.palette.set_content(self.set_palette_list(options))
+        if self._value not in self._options.keys():
+            new_value = self._options.keys()[0]
+            self._value = new_value
+            self._set_widget_label(self._options[new_value])
+            self.emit('changed', new_value)
 
     def set_widget_icon(self, icon_name=None):
         icon = Icon(icon_name=icon_name,
@@ -190,6 +203,7 @@ class FilterToolItem(Gtk.ToolButton):
 
     def _option_selected(self, menu_item, event, key):
         self._set_widget_label(self._options[key])
+        self._value = key
         self.emit('changed', key)
 
 
@@ -200,21 +214,13 @@ class WordsActivity(activity.Activity):
         """Set up the Words activity."""
         super(WordsActivity, self).__init__(handle)
 
-        self._dictionaries = dictdmodel.Dictionaries('./dictd/')
+        self._dictd_data_dir = './dictd/'
+        self._dictionaries = dictdmodel.Dictionaries(self._dictd_data_dir)
 
         self._from_languages = self._dictionaries.get_languages_from()
         self._from_lang_options = {}
         for lang in self._from_languages:
             self._from_lang_options[lang] = dictdmodel.lang_codes[lang]
-
-        # Instantiate a language model.
-        # FIXME: We should ask the language model what langs it supports.
-        self.langs = ["French", "German", "Italian", "Portuguese", "Spanish"]
-        # Initial values | Valores iniciales
-        self.fromlang = "English"
-        self.tolang = "Spanish"
-        import LanguageModel
-        self.languagemodel = LanguageModel.LanguageModel()
 
         self.max_participants = 1
 
@@ -239,9 +245,16 @@ class WordsActivity(activity.Activity):
         self._default_from_language = 'eng'
         self._default_to_language = 'spa'
 
+        # Initial values | Valores iniciales
+        self.fromlang = self._default_from_language
+        self.tolang = self._default_to_language
+        self._dictionary = dictdmodel.Dictionary(self._dictd_data_dir,
+                                                 self.fromlang,
+                                                 self.tolang)
         self._from_button = FilterToolItem('go-down',
                                            self._default_from_language,
                                            self._from_lang_options)
+        self._from_button.connect("changed", self.__from_language_changed_cb)
         toolbar_box.toolbar.insert(self._from_button, -1)
 
         to_toolitem = Gtk.ToolItem()
@@ -249,15 +262,11 @@ class WordsActivity(activity.Activity):
         to_toolitem.show_all()
         toolbar_box.toolbar.insert(to_toolitem, -1)
 
-        self._to_languages = self._dictionaries.get_languages_to(
-            self._default_from_language)
-        self._to_lang_options = {}
-        for lang in self._to_languages:
-            self._to_lang_options[lang] = dictdmodel.lang_codes[lang]
-
+        self._init_to_language()
         self._to_button = FilterToolItem('go-down',
-                                         self._default_to_language,
+                                         self.tolang,
                                          self._to_lang_options)
+        self._to_button.connect("changed", self.__to_language_changed_cb)
         toolbar_box.toolbar.insert(self._to_button, -1)
 
         separator = Gtk.SeparatorToolItem()
@@ -289,7 +298,7 @@ class WordsActivity(activity.Activity):
         # Text entry box to enter word to be translated
         self.totranslate = Gtk.Entry()
         self.totranslate.set_max_length(50)
-        self.totranslate.connect("changed", self.totranslate_cb)
+        self.totranslate.connect("changed", self.__totranslate_changed_cb)
         self.totranslate.modify_font(Pango.FontDescription("Sans 14"))
 
         # Text entry box to receive word translated
@@ -323,18 +332,19 @@ class WordsActivity(activity.Activity):
         vbox.pack_start(transbox, expand=False, fill=True, padding=0)
 
         # The "lang1" treeview box
-        self.lang1model = Gtk.ListStore(str)
-        lang1view = Gtk.TreeView(self.lang1model)
-        lang1view.set_headers_visible(False)
+        self._suggestions_model = Gtk.ListStore(str)
+        suggest_treeview = Gtk.TreeView(self._suggestions_model)
+        suggest_treeview.set_headers_visible(False)
         lang1cell = Gtk.CellRendererText()
         lang1cell.props.ellipsize_set = True
         lang1cell.props.ellipsize = Pango.EllipsizeMode.END
         lang1treecol = Gtk.TreeViewColumn("", lang1cell, text=0)
-        lang1view.get_selection().connect("changed", self.lang1sel_cb)
-        lang1view.append_column(lang1treecol)
+        self._suggestion_changed_cb_id = suggest_treeview.connect(
+            'cursor-changed', self.__suggestion_selected_cb)
+        suggest_treeview.append_column(lang1treecol)
         lang1scroll = Gtk.ScrolledWindow(hadjustment=None, vadjustment=None)
         lang1scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
-        lang1scroll.add(lang1view)
+        lang1scroll.add(suggest_treeview)
 
         # The "lang2" box
         self.lang2model = Gtk.ListStore(str)
@@ -364,25 +374,41 @@ class WordsActivity(activity.Activity):
         self.totranslate.grab_focus()
         self.show_all()
 
-    def say(self, text, lang):
-        # No Portuguese accent yet
-        if lang == "portuguese":
-            lang = "spanish"
-        # TODO: AU costumization
-        elif lang == "english":
-            lang = "english_rp"
+    def __from_language_changed_cb(self, widget, value):
+        logging.error('selected translate from %s', value)
+        self.fromlang = value
+        self._init_to_language()
+        logging.error('destination languages %s', self._to_lang_options)
+        self._to_button.set_options(self._to_lang_options)
+        self._translate()
+
+    def __to_language_changed_cb(self, widget, value):
+        logging.error('selected translate to %s', value)
+        self.tolang = value
+        self._translate()
+
+    def _init_to_language(self):
+        self._to_languages = self._dictionaries.get_languages_to(
+            self.fromlang)
+        self._to_lang_options = {}
+        for lang in self._to_languages:
+            self._to_lang_options[lang] = dictdmodel.lang_codes[lang]
+
+    def _say(self, text, lang):
 
         tmpfile = "/tmp/something.wav"
-        subprocess.call(["espeak", text, "-w", tmpfile, "-v", lang])
+        subprocess.call(["espeak", text, "-w", tmpfile, "-v",
+                         dictdmodel.espeak_voices[lang]])
         subprocess.call(["aplay", tmpfile])
         os.unlink(tmpfile)
 
-    def lang1sel_cb(self, column):
-        # FIXME: Complete the text entry box
-        model, _iter = column.get_selected()
-        value = model.get_value(_iter, 0)
-        translations = self.languagemodel.GetTranslations(0, value)
-        self.translated.set_text(",".join(translations))
+    def __suggestion_selected_cb(self, treeview):
+        model, treeiter = treeview.get_selection().get_selected()
+        if treeiter is not None:
+            value = model.get_value(treeiter, 0)
+            treeview.handler_block(self._suggestion_changed_cb_id)
+            self.totranslate.set_text(value)
+            treeview.handler_unblock(self._suggestion_changed_cb_id)
 
     def lang2sel_cb(self, column):
         model, _iter = column.get_selected()
@@ -392,41 +418,41 @@ class WordsActivity(activity.Activity):
 
     def speak1_cb(self, button):
         text = self.totranslate.get_text()
-        lang = self.fromlang.lower()
-        self.say(text, lang)
+        lang = self.fromlang
+        self._say(text, lang)
 
     def speak2_cb(self, button):
         text = self.translated.get_text()
-        lang = self.tolang.lower()
-        self.say(text, lang)
+        lang = self.tolang
+        self._say(text, lang)
 
-    def totranslate_cb(self, totranslate):
+    def __totranslate_changed_cb(self, totranslate):
         entry = totranslate.get_text()
-        # Ask for completion suggestions
+
+        self._suggestions_model.clear()
         if not entry:
+            self.translated.set_text('')
+            return
+        self._translate()
+
+    def _translate(self):
+        text = self.totranslate.get_text()
+        if not text:
             return
 
-        (list1, list2) = self.languagemodel.GetSuggestions(entry)
-        self.lang1model.clear()
+        # verify if the languagemodel is right
+        if self._dictionary.get_from_lang() != self.fromlang or \
+                self._dictionary.get_to_lang() != self.tolang:
+            self._dictionary = dictdmodel.Dictionary(self._dictd_data_dir,
+                                                     self.fromlang,
+                                                     self.tolang)
+
+        # Ask for completion suggestions
+        list1 = self._dictionary.get_suggestions(text)
+
         self.lang2model.clear()
         for x in list1:
-            self.lang1model.append([x])
-        for x in list2:
-            self.lang2model.append([x])
+            self._suggestions_model.append([x])
 
-        # If we think we know what the word will be, translate it.
-        if entry in list1 or len(list1) == 1 and len(list2) == 0:
-            langiter = self.lang2combo.get_active()
-            lang = self.langs[langiter].lower()
-            self.fromlang = "English"
-            self.tolang = lang
-            translations = self.languagemodel.GetTranslations(0, list1[0])
-            self.translated.set_text(",".join(translations))
-
-        elif entry in list2 or len(list1) == 0 and len(list2) == 1:
-            langiter = self.lang2combo.get_active()
-            lang = self.langs[langiter].lower()
-            self.fromlang = lang
-            self.tolang = "English"
-            translations = self.languagemodel.GetTranslations(1, list2[0])
-            self.translated.set_text(",".join(translations))
+        translations = self._dictionary.get_definition(text)
+        self.translated.set_text(",".join(translations))
