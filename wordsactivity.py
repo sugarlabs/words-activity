@@ -246,6 +246,14 @@ class WordsActivity(activity.Activity):
         self._dictionary = dictdmodel.Dictionary(self._dictd_data_dir,
                                                  self.fromlang,
                                                  self.tolang)
+
+        # the english_dictionary is fixed, if we add more,
+        # can generalize the code
+        self._english_dictionary = None
+        if os.path.exists('./dictd-en/gcide.dict.dz'):
+            self._english_dictionary = dictdmodel.EnglishDictionary(
+                './dictd-en/gcide')
+
         self._from_button = FilterToolItem('go-down',
                                            self._default_from_language,
                                            self._from_lang_options)
@@ -339,11 +347,6 @@ class WordsActivity(activity.Activity):
         result_container.set_border_width(style.DEFAULT_SPACING)
         self._big_box.pack_start(result_container, True, True, 0)
 
-        label2 = Gtk.Label(label=_("Translation") + ':')
-        label2.modify_font(font)
-        label2.set_halign(Gtk.Align.START)
-        result_container.attach(label2, 0, 0, 2, 1)
-
         # Text entry box to receive word translated
 
         self.translated = Gtk.TextView()
@@ -362,12 +365,13 @@ class WordsActivity(activity.Activity):
         scrolled.set_hexpand(True)
         scrolled.set_vexpand(True)
 
-        result_container.attach(scrolled, 0, 1, 1, 1)
+        result_container.attach(scrolled, 0, 0, 1, 1)
 
         speak2 = Gtk.ToolButton()
         speak2.set_icon_widget(Icon(icon_name='microphone'))
+        speak2.set_valign(Gtk.Align.START)
         speak2.connect("clicked", self.speak2_cb)
-        result_container.attach(speak2, 1, 1, 1, 1)
+        result_container.attach(speak2, 1, 0, 1, 1)
 
         self._big_box.show_all()
         self.set_canvas(self._big_box)
@@ -431,12 +435,12 @@ class WordsActivity(activity.Activity):
 
         self._suggestions_model.clear()
         if not entry:
-            self.translated.set_text('')
+            self.translated.get_buffer().set_text('')
             return
         self._translate()
 
     def _translate(self):
-        text = self.totranslate.get_text()
+        text = self.totranslate.get_text().lower()
         if not text:
             return
 
@@ -455,4 +459,16 @@ class WordsActivity(activity.Activity):
 
         translations = self._dictionary.get_definition(text)
 
-        self.translated.get_buffer().set_text(''.join(translations))
+        result = ''
+
+        if translations:
+            result += '\n' + _('Translation:') + '\n\n'
+            result += ''.join(translations)
+
+        if self.fromlang == 'eng' and self._english_dictionary is not None:
+            definition = self._english_dictionary.get_definition(text)
+            if definition:
+                result += '\n\n' + _('Definition:') + '\n\n'
+                result += ''.join(definition)
+
+        self.translated.get_buffer().set_text(result)

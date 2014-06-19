@@ -80,6 +80,22 @@ class Dictionary:
     def get_to_lang(self):
         return self._to_lang
 
+class EnglishDictionary:
+
+    def __init__(self, database):
+        self._db = dictdlib.DictDB(database)
+
+    def get_definition(self, word):
+        return self._db.getdef(word)
+
+    def get_suggestions(self, word):
+        word = word.lower()
+        suggestions = []
+        for key in self._db.getdeflist():
+            if word in key:
+                suggestions.append(key)
+        return suggestions
+
 # move to test
 
 if __name__ == "__main__":
