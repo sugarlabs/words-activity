@@ -286,7 +286,7 @@ class WordsActivity(activity.Activity):
         self.set_toolbar_box(toolbar_box)
         toolbar_box.show()
 
-        font = Pango.FontDescription("Sans 14")
+        font = Pango.FontDescription("Sans %d" % int(style.FONT_SIZE * 1.5))
 
         # This box will change the orientaion when the screen rotates
         self._big_box = Gtk.Box(Gtk.Orientation.HORIZONTAL)
