@@ -249,12 +249,8 @@ class WordsActivity(activity.Activity):
                                                  self.fromlang,
                                                  self.tolang)
 
-        # the english_dictionary is fixed, if we add more,
-        # can generalize the code
         self._english_dictionary = None
-        if os.path.exists('./dictd-en/gcide.dict.dz'):
-            self._english_dictionary = dictdmodel.EnglishDictionary(
-                './dictd-en/gcide')
+        GObject.idle_add(self._init_english_dictionary)
 
         self._from_button = FilterToolItem('go-down',
                                            self._default_from_language,
@@ -385,6 +381,13 @@ class WordsActivity(activity.Activity):
         self.set_canvas(self._big_box)
         self.totranslate.grab_focus()
         self.show_all()
+
+    def _init_english_dictionary(self):
+        # the english_dictionary is fixed, if we add more,
+        # can generalize the code
+        if os.path.exists('./dictd-en/gcide.dict.dz'):
+            self._english_dictionary = dictdmodel.EnglishDictionary(
+                './dictd-en/gcide')
 
     def __from_language_changed_cb(self, widget, value):
         logging.error('selected translate from %s', value)
