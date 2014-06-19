@@ -30,6 +30,7 @@ from gettext import gettext as _
 
 from sugar3.activity import activity
 from sugar3.graphics.icon import Icon
+from sugar3.graphics import iconentry
 from sugar3.graphics.toolbarbox import ToolbarBox
 from sugar3.activity.widgets import ActivityToolbarButton
 from sugar3.activity.widgets import StopButton
@@ -304,8 +305,13 @@ class WordsActivity(activity.Activity):
         lang1_container.attach(label1, 0, 0, 2, 1)
 
         # Text entry box to enter word to be translated
-        self.totranslate = Gtk.Entry()
-        self.totranslate.set_max_length(50)
+        self.totranslate = iconentry.IconEntry()
+        self.totranslate.set_icon_from_name(iconentry.ICON_ENTRY_PRIMARY,
+                                            'entry-search')
+        #self.search_entry.set_placeholder_text(text)
+        self.totranslate.add_clear_button()
+
+        self.totranslate.connect('activate', self.__totranslate_changed_cb)
         self.totranslate.connect("changed", self.__totranslate_changed_cb)
         self.totranslate.modify_font(font)
         self.totranslate.set_hexpand(True)
@@ -319,6 +325,7 @@ class WordsActivity(activity.Activity):
         lang1_container.attach(speak1, 1, 1, 1, 1)
 
         label1 = Gtk.Label(label=_("Suggestions") + ':')
+        label1.modify_font(font)
         label1.set_halign(Gtk.Align.START)
         lang1_container.attach(label1, 0, 2, 2, 1)
 
