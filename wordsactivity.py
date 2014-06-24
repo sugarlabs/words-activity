@@ -40,6 +40,7 @@ from sugar3.graphics.palette import Palette
 from sugar3.graphics.palette import ToolInvoker
 
 import dictdmodel
+from roundbox import RoundBox
 
 
 class FilterToolItem(Gtk.ToolButton):
@@ -283,29 +284,47 @@ class WordsActivity(activity.Activity):
         self.set_toolbar_box(toolbar_box)
         toolbar_box.show()
 
-        font = Pango.FontDescription("Sans %d" % int(style.FONT_SIZE * 1.5))
+        font_size = int(style.FONT_SIZE * 1.5)
+        font = Pango.FontDescription("Sans %d" % font_size)
 
         # This box will change the orientaion when the screen rotates
         self._big_box = Gtk.Box(Gtk.Orientation.HORIZONTAL)
         self._big_box.set_homogeneous(True)
+        self._big_box.set_margin_top(style.DEFAULT_SPACING)
+        self._big_box.set_margin_bottom(style.DEFAULT_SPACING)
 
         lang1_container = Gtk.Grid()
         lang1_container.set_row_spacing(style.DEFAULT_SPACING)
         lang1_container.set_border_width(style.DEFAULT_SPACING)
 
-        self._big_box.pack_start(lang1_container, True, True, 0)
+        lang1_round_box = RoundBox()
+        lang1_round_box.background_color = style.COLOR_BUTTON_GREY
+        lang1_round_box.border_color = style.COLOR_BUTTON_GREY
+
+        lang1_round_box.pack_start(lang1_container, True, True,
+                                   style.DEFAULT_SPACING)
+
+        self._big_box.pack_start(lang1_round_box, True, True,
+                                 style.DEFAULT_SPACING)
 
         # Labels
-        label1 = Gtk.Label(label=_("Word") + ':')
-        label1.modify_font(font)
+        label1 = Gtk.Label()
+        label1.set_markup('<span font="%d" color="white">%s</span>' %
+                          (font_size, _("Word")))
         label1.set_halign(Gtk.Align.START)
-        lang1_container.attach(label1, 0, 0, 2, 1)
+        lang1_container.attach(label1, 0, 0, 1, 1)
+
+        speak1 = Gtk.ToolButton()
+        speak1.set_icon_widget(Icon(icon_name='microphone'))
+        speak1.set_halign(Gtk.Align.END)
+        speak1.connect("clicked", self.speak1_cb)
+        lang1_container.attach(speak1, 1, 0, 1, 1)
 
         # Text entry box to enter word to be translated
         self.totranslate = iconentry.IconEntry()
         self.totranslate.set_icon_from_name(iconentry.ICON_ENTRY_PRIMARY,
                                             'entry-search')
-        #self.search_entry.set_placeholder_text(text)
+        # self.search_entry.set_placeholder_text(text)
         self.totranslate.add_clear_button()
 
         self.totranslate.connect('activate', self.__totranslate_changed_cb)
@@ -313,16 +332,11 @@ class WordsActivity(activity.Activity):
         self.totranslate.modify_font(font)
         self.totranslate.set_hexpand(True)
 
-        lang1_container.attach(self.totranslate, 0, 1, 1, 1)
+        lang1_container.attach(self.totranslate, 0, 1, 2, 1)
 
-        speak1 = Gtk.ToolButton()
-        speak1.set_icon_widget(Icon(icon_name='microphone'))
-        speak1.connect("clicked", self.speak1_cb)
-
-        lang1_container.attach(speak1, 1, 1, 1, 1)
-
-        label1 = Gtk.Label(label=_("Suggestions") + ':')
-        label1.modify_font(font)
+        label1 = Gtk.Label()
+        label1.set_markup('<span font="%d" color="white">%s</span>' %
+                          (font_size, _("Suggestions")))
         label1.set_halign(Gtk.Align.START)
         lang1_container.attach(label1, 0, 2, 2, 1)
 
@@ -349,14 +363,34 @@ class WordsActivity(activity.Activity):
         result_container = Gtk.Grid()
         result_container.set_row_spacing(style.DEFAULT_SPACING)
         result_container.set_border_width(style.DEFAULT_SPACING)
-        self._big_box.pack_start(result_container, True, True, 0)
+
+        lang2_round_box = RoundBox()
+        lang2_round_box.background_color = style.COLOR_BUTTON_GREY
+        lang2_round_box.border_color = style.COLOR_BUTTON_GREY
+
+        lang2_round_box.pack_start(result_container, True, True,
+                                   style.DEFAULT_SPACING)
+
+        self._big_box.pack_start(lang2_round_box, True, True,
+                                 style.DEFAULT_SPACING)
 
         # Text entry box to receive word translated
 
+        label = Gtk.Label()
+        label.set_markup('<span font="%d" color="white">%s</span>' %
+                         (font_size, _("Translation")))
+        label.set_halign(Gtk.Align.START)
+        result_container.attach(label, 0, 0, 1, 1)
+
+        speak2 = Gtk.ToolButton()
+        speak2.set_icon_widget(Icon(icon_name='microphone'))
+        speak2.set_halign(Gtk.Align.END)
+        speak2.connect("clicked", self.speak2_cb)
+        result_container.attach(speak2, 1, 0, 1, 1)
+
         self.translated = Gtk.TextView()
         self.translated.modify_font(font)
-        text_buffer = Gtk.TextBuffer()
-        self.translated.set_buffer(text_buffer)
+        self.translated.set_buffer(Gtk.TextBuffer())
         self.translated.set_left_margin(style.DEFAULT_PADDING)
         self.translated.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         self.translated.set_editable(False)
@@ -365,17 +399,38 @@ class WordsActivity(activity.Activity):
         scrolled.set_policy(Gtk.PolicyType.AUTOMATIC,
                             Gtk.PolicyType.AUTOMATIC)
         scrolled.add(self.translated)
-
         scrolled.set_hexpand(True)
         scrolled.set_vexpand(True)
 
-        result_container.attach(scrolled, 0, 0, 1, 1)
+        result_container.attach(scrolled, 0, 1, 2, 1)
+
+        label = Gtk.Label()
+        label.set_markup('<span font="%d" color="white">%s</span>' %
+                         (font_size, _("Dictionary")))
+        label.set_halign(Gtk.Align.START)
+        result_container.attach(label, 0, 2, 1, 1)
 
         speak2 = Gtk.ToolButton()
         speak2.set_icon_widget(Icon(icon_name='microphone'))
-        speak2.set_valign(Gtk.Align.START)
+        speak2.set_halign(Gtk.Align.END)
         speak2.connect("clicked", self.speak2_cb)
-        result_container.attach(speak2, 1, 0, 1, 1)
+        result_container.attach(speak2, 1, 2, 1, 1)
+
+        self.dictionary = Gtk.TextView()
+        self.dictionary.modify_font(font)
+        self.dictionary.set_buffer(Gtk.TextBuffer())
+        self.dictionary.set_left_margin(style.DEFAULT_PADDING)
+        self.dictionary.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
+        self.dictionary.set_editable(False)
+
+        scrolled = Gtk.ScrolledWindow()
+        scrolled.set_policy(Gtk.PolicyType.AUTOMATIC,
+                            Gtk.PolicyType.AUTOMATIC)
+        scrolled.add(self.dictionary)
+        scrolled.set_hexpand(True)
+        scrolled.set_vexpand(True)
+
+        result_container.attach(scrolled, 0, 3, 2, 1)
 
         self._big_box.show_all()
         self.set_canvas(self._big_box)
@@ -470,16 +525,13 @@ class WordsActivity(activity.Activity):
 
         translations = self._dictionary.get_definition(text)
 
-        result = ''
-
         if translations:
-            result += '\n' + _('Translation:') + '\n\n'
-            result += ''.join(translations)
+            self.translated.get_buffer().set_text(''.join(translations))
+        else:
+            self.translated.get_buffer().set_text('')
 
+        self.dictionary.get_buffer().set_text('')
         if self.fromlang == 'eng' and self._english_dictionary is not None:
             definition = self._english_dictionary.get_definition(text)
             if definition:
-                result += '\n\n' + _('Definition:') + '\n\n'
-                result += ''.join(definition)
-
-        self.translated.get_buffer().set_text(result)
+                self.dictionary.get_buffer().set_text(''.join(definition))
