@@ -534,6 +534,7 @@ class WordsActivity(activity.Activity):
         self._suggestions_model.clear()
         if not entry:
             self.translated.get_buffer().set_text('')
+            self.dictionary.get_buffer().set_text('')
             return
         self._translate()
 
