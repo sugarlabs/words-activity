@@ -416,7 +416,6 @@ class WordsActivity(activity.Activity):
         result_container.attach(speak2, 1, 2, 1, 1)
 
         self.dictionary = Gtk.TextView()
-        self.dictionary.modify_font(font)
         self.dictionary.set_buffer(Gtk.TextBuffer())
         self.dictionary.set_left_margin(style.DEFAULT_PADDING)
         self.dictionary.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
