@@ -305,8 +305,7 @@ class WordsActivity(activity.Activity):
         lang1_round_box.pack_start(lang1_container, True, True,
                                    style.DEFAULT_SPACING)
 
-        self._big_box.pack_start(lang1_round_box, True, True,
-                                 style.DEFAULT_SPACING)
+        self._big_box.pack_start(lang1_round_box, True, True, 0)
 
         # Labels
         label1 = Gtk.Label()
@@ -372,8 +371,7 @@ class WordsActivity(activity.Activity):
         lang2_round_box.pack_start(result_container, True, True,
                                    style.DEFAULT_SPACING)
 
-        self._big_box.pack_start(lang2_round_box, True, True,
-                                 style.DEFAULT_SPACING)
+        self._big_box.pack_start(lang2_round_box, True, True, 0)
 
         # Text entry box to receive word translated
 
