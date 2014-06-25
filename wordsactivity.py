@@ -253,6 +253,7 @@ class WordsActivity(activity.Activity):
 
         self._english_dictionary = None
         GObject.idle_add(self._init_english_dictionary)
+        self._last_word_translated = None
 
         self._from_button = FilterToolItem('go-down',
                                            self._default_from_language,
@@ -561,6 +562,14 @@ class WordsActivity(activity.Activity):
         else:
             self.translated.get_buffer().set_text('')
 
+        # the word can be the same because changed the language pair
+        if self._last_word_translated == text:
+            return
+        self._last_word_translated = text
+
+        GObject.idle_add(self._get_definition, text)
+
+    def _get_definition(self, text):
         self.dictionary.get_buffer().set_text('')
         if self.fromlang == 'eng' and self._english_dictionary is not None:
             definition = self._english_dictionary.get_definition(text)
