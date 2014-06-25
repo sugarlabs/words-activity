@@ -393,6 +393,10 @@ class WordsActivity(activity.Activity):
         self.translated.set_left_margin(style.DEFAULT_PADDING)
         self.translated.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         self.translated.set_editable(False)
+        self.translated.modify_bg(
+            Gtk.StateType.NORMAL, style.COLOR_TEXT_FIELD_GREY.get_gdk_color())
+        self.translated.modify_bg(
+            Gtk.StateType.SELECTED, style.COLOR_SELECTION_GREY.get_gdk_color())
 
         scrolled = Gtk.ScrolledWindow()
         scrolled.set_policy(Gtk.PolicyType.AUTOMATIC,
@@ -420,6 +424,10 @@ class WordsActivity(activity.Activity):
         self.dictionary.set_left_margin(style.DEFAULT_PADDING)
         self.dictionary.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
         self.dictionary.set_editable(False)
+        self.dictionary.modify_bg(
+            Gtk.StateType.NORMAL, style.COLOR_TEXT_FIELD_GREY.get_gdk_color())
+        self.dictionary.modify_bg(
+            Gtk.StateType.SELECTED, style.COLOR_SELECTION_GREY.get_gdk_color())
 
         scrolled = Gtk.ScrolledWindow()
         scrolled.set_policy(Gtk.PolicyType.AUTOMATIC,
