@@ -25,6 +25,7 @@ from gi.repository import Pango
 import logging
 import os
 import subprocess
+import re
 
 from gettext import gettext as _
 
@@ -317,7 +318,7 @@ class WordsActivity(activity.Activity):
         speak1 = Gtk.ToolButton()
         speak1.set_icon_widget(Icon(icon_name='microphone'))
         speak1.set_halign(Gtk.Align.END)
-        speak1.connect("clicked", self.speak1_cb)
+        speak1.connect("clicked", self.__speak_word_cb)
         lang1_container.attach(speak1, 1, 0, 1, 1)
 
         # Text entry box to enter word to be translated
@@ -385,7 +386,7 @@ class WordsActivity(activity.Activity):
         speak2 = Gtk.ToolButton()
         speak2.set_icon_widget(Icon(icon_name='microphone'))
         speak2.set_halign(Gtk.Align.END)
-        speak2.connect("clicked", self.speak2_cb)
+        speak2.connect("clicked", self.__speak_translation_cb)
         result_container.attach(speak2, 1, 0, 1, 1)
 
         self.translated = Gtk.TextView()
@@ -413,7 +414,7 @@ class WordsActivity(activity.Activity):
         speak2 = Gtk.ToolButton()
         speak2.set_icon_widget(Icon(icon_name='microphone'))
         speak2.set_halign(Gtk.Align.END)
-        speak2.connect("clicked", self.speak2_cb)
+        speak2.connect("clicked", self.__speak_dictionary_cb)
         result_container.attach(speak2, 1, 2, 1, 1)
 
         self.dictionary = Gtk.TextView()
@@ -486,15 +487,40 @@ class WordsActivity(activity.Activity):
         translations = self.languagemodel.GetTranslations(1, value)
         self.translated.set_text(",".join(translations))
 
-    def speak1_cb(self, button):
+    def __speak_word_cb(self, button):
         text = self.totranslate.get_text()
         lang = self.fromlang
         self._say(text, lang)
 
-    def speak2_cb(self, button):
-        text = self.translated.get_text()
+    def __speak_translation_cb(self, button):
+        translated_buffer = self.translated.get_buffer()
+        bounds = translated_buffer.get_bounds()
+        text = translated_buffer.get_text(
+            bounds[0], bounds[1], include_hidden_chars=False)
+        # remove the lines with the english definition
+        clean_text = ''
+        logging.error('text %s', text)
+        for line in text.split('\n'):
+            if len(line) > 0 and line[0] in (' ', '\t'):
+                clean_text += line + ','
+        # remove text between []
+        clean_text = re.sub('\[.*?\]', '', clean_text)
+        # remove text between <>
+        clean_text = re.sub('<.*?>', '', clean_text)
         lang = self.tolang
-        self._say(text, lang)
+        logging.error('play %s (lang %s)', clean_text, lang)
+        self._say(clean_text, lang)
+
+    def __speak_dictionary_cb(self, button):
+        dictionary_buffer = self.dictionary.get_buffer()
+        bounds = dictionary_buffer.get_bounds()
+        text = dictionary_buffer.get_text(
+            bounds[0], bounds[1], include_hidden_chars=False)
+        # remove text between []
+        clean_text = re.sub('\[.*?\]', '', text)
+
+        lang = self.fromlang
+        self._say(clean_text, lang)
 
     def __totranslate_changed_cb(self, totranslate):
         entry = totranslate.get_text()
