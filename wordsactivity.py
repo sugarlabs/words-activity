@@ -38,6 +38,7 @@ from sugar3.graphics import style
 from sugar3.graphics.palettemenu import PaletteMenuItem
 from sugar3.graphics.palette import Palette
 from sugar3.graphics.palette import ToolInvoker
+from sugar3.graphics.alert import ErrorAlert
 
 import dictdmodel
 from roundbox import RoundBox
@@ -252,6 +253,14 @@ class WordsActivity(activity.Activity):
                                                  self.tolang)
 
         self._english_dictionary = None
+
+        self._alert = ErrorAlert()
+        self._alert.props.title = _('Wait...')
+        self._alert.props.msg = _('Loading dictionary data')
+        self.add_alert(self._alert)
+        self._alert.connect('response', self._alert_cancel_cb)
+        self._alert.show()
+
         GObject.idle_add(self._init_english_dictionary)
         self._last_word_translated = None
 
@@ -450,6 +459,12 @@ class WordsActivity(activity.Activity):
         if os.path.exists('./dictd-en/hEnglish___advanced_version.dict'):
             self._english_dictionary = dictdmodel.EnglishDictionary(
                 './dictd-en/hEnglish___advanced_version')
+        if self._alert is not None:
+            self.remove_alert(self._alert)
+            self._alert = None
+
+    def _alert_cancel_cb(self, alert, response_id):
+        pass
 
     def __from_language_changed_cb(self, widget, value):
         logging.error('selected translate from %s', value)
