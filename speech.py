@@ -23,7 +23,13 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GObject
 
-from sugar3 import power
+try:
+    from sugar3 import power
+except:
+    # copied the module in the activity for compatibility with Sugar < 0.102
+    import power
+
+Gst.init([])
 
 DEFAULT_PITCH = 0
 
@@ -102,9 +108,11 @@ class SpeechManager(GObject.GObject):
             GObject.source_remove(self._save_timeout_id)
         self._save_timeout_id = GObject.timeout_add(_SAVE_TIMEOUT, self.save)
 
-    def say_text(self, text):
+    def say_text(self, text, voice=None):
+        if voice is None:
+            voice = self._voice_name
         if text:
-            self._player.speak(self._pitch, self._rate, self._voice_name, text)
+            self._player.speak(self._pitch, self._rate, voice, text)
 
     def say_selected_text(self):
         clipboard = Gtk.Clipboard.get(Gdk.SELECTION_PRIMARY)

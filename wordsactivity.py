@@ -24,7 +24,6 @@ from gi.repository import Pango
 
 import logging
 import os
-import subprocess
 import re
 
 from gettext import gettext as _
@@ -42,6 +41,7 @@ from sugar3.graphics.palette import ToolInvoker
 
 import dictdmodel
 from roundbox import RoundBox
+from speech import get_speech_manager
 
 
 class FilterToolItem(Gtk.ToolButton):
@@ -472,12 +472,7 @@ class WordsActivity(activity.Activity):
             self._to_lang_options[lang] = dictdmodel.lang_codes[lang]
 
     def _say(self, text, lang):
-
-        tmpfile = "/tmp/something.wav"
-        subprocess.call(["espeak", text, "-w", tmpfile, "-v",
-                         dictdmodel.espeak_voices[lang]])
-        subprocess.call(["aplay", tmpfile])
-        os.unlink(tmpfile)
+        get_speech_manager().say_text(text, dictdmodel.espeak_voices[lang])
 
     def __suggestion_selected_cb(self, treeview):
         model, treeiter = treeview.get_selection().get_selected()
