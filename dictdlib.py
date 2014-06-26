@@ -20,6 +20,7 @@ import sys
 import string
 import gzip
 import os
+import sqlite3
 
 b64_list = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 url_headword = "00-database-url"
@@ -109,6 +110,7 @@ class DictDB:
         self.indexentries = {}
         self.count = 0
         self.basename = basename
+        self._index_conn = None
 
         self.indexfilename = self.basename + ".index"
         if os.path.isfile(self.basename + ".dict.dz"):
@@ -155,6 +157,11 @@ class DictDB:
 
     def _initindex(self):
         """Load the entire index off disk into memory."""
+        if os.path.exists(self.indexfilename + '.db'):
+            # there are a sql index, use it
+            self._index_conn = sqlite3.connect(self.indexfilename + '.db')
+            return
+
         self.indexfile.seek(0)
         for line in self.indexfile.xreadlines():
             splits = line.rstrip().split("\t")
@@ -162,6 +169,19 @@ class DictDB:
                 self.indexentries[splits[0]] = []
             self.indexentries[splits[0]].append([b64_decode(splits[1]),
                                                  b64_decode(splits[2])])
+
+    def create_sql_index(self):
+        conn = sqlite3.connect(self.indexfilename + '.db')
+        conn.execute('CREATE TABLE definitions ' +
+                     '(word TEXT, position INTEGER, size INTEGER)')
+        conn.commit()
+
+        for word in self.indexentries.keys():
+            values = self.indexentries[word][0]
+            conn.execute('insert into definitions values ' +
+                         '(?, ?, ?)', (buffer(word), values[0], values[1]))
+        conn.commit()
+        conn.close()
 
     def addindexentry(self, word, start, size):
         """Adds an entry to the index.  word is the relevant word.
@@ -323,9 +343,18 @@ class DictDB:
         matching definitions.  This is an *exact* match, not a
         case-insensitive one.  Returns [] if word is not in the dictionary."""
         retval = []
-        if not self.hasdef(word):
-            return retval
-        for start, length in self.indexentries[word]:
-            self.dictfile.seek(start)
-            retval.append(self.dictfile.read(length))
+        if self._index_conn is not None:
+            rows = self._index_conn.execute(
+                'select * from definitions where word=? ', (buffer(word), ))
+            for row in rows:
+                position = row[1]
+                size = row[2]
+                self.dictfile.seek(position)
+                retval.append(self.dictfile.read(size))
+        else:
+            if not self.hasdef(word):
+                return retval
+            for start, length in self.indexentries[word]:
+                self.dictfile.seek(start)
+                retval.append(self.dictfile.read(length))
         return retval
