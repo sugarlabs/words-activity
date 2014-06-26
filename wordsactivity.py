@@ -489,7 +489,11 @@ class WordsActivity(activity.Activity):
             self._to_lang_options[lang] = dictdmodel.lang_codes[lang]
 
     def _say(self, text, lang):
-        get_speech_manager().say_text(text, dictdmodel.espeak_voices[lang])
+        speech_manager = get_speech_manager()
+        if speech_manager.get_is_playing():
+            speech_manager.stop()
+        else:
+            speech_manager.say_text(text, dictdmodel.espeak_voices[lang])
 
     def __suggestion_selected_cb(self, treeview):
         model, treeiter = treeview.get_selection().get_selected()
