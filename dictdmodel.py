@@ -80,6 +80,7 @@ class Dictionary:
     def get_to_lang(self):
         return self._to_lang
 
+
 class EnglishDictionary:
 
     def __init__(self, database):
