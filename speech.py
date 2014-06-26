@@ -29,7 +29,7 @@ except:
     # copied the module in the activity for compatibility with Sugar < 0.102
     import power
 
-Gst.init([])
+Gst.init(None)
 
 DEFAULT_PITCH = 0
 
@@ -137,21 +137,29 @@ class SpeechManager(GObject.GObject):
         client = GConf.Client.get_default()
         client.set_int('/desktop/sugar/speech/pitch', self._pitch)
         client.set_int('/desktop/sugar/speech/rate', self._rate)
-
+        """
         settings = Gio.Settings('org.sugarlabs.speech')
         settings.set_int('pitch', self._pitch)
         settings.set_int('rate', self._rate)
         logging.debug('saving speech configuration pitch %s rate %s',
                       self._pitch, self._rate)
+        """
         return False
 
     def restore(self):
+
+        from gi.repository import GConf
+        client = GConf.Client.get_default()
+        self._pitch = client.get_int('/desktop/sugar/speech/pitch')
+        self._rate = client.get_int('/desktop/sugar/speech/rate')
+
+        """
         settings = Gio.Settings('org.sugarlabs.speech')
         self._pitch = settings.get_int('pitch')
         self._rate = settings.get_int('rate')
         logging.debug('loading speech configuration pitch %s rate %s',
                       self._pitch, self._rate)
-
+        """
 
 class _GstSpeechPlayer(GObject.GObject):
 

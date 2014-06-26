@@ -18,9 +18,11 @@
 """Actividad Palabras: Un diccionario multi-lengua con sintesis de habla"""
 
 from gi.repository import GObject
+GObject.threads_init()
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
+
 
 import logging
 import os
