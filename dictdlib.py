@@ -335,6 +335,21 @@ class DictDB:
         in this dictionary."""
         return self.indexentries.keys()
 
+    def get_suggestions(self, word):
+        word = word.lower()
+        suggestions = []
+        if self._index_conn is not None:
+            rows = self._index_conn.execute(
+                'select word from definitions where word like ?',
+                (buffer('%' + word + '%'), ))
+            for row in rows:
+                suggestions.append(str(row[0]))
+        else:
+            for key in self.getdeflist():
+                if word in key:
+                    suggestions.append(key)
+        return suggestions
+
     def hasdef(self, word):
         return word in self.indexentries
 

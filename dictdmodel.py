@@ -77,12 +77,7 @@ class Dictionary:
         return self._db.getdef(word)
 
     def get_suggestions(self, word):
-        word = word.lower()
-        suggestions = []
-        for key in self._db.getdeflist():
-            if word in key:
-                suggestions.append(key)
-        return suggestions
+        return self._db.get_suggestions(word)
 
     def get_from_lang(self):
         return self._from_lang
