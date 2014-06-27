@@ -418,7 +418,7 @@ class WordsActivity(activity.Activity):
                             Gtk.PolicyType.AUTOMATIC)
         scrolled.add(self.translated)
         scrolled.set_hexpand(True)
-        scrolled.set_size_request(-1, style.GRID_CELL_SIZE * 3)
+        scrolled.set_size_request(-1, style.GRID_CELL_SIZE * 2)
 
         result_container.attach(scrolled, 0, 1, 2, 1)
 
@@ -436,6 +436,7 @@ class WordsActivity(activity.Activity):
 
         self.dictionary = WebKit.WebView()
         self.dictionary.load_html_string(EMPTY_HTML, 'file:///')
+        self.dictionary.set_zoom_level(0.75)
 
         scrolled = Gtk.ScrolledWindow()
         scrolled.set_policy(Gtk.PolicyType.AUTOMATIC,
