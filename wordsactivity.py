@@ -49,6 +49,7 @@ from roundbox import RoundBox
 from speech import get_speech_manager
 
 EMPTY_HTML = '<body bgcolor="#E5E5E5"></body>'
+_AUTOSEARCH_TIMEOUT = 1000
 
 
 class FilterToolItem(Gtk.ToolButton):
@@ -270,6 +271,7 @@ class WordsActivity(activity.Activity):
                                                  self.origin_lang,
                                                  self.destination_lang)
 
+        self._autosearch_timer = None
         self._english_dictionary = None
 
         self._alert = ErrorAlert()
@@ -355,8 +357,9 @@ class WordsActivity(activity.Activity):
         # self.search_entry.set_placeholder_text(text)
         self.totranslate.add_clear_button()
 
-        self.totranslate.connect('activate', self.__totranslate_changed_cb)
-        self.totranslate.connect("changed", self.__totranslate_changed_cb)
+        self.totranslate.connect('activate', self.__totranslate_activated_cb)
+        self._totranslate_changed_id = self.totranslate.connect(
+            "changed", self.__totranslate_changed_cb)
         self.totranslate.modify_font(font)
         self.totranslate.set_hexpand(True)
 
@@ -517,7 +520,12 @@ class WordsActivity(activity.Activity):
         if treeiter is not None:
             value = model.get_value(treeiter, 0)
             treeview.handler_block(self._suggestion_changed_cb_id)
+            self.totranslate.handler_block(self._totranslate_changed_id)
+            if self._autosearch_timer:
+                GObject.source_remove(self._autosearch_timer)
             self.totranslate.set_text(value)
+            self._translate(inmediate_suggestions=True)
+            self.totranslate.handler_unblock(self._totranslate_changed_id)
             treeview.handler_unblock(self._suggestion_changed_cb_id)
 
     def lang2sel_cb(self, column):
@@ -562,19 +570,30 @@ class WordsActivity(activity.Activity):
         self._say(clean_text, lang)
 
     def __totranslate_changed_cb(self, totranslate):
-        entry = totranslate.get_text()
+        if self._autosearch_timer:
+            GObject.source_remove(self._autosearch_timer)
+        self._autosearch_timer = GObject.timeout_add(_AUTOSEARCH_TIMEOUT,
+                                                     self._autosearch_timer_cb)
 
-        self._suggestions_model.clear()
-        if not entry:
+    def __totranslate_activated_cb(self, totranslate):
+        if self._autosearch_timer:
+            GObject.source_remove(self._autosearch_timer)
+        self._translate()
+
+    def _autosearch_timer_cb(self):
+        logging.debug('_autosearch_timer_cb')
+        self._autosearch_timer = None
+        entry = self.totranslate.get_text()
+        self._translate()
+        return False
+
+    def _translate(self, inmediate_suggestions=False):
+        text = self.totranslate.get_text().lower()
+        if not text:
+            self._suggestions_model.clear()
             self.translated.get_buffer().set_text('')
             self._html_definition = ''
             self.dictionary.load_html_string(EMPTY_HTML, 'file:///')
-            return
-        self._translate()
-
-    def _translate(self):
-        text = self.totranslate.get_text().lower()
-        if not text:
             return
 
         # verify if the languagemodel is right
@@ -591,7 +610,10 @@ class WordsActivity(activity.Activity):
         else:
             self.translated.get_buffer().set_text('')
 
-        GObject.idle_add(self._get_suggestions, text)
+        if inmediate_suggestions:
+            self._get_suggestions(text)
+        else:
+            GObject.idle_add(self._get_suggestions, text)
 
         # the word can be the same because changed the language pair
         if self._last_word_translated == text:
@@ -610,6 +632,7 @@ class WordsActivity(activity.Activity):
 
     def _get_suggestions(self, text):
         # Ask for completion suggestions
+        self._suggestions_model.clear()
         for x in self._dictionary.get_suggestions(text):
             self._suggestions_model.append([x])
 
