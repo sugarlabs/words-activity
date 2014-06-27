@@ -534,6 +534,10 @@ class WordsActivity(activity.Activity):
     def __speak_dictionary_cb(self, button):
         # remove text between <>
         clean_text = re.sub('<.*?>', '', self._html_definition)
+        # remove text between []
+        clean_text = re.sub('\[.*?\]', '', clean_text)
+        # remove text between \\
+        clean_text = re.sub('\\\\.*?\\\\', '', clean_text)
 
         lang = self.origin_lang
         self._say(clean_text, lang)
