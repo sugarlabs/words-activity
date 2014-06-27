@@ -161,6 +161,7 @@ class SpeechManager(GObject.GObject):
                       self._pitch, self._rate)
         """
 
+
 class _GstSpeechPlayer(GObject.GObject):
 
     __gsignals__ = {
