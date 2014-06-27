@@ -560,12 +560,6 @@ class WordsActivity(activity.Activity):
                                                      self.origin_lang,
                                                      self.destination_lang)
 
-        # Ask for completion suggestions
-        list1 = self._dictionary.get_suggestions(text)
-
-        for x in list1:
-            self._suggestions_model.append([x])
-
         translations = self._dictionary.get_definition(text)
 
         if translations:
@@ -573,12 +567,19 @@ class WordsActivity(activity.Activity):
         else:
             self.translated.get_buffer().set_text('')
 
+        GObject.idle_add(self._get_suggestions, text)
+
         # the word can be the same because changed the language pair
         if self._last_word_translated == text:
             return
         self._last_word_translated = text
 
         GObject.idle_add(self._get_definition, text)
+
+    def _get_suggestions(self, text):
+        # Ask for completion suggestions
+        for x in self._dictionary.get_suggestions(text):
+            self._suggestions_model.append([x])
 
     def _get_definition(self, text):
         self._html_definition = ''
