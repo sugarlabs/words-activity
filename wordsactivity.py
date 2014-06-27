@@ -22,6 +22,7 @@ GObject.threads_init()
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
+from gi.repository import WebKit
 
 
 import logging
@@ -45,6 +46,8 @@ from sugar3.graphics.alert import ErrorAlert
 import dictdmodel
 from roundbox import RoundBox
 from speech import get_speech_manager
+
+EMPTY_HTML = '<body bgcolor="#E5E5E5"></body>'
 
 
 class FilterToolItem(Gtk.ToolButton):
@@ -431,15 +434,8 @@ class WordsActivity(activity.Activity):
         speak2.connect("clicked", self.__speak_dictionary_cb)
         result_container.attach(speak2, 1, 2, 1, 1)
 
-        self.dictionary = Gtk.TextView()
-        self.dictionary.set_buffer(Gtk.TextBuffer())
-        self.dictionary.set_left_margin(style.DEFAULT_PADDING)
-        self.dictionary.set_wrap_mode(Gtk.WrapMode.WORD_CHAR)
-        self.dictionary.set_editable(False)
-        self.dictionary.modify_bg(
-            Gtk.StateType.NORMAL, style.COLOR_TEXT_FIELD_GREY.get_gdk_color())
-        self.dictionary.modify_bg(
-            Gtk.StateType.SELECTED, style.COLOR_SELECTION_GREY.get_gdk_color())
+        self.dictionary = WebKit.WebView()
+        self.dictionary.load_html_string(EMPTY_HTML, 'file:///')
 
         scrolled = Gtk.ScrolledWindow()
         scrolled.set_policy(Gtk.PolicyType.AUTOMATIC,
@@ -535,12 +531,8 @@ class WordsActivity(activity.Activity):
         self._say(clean_text, lang)
 
     def __speak_dictionary_cb(self, button):
-        dictionary_buffer = self.dictionary.get_buffer()
-        bounds = dictionary_buffer.get_bounds()
-        text = dictionary_buffer.get_text(
-            bounds[0], bounds[1], include_hidden_chars=False)
         # remove text between <>
-        clean_text = re.sub('<.*?>', '', text)
+        clean_text = re.sub('<.*?>', '', self._html_definition)
 
         lang = self.origin_lang
         self._say(clean_text, lang)
@@ -551,7 +543,8 @@ class WordsActivity(activity.Activity):
         self._suggestions_model.clear()
         if not entry:
             self.translated.get_buffer().set_text('')
-            self.dictionary.get_buffer().set_text('')
+            self._html_definition = ''
+            self.dictionary.load_html_string(EMPTY_HTML, 'file:///')
             return
         self._translate()
 
@@ -588,7 +581,8 @@ class WordsActivity(activity.Activity):
         GObject.idle_add(self._get_definition, text)
 
     def _get_definition(self, text):
-        self.dictionary.get_buffer().set_text('')
+        self._html_definition = ''
+        self.dictionary.load_html_string(EMPTY_HTML, 'file:///')
         if self.origin_lang == 'eng' and self._english_dictionary is not None:
             definition = self._english_dictionary.get_definition(text)
             if definition:
@@ -597,10 +591,7 @@ class WordsActivity(activity.Activity):
                 html = re.sub('<HR>', '', html)
                 # remove links
                 html = re.sub('<A.*?</A>', '', html)
-                # remove HR
-                html = re.sub('<BR>', '\n', html)
-                # remove pending html
-                html = re.sub('<.*?>', '', html)
-
-                logging.error(html)
-                self.dictionary.get_buffer().set_text(html)
+                # set background color to #E5E5E5
+                html = '<body bgcolor="#E5E5E5">' + html + '</body>'
+                self._html_definition = html
+                self.dictionary.load_html_string(html, 'file:///')
