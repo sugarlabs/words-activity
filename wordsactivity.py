@@ -28,6 +28,7 @@ from gi.repository import WebKit
 import logging
 import os
 import re
+import json
 
 from gettext import gettext as _
 
@@ -257,6 +258,11 @@ class WordsActivity(activity.Activity):
         else:
             destination = 'spa'
 
+        if 'searches' in self.metadata:
+            self._searches = json.loads(self.metadata['searches'])
+        else:
+            self._searches = {}
+
         # Initial values | Valores iniciales
         self.origin_lang = origin
         self.destination_lang = destination
@@ -463,6 +469,7 @@ class WordsActivity(activity.Activity):
         ''' Write the project to the Journal. '''
         self.metadata['origin'] = self.origin_lang
         self.metadata['destination'] = self.destination_lang
+        self.metadata['searches'] = json.dumps(self._searches)
 
     def _init_english_dictionary(self):
         # the english_dictionary is fixed, if we add more,
@@ -589,6 +596,14 @@ class WordsActivity(activity.Activity):
         # the word can be the same because changed the language pair
         if self._last_word_translated == text:
             return
+
+        # register the search to save in the metadata
+        lang_pair = '%s-%s' % (self.origin_lang, self.destination_lang)
+        if lang_pair in self._searches:
+            self._searches[lang_pair] = self._searches[lang_pair] + 1
+        else:
+            self._searches[lang_pair] = 1
+
         self._last_word_translated = text
 
         GObject.idle_add(self._get_definition, text)
