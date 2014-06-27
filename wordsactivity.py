@@ -221,7 +221,7 @@ class WordsActivity(activity.Activity):
 
     def __init__(self, handle):
         """Set up the Words activity."""
-        super(WordsActivity, self).__init__(handle)
+        activity.Activity.__init__(self, handle)
 
         self._dictd_data_dir = './dictd/'
         self._dictionaries = dictdmodel.Dictionaries(self._dictd_data_dir)
@@ -247,12 +247,19 @@ class WordsActivity(activity.Activity):
         from_toolitem.show_all()
         toolbar_box.toolbar.insert(from_toolitem, -1)
 
-        self._default_origin_language = 'eng'
-        self._default_destination_language = 'spa'
+        if 'origin' in self.metadata:
+            origin = self.metadata['origin']
+        else:
+            origin = 'eng'
+
+        if 'destination' in self.metadata:
+            destination = self.metadata['destination']
+        else:
+            destination = 'spa'
 
         # Initial values | Valores iniciales
-        self.origin_lang = self._default_origin_language
-        self.destination_lang = self._default_destination_language
+        self.origin_lang = origin
+        self.destination_lang = destination
         self._dictionary = dictdmodel.Dictionary(self._dictd_data_dir,
                                                  self.origin_lang,
                                                  self.destination_lang)
@@ -270,7 +277,7 @@ class WordsActivity(activity.Activity):
         self._last_word_translated = None
 
         self._from_button = FilterToolItem('go-down',
-                                           self._default_origin_language,
+                                           origin,
                                            self._origin_lang_options)
         self._from_button.connect("changed", self.__from_language_changed_cb)
         toolbar_box.toolbar.insert(self._from_button, -1)
@@ -451,6 +458,11 @@ class WordsActivity(activity.Activity):
         self.set_canvas(self._big_box)
         self.totranslate.grab_focus()
         self.show_all()
+
+    def write_file(self, file_path):
+        ''' Write the project to the Journal. '''
+        self.metadata['origin'] = self.origin_lang
+        self.metadata['destination'] = self.destination_lang
 
     def _init_english_dictionary(self):
         # the english_dictionary is fixed, if we add more,
