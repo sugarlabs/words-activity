@@ -223,10 +223,10 @@ class WordsActivity(activity.Activity):
         self._dictd_data_dir = './dictd/'
         self._dictionaries = dictdmodel.Dictionaries(self._dictd_data_dir)
 
-        self._from_languages = self._dictionaries.get_languages_from()
-        self._from_lang_options = {}
-        for lang in self._from_languages:
-            self._from_lang_options[lang] = dictdmodel.lang_codes[lang]
+        self._origin_languages = self._dictionaries.get_all_languages_origin()
+        self._origin_lang_options = {}
+        for lang in self._origin_languages:
+            self._origin_lang_options[lang] = dictdmodel.lang_codes[lang]
 
         self.max_participants = 1
 
@@ -244,15 +244,15 @@ class WordsActivity(activity.Activity):
         from_toolitem.show_all()
         toolbar_box.toolbar.insert(from_toolitem, -1)
 
-        self._default_from_language = 'eng'
-        self._default_to_language = 'spa'
+        self._default_origin_language = 'eng'
+        self._default_destination_language = 'spa'
 
         # Initial values | Valores iniciales
-        self.fromlang = self._default_from_language
-        self.tolang = self._default_to_language
+        self.origin_lang = self._default_origin_language
+        self.destination_lang = self._default_destination_language
         self._dictionary = dictdmodel.Dictionary(self._dictd_data_dir,
-                                                 self.fromlang,
-                                                 self.tolang)
+                                                 self.origin_lang,
+                                                 self.destination_lang)
 
         self._english_dictionary = None
 
@@ -267,8 +267,8 @@ class WordsActivity(activity.Activity):
         self._last_word_translated = None
 
         self._from_button = FilterToolItem('go-down',
-                                           self._default_from_language,
-                                           self._from_lang_options)
+                                           self._default_origin_language,
+                                           self._origin_lang_options)
         self._from_button.connect("changed", self.__from_language_changed_cb)
         toolbar_box.toolbar.insert(self._from_button, -1)
 
@@ -277,10 +277,10 @@ class WordsActivity(activity.Activity):
         to_toolitem.show_all()
         toolbar_box.toolbar.insert(to_toolitem, -1)
 
-        self._init_to_language()
+        self._init_destination_language()
         self._to_button = FilterToolItem('go-down',
-                                         self.tolang,
-                                         self._to_lang_options)
+                                         self.destination_lang,
+                                         self._destination_lang_options)
         self._to_button.connect("changed", self.__to_language_changed_cb)
         toolbar_box.toolbar.insert(self._to_button, -1)
 
@@ -470,23 +470,24 @@ class WordsActivity(activity.Activity):
 
     def __from_language_changed_cb(self, widget, value):
         logging.error('selected translate from %s', value)
-        self.fromlang = value
-        self._init_to_language()
-        logging.error('destination languages %s', self._to_lang_options)
-        self._to_button.set_options(self._to_lang_options)
+        self.origin_lang = value
+        self._init_destination_language()
+        logging.error('destination languages %s',
+                      self._destination_lang_options)
+        self._to_button.set_options(self._destination_lang_options)
         self._translate()
 
     def __to_language_changed_cb(self, widget, value):
         logging.error('selected translate to %s', value)
-        self.tolang = value
+        self.destination_lang = value
         self._translate()
 
-    def _init_to_language(self):
-        self._to_languages = self._dictionaries.get_languages_to(
-            self.fromlang)
-        self._to_lang_options = {}
-        for lang in self._to_languages:
-            self._to_lang_options[lang] = dictdmodel.lang_codes[lang]
+    def _init_destination_language(self):
+        destination_languages = self._dictionaries.get_languages_from(
+            self.origin_lang)
+        self._destination_lang_options = {}
+        for lang in destination_languages:
+            self._destination_lang_options[lang] = dictdmodel.lang_codes[lang]
 
     def _say(self, text, lang):
         speech_manager = get_speech_manager()
@@ -511,7 +512,7 @@ class WordsActivity(activity.Activity):
 
     def __speak_word_cb(self, button):
         text = self.totranslate.get_text()
-        lang = self.fromlang
+        lang = self.origin_lang
         self._say(text, lang)
 
     def __speak_translation_cb(self, button):
@@ -529,7 +530,7 @@ class WordsActivity(activity.Activity):
         clean_text = re.sub('\[.*?\]', '', clean_text)
         # remove text between <>
         clean_text = re.sub('<.*?>', '', clean_text)
-        lang = self.tolang
+        lang = self.destination_lang
         logging.error('play %s (lang %s)', clean_text, lang)
         self._say(clean_text, lang)
 
@@ -541,7 +542,7 @@ class WordsActivity(activity.Activity):
         # remove text between <>
         clean_text = re.sub('<.*?>', '', text)
 
-        lang = self.fromlang
+        lang = self.origin_lang
         self._say(clean_text, lang)
 
     def __totranslate_changed_cb(self, totranslate):
@@ -560,11 +561,11 @@ class WordsActivity(activity.Activity):
             return
 
         # verify if the languagemodel is right
-        if self._dictionary.get_from_lang() != self.fromlang or \
-                self._dictionary.get_to_lang() != self.tolang:
+        if self._dictionary.get_from_lang() != self.origin_lang or \
+                self._dictionary.get_to_lang() != self.destination_lang:
             self._dictionary = dictdmodel.Dictionary(self._dictd_data_dir,
-                                                     self.fromlang,
-                                                     self.tolang)
+                                                     self.origin_lang,
+                                                     self.destination_lang)
 
         # Ask for completion suggestions
         list1 = self._dictionary.get_suggestions(text)
@@ -588,7 +589,7 @@ class WordsActivity(activity.Activity):
 
     def _get_definition(self, text):
         self.dictionary.get_buffer().set_text('')
-        if self.fromlang == 'eng' and self._english_dictionary is not None:
+        if self.origin_lang == 'eng' and self._english_dictionary is not None:
             definition = self._english_dictionary.get_definition(text)
             if definition:
                 html = ''.join(definition)

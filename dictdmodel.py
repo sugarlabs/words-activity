@@ -1,5 +1,6 @@
 import os
 import dictdlib
+import logging
 
 lang_codes = {'afr': 'Afrikaans', 'ara': 'Arabic', 'deu': 'Deutch',
               'eng': 'English', 'fra': 'French', 'hin': 'Hindi',
@@ -23,6 +24,7 @@ class Dictionaries:
         for file_name in os.listdir(self._directory):
             if file_name.endswith('.dict.dz'):
                 self._dict_list.append(file_name.split('.')[0])
+                logging.debug('Adding %s', file_name)
 
     def get_dictionaries_from(self, lang=None):
         dictionaries = []
@@ -38,7 +40,7 @@ class Dictionaries:
                 dictionaries.append(dict_name)
         return dictionaries
 
-    def get_languages_from(self, lang=None):
+    def get_languages_from(self, lang):
         langs = []
         for dict_name in self.get_dictionaries_from(lang):
             lang_from = dict_name[4:]
@@ -46,12 +48,20 @@ class Dictionaries:
                 langs.append(lang_from)
         return sorted(langs)
 
-    def get_languages_to(self, lang=None):
+    def get_languages_to(self, lang):
         langs = []
         for dict_name in self.get_dictionaries_to(lang):
             lang_to = dict_name[0:3]
             if lang_to not in langs:
                 langs.append(lang_to)
+        return sorted(langs)
+
+    def get_all_languages_origin(self):
+        langs = []
+        for dict_name in self.get_dictionaries_from():
+            lang = dict_name[0:3]
+            if lang not in langs:
+                langs.append(lang)
         return sorted(langs)
 
 
@@ -103,11 +113,7 @@ if __name__ == "__main__":
 
     dictionaries = Dictionaries('./dictd/')
     print 'All languages from'
-    print dictionaries.get_languages_from()
-    print
-
-    print 'All languages to'
-    print dictionaries.get_languages_to()
+    print dictionaries.get_all_languages_origin()
     print
 
     print 'Get languages to English'
@@ -116,8 +122,16 @@ if __name__ == "__main__":
 
     print 'Dictionaries from English'
     print dictionaries.get_dictionaries_from('eng')
+
+    print 'Languages from English'
+    print dictionaries.get_languages_from('eng')
+
     print 'Dictionaries from Spanish'
     print dictionaries.get_dictionaries_from('spa')
+    print
+
+    print 'Languages from Spanish'
+    print dictionaries.get_languages_from('spa')
     print
 
     print 'Dictionaries to English'
