@@ -454,6 +454,9 @@ class WordsActivity(activity.Activity):
         self.dictionary = WebKit.WebView()
         self.dictionary.load_html_string(EMPTY_HTML, 'file:///')
         self.dictionary.set_zoom_level(0.75)
+        settings = self.dictionary.get_settings()
+        settings.set_property('enable-default-context-menu', False)
+        self.dictionary.set_settings(settings)
 
         scrolled = Gtk.ScrolledWindow()
         scrolled.set_policy(Gtk.PolicyType.AUTOMATIC,
