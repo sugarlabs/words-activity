@@ -520,7 +520,10 @@ class WordsActivity(activity.Activity):
             speech_manager.say_text(text, dictdmodel.espeak_voices[lang])
 
     def __suggestion_selected_cb(self, treeview):
-        model, treeiter = treeview.get_selection().get_selected()
+        selection = treeview.get_selection()
+        if selection is None:
+            return
+        model, treeiter = selection.get_selected()
         if treeiter is not None:
             value = model.get_value(treeiter, 0)
             treeview.handler_block(self._suggestion_changed_cb_id)
