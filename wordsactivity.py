@@ -375,6 +375,7 @@ class WordsActivity(activity.Activity):
         self._suggestions_model = Gtk.ListStore(str)
         suggest_treeview = Gtk.TreeView(self._suggestions_model)
         suggest_treeview.modify_font(font)
+        suggest_treeview.set_enable_search(False)
 
         suggest_treeview.set_headers_visible(False)
         lang1cell = Gtk.CellRendererText()
