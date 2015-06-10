@@ -8,3 +8,4 @@ show_launcher = yes
 license = GPLv3+
 summary = Decode the world and help the world decode you. Use this translator for access and learn about many different languages!
 repository = git@github.com:godiard/words-activity.git
+max_participants = 1
