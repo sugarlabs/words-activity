@@ -1,0 +1,5 @@
+sugar-words-activity (21-0~godiard1) UNRELEASED; urgency=low
+
+  * Initial version for Debian.
+
+ -- Debian Sugar Team <pkg-sugar-devel@lists.alioth.debian.org>  Wed, 10 Jun 2015 11:27:21 -0300
