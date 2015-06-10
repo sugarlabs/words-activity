@@ -13,7 +13,7 @@ max_participants = 1
 # Added fields
 activity_type = gtk3
 homepage = http://wiki.sugarlabs.org/go/Activities/Words
-long_description: Sugar Learning Platform - poll activity
+long_description: Sugar Learning Platform - words activity
  Sugar Learning Platform promotes collaborative learning through Sugar
  Activities that encourage critical thinking, the heart of a quality
  education.  Designed from the ground up especially for children, Sugar
