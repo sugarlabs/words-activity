@@ -17,6 +17,12 @@
 """Words Activity: A multi-lingual dictionary with speech synthesis."""
 """Actividad Palabras: Un diccionario multi-lengua con sintesis de habla"""
 
+import gi
+gi.require_version('Gdk', '3.0')
+gi.require_version('Gtk', '3.0')
+gi.require_version('WebKit', '3.0')
+gi.require_version('Gst', '1.0')
+
 from gi.repository import GObject
 GObject.threads_init()
 from gi.repository import Gdk
@@ -64,7 +70,7 @@ class FilterToolItem(Gtk.ToolButton):
         self._palette_invoker = ToolInvoker()
         self._options = options
         Gtk.ToolButton.__init__(self)
-        logging.error('filter options %s', options)
+        logging.debug('filter options %s', options)
         self._value = default_value
         self._label = self._options[default_value]
         self.set_is_important(True)
@@ -104,7 +110,7 @@ class FilterToolItem(Gtk.ToolButton):
 
     def set_widget_icon(self, icon_name=None):
         icon = Icon(icon_name=icon_name,
-                    icon_size=style.SMALL_ICON_SIZE)
+                    pixel_size=style.SMALL_ICON_SIZE)
         self.set_icon_widget(icon)
         icon.show()
 
@@ -492,16 +498,16 @@ class WordsActivity(activity.Activity):
         pass
 
     def __from_language_changed_cb(self, widget, value):
-        logging.error('selected translate from %s', value)
+        logging.debug('selected translate from %s', value)
         self.origin_lang = value
         self._init_destination_language()
-        logging.error('destination languages %s',
+        logging.debug('destination languages %s',
                       self._destination_lang_options)
         self._to_button.set_options(self._destination_lang_options)
         self._translate()
 
     def __to_language_changed_cb(self, widget, value):
-        logging.error('selected translate to %s', value)
+        logging.debug('selected translate to %s', value)
         self.destination_lang = value
         self._translate()
 
@@ -553,7 +559,7 @@ class WordsActivity(activity.Activity):
             bounds[0], bounds[1], include_hidden_chars=False)
         # remove the lines with the english definition
         clean_text = ''
-        logging.error('text %s', text)
+        logging.debug('text %s', text)
         for line in text.split('\n'):
             if len(line) > 0 and line[0] in (' ', '\t'):
                 clean_text += line + ','
@@ -562,7 +568,7 @@ class WordsActivity(activity.Activity):
         # remove text between <>
         clean_text = re.sub('<.*?>', '', clean_text)
         lang = self.destination_lang
-        logging.error('play %s (lang %s)', clean_text, lang)
+        logging.debug('play %s (lang %s)', clean_text, lang)
         self._say(clean_text, lang)
 
     def __speak_dictionary_cb(self, button):
