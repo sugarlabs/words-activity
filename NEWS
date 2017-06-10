@@ -1,3 +1,10 @@
+22
+
+* New translations (Chris Leonard et al),
+* Added max_participants (Gonzalo Odiard),
+* Removed MANIFEST, warnings, unused code (James Cameron),
+* Update POT file (James Cameron).
+
 13
 
 * Es translations
