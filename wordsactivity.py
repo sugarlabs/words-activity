@@ -596,7 +596,6 @@ class WordsActivity(activity.Activity):
     def _autosearch_timer_cb(self):
         logging.debug('_autosearch_timer_cb')
         self._autosearch_timer = None
-        entry = self.totranslate.get_text()
         self._translate()
         return False
 
