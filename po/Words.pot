@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-10 08:08+1000\n"
+"POT-Creation-Date: 2017-12-11 10:12+1100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,38 +27,38 @@ msgid ""
 "access and learn about many different languages!"
 msgstr ""
 
-#: wordsactivity.py:89 wordsactivity.py:96
+#: wordsactivity.py:95 wordsactivity.py:102
 msgid "Select language"
 msgstr ""
 
-#: wordsactivity.py:248
+#: wordsactivity.py:254
 msgid "From:"
 msgstr ""
 
-#: wordsactivity.py:278
+#: wordsactivity.py:284
 msgid "Wait..."
 msgstr ""
 
-#: wordsactivity.py:279
+#: wordsactivity.py:285
 msgid "Loading dictionary data"
 msgstr ""
 
-#: wordsactivity.py:294
+#: wordsactivity.py:300
 msgid "To:"
 msgstr ""
 
-#: wordsactivity.py:343
+#: wordsactivity.py:349
 msgid "Word"
 msgstr ""
 
-#: wordsactivity.py:370
+#: wordsactivity.py:376
 msgid "Suggestions"
 msgstr ""
 
-#: wordsactivity.py:412
+#: wordsactivity.py:418
 msgid "Translation"
 msgstr ""
 
-#: wordsactivity.py:444
+#: wordsactivity.py:450
 msgid "Dictionary"
 msgstr ""
