@@ -52,10 +52,21 @@ from sugar3.graphics.alert import ErrorAlert
 
 import dictdmodel
 from roundbox import RoundBox
-from speech import get_speech_manager
+from sugar3.speech import SpeechManager
 
 EMPTY_HTML = '<body bgcolor="#E5E5E5"></body>'
 _AUTOSEARCH_TIMEOUT = 1000
+_ESPEAK_TO_NEW_LANG_CODE = {
+    'afrikaans': 'af',
+    'Farsi': 'fa',
+    'german': 'de',
+    'english_rp': 'en_gb-x-rp',
+    'french': 'fr_fr',
+    'hindi': 'hi',
+    'italian': 'it',
+    'brazil': 'pt_br',
+    'spanish-latin-am': 'es_419'
+}
 
 class FilterToolItem(Gtk.ToolButton):
 
@@ -516,11 +527,11 @@ class WordsActivity(activity.Activity):
             self._destination_lang_options[lang] = dictdmodel.lang_codes[lang]
 
     def _say(self, text, lang):
-        speech_manager = get_speech_manager()
+        speech_manager = SpeechManager()
         if speech_manager.get_is_playing():
             speech_manager.stop()
         else:
-            speech_manager.say_text(text, dictdmodel.espeak_voices[lang])
+            speech_manager.say_text(text=text, lang_code=_ESPEAK_TO_NEW_LANG_CODE[dictdmodel.espeak_voices[lang]])
 
     def __suggestion_selected_cb(self, treeview):
         selection = treeview.get_selection()
