@@ -20,7 +20,7 @@
 import gi
 gi.require_version('Gdk', '3.0')
 gi.require_version('Gtk', '3.0')
-gi.require_version('WebKit', '3.0')
+gi.require_version('WebKit2', '4.0')
 gi.require_version('Gst', '1.0')
 
 from gi.repository import GObject
@@ -28,7 +28,7 @@ GObject.threads_init()
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
-from gi.repository import WebKit
+from gi.repository import WebKit2 as WebKit
 
 
 import logging
@@ -57,6 +57,15 @@ from speech import get_speech_manager
 EMPTY_HTML = '<body bgcolor="#E5E5E5"></body>'
 _AUTOSEARCH_TIMEOUT = 1000
 
+def save_to_debug(methods_list):
+    print(type(methods_list))
+    if type(methods_list) is list:
+        with open('index.txt', 'a') as file:
+            for method in methods_list:
+                file.write(method + '\n')
+    else:
+        with open('index.txt', 'a') as file:
+                file.write(methods_list + '\n')
 
 class FilterToolItem(Gtk.ToolButton):
 
@@ -456,13 +465,11 @@ class WordsActivity(activity.Activity):
         speak2.set_halign(Gtk.Align.END)
         speak2.connect("clicked", self.__speak_dictionary_cb)
         result_container.attach(speak2, 1, 2, 1, 1)
-
         self.dictionary = WebKit.WebView()
-        self.dictionary.load_html_string(EMPTY_HTML, 'file:///')
+        self.dictionary.load_html(EMPTY_HTML, 'file:///')
         self.dictionary.set_zoom_level(0.75)
-        settings = self.dictionary.get_settings()
-        settings.set_property('enable-default-context-menu', False)
-        self.dictionary.set_settings(settings)
+        # Removes right-click context menu
+        self.dictionary.connect("button-press-event", lambda w, e: e.button == 3)
 
         scrolled = Gtk.ScrolledWindow()
         scrolled.set_policy(Gtk.PolicyType.AUTOMATIC,
@@ -605,7 +612,7 @@ class WordsActivity(activity.Activity):
             self._suggestions_model.clear()
             self.translated.get_buffer().set_text('')
             self._html_definition = ''
-            self.dictionary.load_html_string(EMPTY_HTML, 'file:///')
+            self.dictionary.load_html(EMPTY_HTML, 'file:///')
             return
 
         # verify if the languagemodel is right
@@ -650,7 +657,7 @@ class WordsActivity(activity.Activity):
 
     def _get_definition(self, text):
         self._html_definition = ''
-        self.dictionary.load_html_string(EMPTY_HTML, 'file:///')
+        self.dictionary.load_html(EMPTY_HTML, 'file:///')
         if self.origin_lang == 'eng' and self._english_dictionary is not None:
             definition = self._english_dictionary.get_definition(text)
             if definition:
@@ -662,4 +669,4 @@ class WordsActivity(activity.Activity):
                 # set background color to #E5E5E5
                 html = '<body bgcolor="#E5E5E5">' + html + '</body>'
                 self._html_definition = html
-                self.dictionary.load_html_string(html, 'file:///')
+                self.dictionary.load_html(html, 'file:///')
