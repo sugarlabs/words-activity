@@ -57,16 +57,6 @@ from speech import get_speech_manager
 EMPTY_HTML = '<body bgcolor="#E5E5E5"></body>'
 _AUTOSEARCH_TIMEOUT = 1000
 
-def save_to_debug(methods_list):
-    print(type(methods_list))
-    if type(methods_list) is list:
-        with open('index.txt', 'a') as file:
-            for method in methods_list:
-                file.write(method + '\n')
-    else:
-        with open('index.txt', 'a') as file:
-                file.write(methods_list + '\n')
-
 class FilterToolItem(Gtk.ToolButton):
 
     _LABEL_MAX_WIDTH = 18
