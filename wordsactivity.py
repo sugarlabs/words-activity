@@ -68,6 +68,7 @@ _ESPEAK_TO_NEW_LANG_CODE = {
     'spanish-latin-am': 'es_419'
 }
 
+
 class FilterToolItem(Gtk.ToolButton):
 
     _LABEL_MAX_WIDTH = 18
@@ -470,7 +471,10 @@ class WordsActivity(activity.Activity):
         self.dictionary.load_html(EMPTY_HTML, 'file:///')
         self.dictionary.set_zoom_level(0.75)
         # Removes right-click context menu
-        self.dictionary.connect("button-press-event", lambda w, e: e.button == 3)
+        self.dictionary.connect(
+            "button-press-event",
+            lambda w,
+            e: e.button == 3)
 
         scrolled = Gtk.ScrolledWindow()
         scrolled.set_policy(Gtk.PolicyType.AUTOMATIC,
@@ -532,7 +536,10 @@ class WordsActivity(activity.Activity):
             speech_manager.stop()
         else:
             try:
-                speech_manager.say_text(text=text, lang_code=_ESPEAK_TO_NEW_LANG_CODE[dictdmodel.espeak_voices[lang]])
+                speech_manager.say_text(
+                    text=text,
+                    lang_code=_ESPEAK_TO_NEW_LANG_CODE[dictdmodel.espeak_voices[lang]]
+                )
             except KeyError:
                 speech_manager.say_text(text=text, lang_code='en')
 
