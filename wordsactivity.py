@@ -531,7 +531,10 @@ class WordsActivity(activity.Activity):
         if speech_manager.get_is_playing():
             speech_manager.stop()
         else:
-            speech_manager.say_text(text=text, lang_code=_ESPEAK_TO_NEW_LANG_CODE[dictdmodel.espeak_voices[lang]])
+            try:
+                speech_manager.say_text(text=text, lang_code=_ESPEAK_TO_NEW_LANG_CODE[dictdmodel.espeak_voices[lang]])
+            except KeyError:
+                speech_manager.say_text(text=text, lang_code='en')
 
     def __suggestion_selected_cb(self, treeview):
         selection = treeview.get_selection()
