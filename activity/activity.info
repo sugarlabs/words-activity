@@ -1,7 +1,7 @@
 [Activity]
 name = Words
 bundle_id = org.laptop.Words
-exec = sugar-activity wordsactivity.WordsActivity
+exec = sugar-activity3 wordsactivity.WordsActivity
 icon = activity-icon
 activity_version = 23
 show_launcher = yes
