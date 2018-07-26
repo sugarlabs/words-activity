@@ -107,38 +107,38 @@ class EnglishDictionary:
 if __name__ == "__main__":
 
     dictionaries = Dictionaries('./dictd/')
-    print 'All languages from'
-    print dictionaries.get_all_languages_origin()
-    print
+    print('All languages from')
+    print(dictionaries.get_all_languages_origin())
+    print()
 
-    print 'Get languages to English'
-    print dictionaries.get_languages_to('eng')
-    print
+    print('Get languages to English')
+    print(dictionaries.get_languages_to('eng'))
+    print()
 
-    print 'Dictionaries from English'
-    print dictionaries.get_dictionaries_from('eng')
+    print('Dictionaries from English')
+    print(dictionaries.get_dictionaries_from('eng'))
 
-    print 'Languages from English'
-    print dictionaries.get_languages_from('eng')
+    print('Languages from English')
+    print(dictionaries.get_languages_from('eng'))
 
-    print 'Dictionaries from Spanish'
-    print dictionaries.get_dictionaries_from('spa')
-    print
+    print('Dictionaries from Spanish')
+    print(dictionaries.get_dictionaries_from('spa'))
+    print()
 
-    print 'Languages from Spanish'
-    print dictionaries.get_languages_from('spa')
-    print
+    print('Languages from Spanish')
+    print(dictionaries.get_languages_from('spa'))
+    print()
 
-    print 'Dictionaries to English'
-    print dictionaries.get_dictionaries_to('eng')
-    print 'Dictionaries to Spanish'
-    print dictionaries.get_dictionaries_to('spa')
-    print
+    print('Dictionaries to English')
+    print(dictionaries.get_dictionaries_to('eng'))
+    print('Dictionaries to Spanish')
+    print(dictionaries.get_dictionaries_to('spa'))
+    print()
 
     dictionary = Dictionary('./dictd/', 'eng', 'spa')
-    print 'Translation from English to Spanish word "out"'
-    print dictionary.get_definition('out')
-    print
+    print('Translation from English to Spanish word "out"')
+    print(dictionary.get_definition('out'))
+    print()
 
-    print 'Translation from English to Spanish word "box"'
-    print dictionary.get_definition('box')
+    print('Translation from English to Spanish word "box"')
+    print(dictionary.get_definition('box'))

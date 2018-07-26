@@ -121,14 +121,14 @@ class DictDB:
             self.usecompression = 0
 
         if mode == 'read':
-            self.indexfile = open(self.indexfilename, "rt")
+            self.indexfile = open(self.indexfilename, "r")
             if self.usecompression:
-                self.dictfile = gzip.GzipFile(self.dictfilename, "rb")
+                self.dictfile = gzip.GzipFile(self.dictfilename, "r")
             else:
                 self.dictfile = open(self.dictfilename, "rb")
             self._initindex()
         elif mode == 'write':
-            self.indexfile = open(self.indexfilename, "wt")
+            self.indexfile = open(self.indexfilename, "w")
             if self.usecompression:
                 raise ValueError("'write' mode incompatible with .dz files")
             else:
@@ -140,7 +140,7 @@ class DictDB:
                 self.indexfile = open(self.indexfilename, "w+b")
             if self.usecompression:
                 # Open it read-only since we don't support mods.
-                self.dictfile = gzip.GzipFile(self.dictfilename, "rb")
+                self.dictfile = gzip.GzipFile(self.dictfilename, "r")
             else:
                 try:
                     self.dictfile = open(self.dictfilename, "r+b")
@@ -163,7 +163,7 @@ class DictDB:
             return
 
         self.indexfile.seek(0)
-        for line in self.indexfile.xreadlines():
+        for line in self.indexfile:
             splits = line.rstrip().split("\t")
             if splits[0] not in self.indexentries:
                 self.indexentries[splits[0]] = []
@@ -176,10 +176,10 @@ class DictDB:
                      '(word TEXT, position INTEGER, size INTEGER)')
         conn.commit()
 
-        for word in self.indexentries.keys():
+        for word in list(self.indexentries.keys()):
             values = self.indexentries[word][0]
             conn.execute('insert into definitions values ' +
-                         '(?, ?, ?)', (buffer(word), values[0], values[1]))
+                         '(?, ?, ?)', (memoryview(word.encode('utf-8')), values[0], values[1]))
         conn.commit()
         conn.close()
 
@@ -281,7 +281,7 @@ class DictDB:
             self.update("Sorting index: converting")
 
             indexlist = []
-            for word, defs in self.indexentries.items():
+            for word, defs in list(self.indexentries.items()):
                 for thisdef in defs:
                     indexlist.append("%s\t%s\t%s" % (word,
                                                      b64_encode(thisdef[0]),
@@ -300,7 +300,7 @@ class DictDB:
 
             self.update(" listing")
 
-            normalizedentries = sortmap.keys()
+            normalizedentries = list(sortmap.keys())
 
             self.update(" sorting")
 
@@ -333,7 +333,7 @@ class DictDB:
     def getdeflist(self):
         """Returns a list of strings naming all definitions contained
         in this dictionary."""
-        return self.indexentries.keys()
+        return list(self.indexentries.keys())
 
     def get_suggestions(self, word):
         word = word.lower()
@@ -341,7 +341,7 @@ class DictDB:
         if self._index_conn is not None:
             rows = self._index_conn.execute(
                 'select word from definitions where word like ?',
-                (buffer('%' + word + '%'), ))
+                (memoryview(b'%' + word.encode('utf-8') + b'%'), ))
             for row in rows:
                 suggestions.append(str(row[0]))
         else:
@@ -360,16 +360,16 @@ class DictDB:
         retval = []
         if self._index_conn is not None:
             rows = self._index_conn.execute(
-                'select * from definitions where word=? ', (buffer(word), ))
+                'select * from definitions where word=? ', (memoryview(word.encode('utf-8')), ))
             for row in rows:
                 position = row[1]
                 size = row[2]
                 self.dictfile.seek(position)
-                retval.append(self.dictfile.read(size))
+                retval.append(self.dictfile.read(size).decode())
         else:
             if not self.hasdef(word):
                 return retval
             for start, length in self.indexentries[word]:
                 self.dictfile.seek(start)
-                retval.append(self.dictfile.read(length))
+                retval.append(self.dictfile.read(length).decode())
         return retval
