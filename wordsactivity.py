@@ -176,7 +176,8 @@ class FilterToolItem(Gtk.ToolButton):
         return False
 
     def set_palette_list(self, options):
-        _menu_item = PaletteMenuItem(text_label=options[list(options.keys())[0]])
+        _menu_item = PaletteMenuItem(
+            text_label=options[list(options.keys())[0]])
         req2 = _menu_item.get_preferred_size()[1]
         menuitem_width = req2.width
         menuitem_height = req2.height
@@ -235,6 +236,7 @@ class FilterToolItem(Gtk.ToolButton):
 
 
 class WordsActivity(activity.Activity):
+
     """Words Activity as specified in activity.info"""
 
     def __init__(self, handle):
@@ -537,7 +539,8 @@ class WordsActivity(activity.Activity):
             try:
                 speech_manager.say_text(
                     text=text,
-                    lang_code=_ESPEAK_TO_NEW_LANG_CODE[dictdmodel.espeak_voices[lang]]
+                    lang_code=_ESPEAK_TO_NEW_LANG_CODE[
+                        dictdmodel.espeak_voices[lang]]
                 )
             except KeyError:
                 speech_manager.say_text(text=text, lang_code='en')
