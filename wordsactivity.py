@@ -553,6 +553,7 @@ class WordsActivity(activity.Activity):
             self.totranslate.handler_block(self._totranslate_changed_id)
             if self._autosearch_timer:
                 GObject.source_remove(self._autosearch_timer)
+                self._autosearch_timer = None
             self.totranslate.set_text(value)
             self._translate(inmediate_suggestions=True)
             self.totranslate.handler_unblock(self._totranslate_changed_id)
@@ -608,6 +609,7 @@ class WordsActivity(activity.Activity):
     def __totranslate_activated_cb(self, totranslate):
         if self._autosearch_timer:
             GObject.source_remove(self._autosearch_timer)
+            self._autosearch_timer = None
         self._translate()
 
     def _autosearch_timer_cb(self):
