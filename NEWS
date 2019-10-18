@@ -10,7 +10,7 @@
    The names of translators have been updated.
 * Replace embedded speech.py with sugar3.speech (Sanatan)
    The embedded speech.py class has been replaced with sugar3.speech
-   
+
 22
 
 * New translations (Chris Leonard et al),
