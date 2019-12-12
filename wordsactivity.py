@@ -637,8 +637,6 @@ class WordsActivity(activity.Activity):
                                                      self.destination_lang)
 
         translations = self._dictionary.get_definition(text)
-        for i in range (len(translations)):
-            translations[i] = translations[i].decode()
 
         if translations:
             self.translated.get_buffer().set_text(''.join(translations))
@@ -676,8 +674,6 @@ class WordsActivity(activity.Activity):
         self.dictionary.load_html(EMPTY_HTML, 'file:///')
         if self.origin_lang == 'eng' and self._english_dictionary is not None:
             definition = self._english_dictionary.get_definition(text)
-            for i in range(len(definition)):
-                definition[i] = definition[i].decode()
             if definition:
                 html = ''.join(definition)
                 # remove HR

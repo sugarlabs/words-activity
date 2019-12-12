@@ -59,7 +59,6 @@ def b64_decode(str):
         shiftval += 6
     return retval
 
-
 validdict = {}
 for x in string.ascii_letters + string.digits + " \t":
     validdict[x] = 1
