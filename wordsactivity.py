@@ -113,8 +113,8 @@ class FilterToolItem(Gtk.ToolButton):
         self.palette = Palette(_('Select language'))
         self.palette.set_invoker(self._palette_invoker)
         self.props.palette.set_content(self.set_palette_list(options))
-        if self._value not in self._options.keys():
-            new_value = self._options.keys()[0]
+        if self._value not in list(self._options.keys()):
+            new_value = list(self._options.keys())[0]
             self._value = new_value
             self._set_widget_label(self._options[new_value])
             self.emit('changed', new_value)
@@ -177,7 +177,7 @@ class FilterToolItem(Gtk.ToolButton):
         return False
 
     def set_palette_list(self, options):
-        _menu_item = PaletteMenuItem(text_label=options[options.keys()[0]])
+        _menu_item = PaletteMenuItem(text_label=options[list(options.keys())[0]])
         req2 = _menu_item.get_preferred_size()[1]
         menuitem_width = req2.width
         menuitem_height = req2.height
@@ -201,7 +201,7 @@ class FilterToolItem(Gtk.ToolButton):
         x = 0
         y = 0
 
-        for key in options.keys():
+        for key in list(options.keys()):
             menu_item = PaletteMenuItem()
             menu_item.set_label(options[key])
 
@@ -634,6 +634,8 @@ class WordsActivity(activity.Activity):
                                                      self.destination_lang)
 
         translations = self._dictionary.get_definition(text)
+        for i in range (len(translations)):
+            translations[i] = translations[i].decode()
 
         if translations:
             self.translated.get_buffer().set_text(''.join(translations))
@@ -671,6 +673,8 @@ class WordsActivity(activity.Activity):
         self.dictionary.load_html(EMPTY_HTML, 'file:///')
         if self.origin_lang == 'eng' and self._english_dictionary is not None:
             definition = self._english_dictionary.get_definition(text)
+            for i in range(len(definition)):
+                definition[i] = definition[i].decode()
             if definition:
                 html = ''.join(definition)
                 # remove HR
