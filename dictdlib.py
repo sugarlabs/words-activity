@@ -124,14 +124,14 @@ class DictDB:
             self.usecompression = 0
 
         if mode == 'read':
-            self.indexfile = open(self.indexfilename, "rt")
+            self.indexfile = open(self.indexfilename, "r")
             if self.usecompression:
-                self.dictfile = gzip.GzipFile(self.dictfilename, "rb")
+                self.dictfile = gzip.GzipFile(self.dictfilename, "r")
             else:
                 self.dictfile = open(self.dictfilename, "rb")
             self._initindex()
         elif mode == 'write':
-            self.indexfile = open(self.indexfilename, "wt")
+            self.indexfile = open(self.indexfilename, "w")
             if self.usecompression:
                 raise ValueError("'write' mode incompatible with .dz files")
             else:
@@ -143,7 +143,7 @@ class DictDB:
                 self.indexfile = open(self.indexfilename, "w+b")
             if self.usecompression:
                 # Open it read-only since we don't support mods.
-                self.dictfile = gzip.GzipFile(self.dictfilename, "rb")
+                self.dictfile = gzip.GzipFile(self.dictfilename, "r")
             else:
                 try:
                     self.dictfile = open(self.dictfilename, "r+b")
@@ -182,7 +182,7 @@ class DictDB:
         for word in list(self.indexentries.keys()):
             values = self.indexentries[word][0]
             conn.execute('insert into definitions values ' +
-                         '(?, ?, ?)', (memoryview(word.encode()), values[0], values[1]))
+                         '(?, ?, ?)', (memoryview(word.encode('utf-8')), values[0], values[1]))
         conn.commit()
         conn.close()
 
@@ -363,16 +363,16 @@ class DictDB:
         retval = []
         if self._index_conn is not None:
             rows = self._index_conn.execute(
-                'select * from definitions where word=? ', (memoryview(word.encode()), ))
+                'select * from definitions where word=? ', (memoryview(word.encode('utf-8')), ))
             for row in rows:
                 position = row[1]
                 size = row[2]
                 self.dictfile.seek(position)
-                retval.append(self.dictfile.read(size))
+                retval.append(self.dictfile.read(size).decode())
         else:
             if not self.hasdef(word):
                 return retval
             for start, length in self.indexentries[word]:
                 self.dictfile.seek(start)
-                retval.append(self.dictfile.read(length))
+                retval.append(self.dictfile.read(length).decode())
         return retval
