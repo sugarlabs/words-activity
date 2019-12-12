@@ -59,6 +59,7 @@ def b64_decode(str):
         shiftval += 6
     return retval
 
+
 validdict = {}
 for x in string.ascii_letters + string.digits + " \t":
     validdict[x] = 1
@@ -76,6 +77,8 @@ def sortnormalize(x):
 
 def sortfunc(x, y):
     """Emulate sort -df."""
+    def cmp(a, b):
+        return (a > b) - (a < b)
     xl = x.split("\0")
     yl = y.split("\0")
     ret = cmp(xl[0], yl[0])
@@ -179,7 +182,7 @@ class DictDB:
         for word in list(self.indexentries.keys()):
             values = self.indexentries[word][0]
             conn.execute('insert into definitions values ' +
-                         '(?, ?, ?)', (memoryview(word.encode('utf-8')), values[0], values[1]))
+                         '(?, ?, ?)', (memoryview(word.encode()), values[0], values[1]))
         conn.commit()
         conn.close()
 
@@ -341,7 +344,7 @@ class DictDB:
         if self._index_conn is not None:
             rows = self._index_conn.execute(
                 'select word from definitions where word like ?',
-                (memoryview(b'%' + word.encode('utf-8') + b'%'), ))
+                (memoryview('%{}%'.format(word).encode()), ))
             for row in rows:
                 suggestions.append(str(row[0]))
         else:
@@ -360,7 +363,7 @@ class DictDB:
         retval = []
         if self._index_conn is not None:
             rows = self._index_conn.execute(
-                'select * from definitions where word=? ', (memoryview(word.encode('utf-8')), ))
+                'select * from definitions where word=? ', (memoryview(word.encode()), ))
             for row in rows:
                 position = row[1]
                 size = row[2]
