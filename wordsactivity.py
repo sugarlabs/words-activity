@@ -64,7 +64,7 @@ _ESPEAK_TO_NEW_LANG_CODE = {
     'hindi': 'hi',
     'italian': 'it',
     'brazil': 'pt_br',
-    'spanish-latin-am': 'es_419'
+    'spanish-latin-am': 'es'
 }
 
 
@@ -543,7 +543,7 @@ class WordsActivity(activity.Activity):
                         dictdmodel.espeak_voices[lang]]
                 )
             except KeyError:
-                speech_manager.say_text(text=text, lang_code='en')
+                speech_manager.say_text(text=text, lang_code='en_us')
 
     def __suggestion_selected_cb(self, treeview):
         selection = treeview.get_selection()
