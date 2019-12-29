@@ -581,8 +581,14 @@ class WordsActivity(activity.Activity):
         # remove the lines with the english definition
         clean_text = ''
         logging.debug('text %s', text)
-        for line in text.split('\n'):
-            if len(line) > 0 and line[0] in (' ', '\t'):
+        for index, line in enumerate(text.split('\n')):
+            if self.destination_lang not in ['hin', 'ara'] and len(
+                    line) > 0 and line[0] in (' ', '\t'):
+                clean_text += line + ','
+            if self.destination_lang == 'hin' and re.search(
+                    '^(\d*\.)', line, 0):
+                clean_text += re.sub('^(\d*\.)', '', line) + ','
+            if self.destination_lang == 'ara' and index != 0 and len(line) > 0:
                 clean_text += line + ','
         # remove text between []
         clean_text = re.sub('\[.*?\]', '', clean_text)
