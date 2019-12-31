@@ -346,7 +346,13 @@ class DictDB:
                 'select word from definitions where word like ?',
                 (memoryview('%{}%'.format(word).encode()), ))
             for row in rows:
-                suggestions.append(str(row[0]))
+                if type(row[0]) is bytes:
+                    suggestions.append(row[0].decode('utf-8'))
+                elif type(row[0]) is str:
+                    suggestions.append(row[0])
+                else:
+                    raise Exception('ERROR: get_suggestions received a non-string like object')
+                    # Errors should not be passed silently. FIXME
         else:
             for key in self.getdeflist():
                 if word in key:
