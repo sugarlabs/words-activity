@@ -586,23 +586,23 @@ class WordsActivity(activity.Activity):
                     line) > 0 and line[0] in (' ', '\t'):
                 clean_text += line + ','
             if self.destination_lang == 'hin' and re.search(
-                    b'^(\d*\.)', line, 0):
-                clean_text += re.sub(b'^(\d*\.)', '', line) + ','
+                    r'^(\d*\.)', line, 0):
+                clean_text += re.sub(r'^(\d*\.)', '', line) + ','
             if self.destination_lang == 'ara' and index != 0 and len(line) > 0:
                 clean_text += line + ','
         # remove text between []
-        clean_text = re.sub(b'\[.*?\]', '', clean_text)
+        clean_text = re.sub(r'\[.*?\]', '', clean_text)
         # remove text between <>
-        clean_text = re.sub(b'<.*?>', '', clean_text)
+        clean_text = re.sub(r'<.*?>', '', clean_text)
         lang = self.destination_lang
         logging.debug('play %s (lang %s)', clean_text, lang)
         self._say(clean_text, lang)
 
     def __speak_dictionary_cb(self, button):
         # remove text between <>
-        clean_text = re.sub('<.*?>', '', self._html_definition)
+        clean_text = re.sub(r'<.*?>', '', self._html_definition)
         # remove text between []
-        clean_text = re.sub('\[.*?\]', '', clean_text)
+        clean_text = re.sub(r'\[.*?\]', '', clean_text)
         # remove text between \\
         clean_text = re.sub('\\\\.*?\\\\', '', clean_text)
 
