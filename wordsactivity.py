@@ -22,8 +22,8 @@ gi.require_version('Gdk', '3.0')
 gi.require_version('Gtk', '3.0')
 gi.require_version('WebKit2', '4.0')
 
+from gi.repository import GLib
 from gi.repository import GObject
-GObject.threads_init()
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
@@ -146,7 +146,7 @@ class FilterToolItem(Gtk.ToolButton):
     def set_palette(self, palette):
         self._palette_invoker.palette = palette
 
-    palette = GObject.property(
+    palette = GObject.Property(
         type=object, setter=set_palette, getter=get_palette)
 
     def get_palette_invoker(self):
@@ -156,7 +156,7 @@ class FilterToolItem(Gtk.ToolButton):
         self._palette_invoker.detach()
         self._palette_invoker = palette_invoker
 
-    palette_invoker = GObject.property(
+    palette_invoker = GObject.Property(
         type=object, setter=set_palette_invoker, getter=get_palette_invoker)
 
     def do_draw(self, cr):
@@ -299,7 +299,7 @@ class WordsActivity(activity.Activity):
         self._alert.connect('response', self._alert_cancel_cb)
         self._alert.show()
 
-        GObject.idle_add(self._init_english_dictionary)
+        GLib.idle_add(self._init_english_dictionary)
         self._last_word_translated = None
 
         self._from_button = FilterToolItem('go-down',
@@ -555,7 +555,7 @@ class WordsActivity(activity.Activity):
             treeview.handler_block(self._suggestion_changed_cb_id)
             self.totranslate.handler_block(self._totranslate_changed_id)
             if self._autosearch_timer:
-                GObject.source_remove(self._autosearch_timer)
+                GLib.source_remove(self._autosearch_timer)
                 self._autosearch_timer = None
             self.totranslate.set_text(value)
             self._translate(inmediate_suggestions=True)
@@ -611,13 +611,13 @@ class WordsActivity(activity.Activity):
 
     def __totranslate_changed_cb(self, totranslate):
         if self._autosearch_timer:
-            GObject.source_remove(self._autosearch_timer)
-        self._autosearch_timer = GObject.timeout_add(_AUTOSEARCH_TIMEOUT,
+            GLib.source_remove(self._autosearch_timer)
+        self._autosearch_timer = GLib.timeout_add(_AUTOSEARCH_TIMEOUT,
                                                      self._autosearch_timer_cb)
 
     def __totranslate_activated_cb(self, totranslate):
         if self._autosearch_timer:
-            GObject.source_remove(self._autosearch_timer)
+            GLib.source_remove(self._autosearch_timer)
             self._autosearch_timer = None
         self._translate()
 
@@ -653,7 +653,7 @@ class WordsActivity(activity.Activity):
         if inmediate_suggestions:
             self._get_suggestions(text)
         else:
-            GObject.idle_add(self._get_suggestions, text)
+            GLib.idle_add(self._get_suggestions, text)
 
         # the word can be the same because changed the language pair
         if self._last_word_translated == text:
@@ -668,7 +668,7 @@ class WordsActivity(activity.Activity):
 
         self._last_word_translated = text
 
-        GObject.idle_add(self._get_definition, text)
+        GLib.idle_add(self._get_definition, text)
 
     def _get_suggestions(self, text):
         # Ask for completion suggestions
