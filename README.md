@@ -11,7 +11,7 @@ text, and the last gives you the meaning of the translated text.
 How to upgrade?
 ===============
 On sugar desktop systems;
-* use [My settings](https://help.sugarlabs.org/en/my_settings.html), [Software update](https://help.sugarlabs.org/en/my_settings.html#software-update), or;
+* use [My settings](https://help.sugarlabs.org/my_settings.html), [Software update](https://help.sugarlabs.org/my_settings.html#software-update), or;
 * use Browse to open [activities.sugarlabs.org](activities.sugarlabs.org) and search for `Words` and download.
 
 How to develop?
