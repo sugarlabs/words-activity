@@ -1,3 +1,17 @@
+24
+* Add screenshots (Aryan Sharma)
+* Port to Python3 (Rahul Bothra, Zeet)
+* Fix source_remove warning (James Cameron) 
+* Port to GLib (Srevin Saju)
+* Fix deprecated escape sequences in regex search (Srevin Saju)
+* translate.sugarlabs.org synchronisation (James Cameron)
+* Update to espeak-ng 1.49.2 (Martin Abente)
+* Fix speech for Farsi and Hindi (Martin Abente)
+   These two languages dictionaries do not follow
+   the same structure as the other ones, so treat
+   them as special cases.
+* Regenerate POT file (Chihurumnaya Ibiam)
+
 23
 
 * Port to WebKit2 (Sanatan)
