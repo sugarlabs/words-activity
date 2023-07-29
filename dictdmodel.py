@@ -2,7 +2,7 @@ import os
 import dictdlib
 import logging
 
-lang_codes = {'afr': 'Afrikaans', 'ara': 'Arabic', 'deu': 'Deutch',
+lang_codes = {'afr': 'Afrikaans', 'ara': 'Arabic', 'deu': 'Deutsch',
               'eng': 'English', 'fra': 'French', 'hin': 'Hindi',
               'ita': 'Italian', 'por': 'Portuguese', 'spa': 'Spanish'}
 
