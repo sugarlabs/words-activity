@@ -20,7 +20,14 @@
 import gi
 gi.require_version('Gdk', '3.0')
 gi.require_version('Gtk', '3.0')
-gi.require_version('WebKit2', '4.0')
+# adds support for T12/U24.04 releases
+try:
+    gi.require_version('WebKit2', '4.0')
+except ValueError:
+    try:
+        gi.require_version('WebKit2', '4.1')
+    except ValueError:
+        GLib.error("Failed requesting WebKit2 version 4.0 or 4.1.")
 
 from gi.repository import GLib
 from gi.repository import GObject
